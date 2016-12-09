@@ -13,6 +13,19 @@
 		93DC6D871DFA2C760004ABE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6D851DFA2C760004ABE6 /* LaunchScreen.storyboard */; };
 		93DC6D921DFA2C760004ABE6 /* FitnessChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D911DFA2C760004ABE6 /* FitnessChallengeTests.swift */; };
 		93DC6D9D1DFA2C760004ABE6 /* FitnessChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D9C1DFA2C760004ABE6 /* FitnessChallengeUITests.swift */; };
+		93DC6DAB1DFA2D730004ABE6 /* Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DAA1DFA2D730004ABE6 /* Athlete.swift */; };
+		93DC6DAD1DFA2EA20004ABE6 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DAC1DFA2EA20004ABE6 /* Challenge.swift */; };
+		93DC6DAF1DFA2EAC0004ABE6 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DAE1DFA2EAC0004ABE6 /* Set.swift */; };
+		93DC6DB41DFA2F860004ABE6 /* AthleteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DB31DFA2F860004ABE6 /* AthleteController.swift */; };
+		93DC6DB71DFA2FBB0004ABE6 /* ChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DB61DFA2FBB0004ABE6 /* ChallengeController.swift */; };
+		93DC6DB91DFA36C70004ABE6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DB81DFA36C70004ABE6 /* LoginViewController.swift */; };
+		93DC6DBC1DFA37580004ABE6 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DBB1DFA37580004ABE6 /* CreateAccountViewController.swift */; };
+		93DC6DBE1DFA37EF0004ABE6 /* ChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DBD1DFA37EF0004ABE6 /* ChallengesViewController.swift */; };
+		93DC6DC01DFA3C0F0004ABE6 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DBF1DFA3C0F0004ABE6 /* CustomTabBarViewController.swift */; };
+		93DC6DC21DFA3D890004ABE6 /* CreateChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DC11DFA3D890004ABE6 /* CreateChallengeViewController.swift */; };
+		93DC6DC41DFA3F0D0004ABE6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DC31DFA3F0D0004ABE6 /* ProfileViewController.swift */; };
+		93DC6DC61DFA3F280004ABE6 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6DC51DFA3F280004ABE6 /* FriendsViewController.swift */; };
+		93DC6DC81DFB2D930004ABE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6DC71DFB2D930004ABE6 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +58,19 @@
 		93DC6D981DFA2C760004ABE6 /* FitnessChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitnessChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DC6D9C1DFA2C760004ABE6 /* FitnessChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessChallengeUITests.swift; sourceTree = "<group>"; };
 		93DC6D9E1DFA2C760004ABE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93DC6DAA1DFA2D730004ABE6 /* Athlete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Athlete.swift; sourceTree = "<group>"; };
+		93DC6DAC1DFA2EA20004ABE6 /* Challenge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		93DC6DAE1DFA2EAC0004ABE6 /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		93DC6DB31DFA2F860004ABE6 /* AthleteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AthleteController.swift; sourceTree = "<group>"; };
+		93DC6DB61DFA2FBB0004ABE6 /* ChallengeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeController.swift; sourceTree = "<group>"; };
+		93DC6DB81DFA36C70004ABE6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		93DC6DBB1DFA37580004ABE6 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		93DC6DBD1DFA37EF0004ABE6 /* ChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesViewController.swift; sourceTree = "<group>"; };
+		93DC6DBF1DFA3C0F0004ABE6 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		93DC6DC11DFA3D890004ABE6 /* CreateChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChallengeViewController.swift; sourceTree = "<group>"; };
+		93DC6DC31DFA3F0D0004ABE6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		93DC6DC51DFA3F280004ABE6 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		93DC6DC71DFB2D930004ABE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +122,11 @@
 			isa = PBXGroup;
 			children = (
 				93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */,
-				93DC6D801DFA2C760004ABE6 /* Main.storyboard */,
-				93DC6D831DFA2C760004ABE6 /* Assets.xcassets */,
-				93DC6D851DFA2C760004ABE6 /* LaunchScreen.storyboard */,
-				93DC6D881DFA2C760004ABE6 /* Info.plist */,
+				93DC6DB01DFA2ECD0004ABE6 /* Model */,
+				93DC6DB51DFA2F940004ABE6 /* ModelControllers */,
+				93DC6DBA1DFA36D10004ABE6 /* ViewControllers */,
+				93DC6DB21DFA2F0B0004ABE6 /* Storyboards */,
+				93DC6DB11DFA2EEF0004ABE6 /* Resources */,
 			);
 			path = FitnessChallenge;
 			sourceTree = "<group>";
@@ -120,6 +147,58 @@
 				93DC6D9E1DFA2C760004ABE6 /* Info.plist */,
 			);
 			path = FitnessChallengeUITests;
+			sourceTree = "<group>";
+		};
+		93DC6DB01DFA2ECD0004ABE6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				93DC6DAA1DFA2D730004ABE6 /* Athlete.swift */,
+				93DC6DAC1DFA2EA20004ABE6 /* Challenge.swift */,
+				93DC6DAE1DFA2EAC0004ABE6 /* Set.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		93DC6DB11DFA2EEF0004ABE6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				93DC6D831DFA2C760004ABE6 /* Assets.xcassets */,
+				93DC6DC71DFB2D930004ABE6 /* GoogleService-Info.plist */,
+				93DC6D881DFA2C760004ABE6 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		93DC6DB21DFA2F0B0004ABE6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				93DC6D801DFA2C760004ABE6 /* Main.storyboard */,
+				93DC6D851DFA2C760004ABE6 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		93DC6DB51DFA2F940004ABE6 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				93DC6DB31DFA2F860004ABE6 /* AthleteController.swift */,
+				93DC6DB61DFA2FBB0004ABE6 /* ChallengeController.swift */,
+			);
+			name = ModelControllers;
+			sourceTree = "<group>";
+		};
+		93DC6DBA1DFA36D10004ABE6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				93DC6DC31DFA3F0D0004ABE6 /* ProfileViewController.swift */,
+				93DC6DC51DFA3F280004ABE6 /* FriendsViewController.swift */,
+				93DC6DC11DFA3D890004ABE6 /* CreateChallengeViewController.swift */,
+				93DC6DBF1DFA3C0F0004ABE6 /* CustomTabBarViewController.swift */,
+				93DC6DB81DFA36C70004ABE6 /* LoginViewController.swift */,
+				93DC6DBB1DFA37580004ABE6 /* CreateAccountViewController.swift */,
+				93DC6DBD1DFA37EF0004ABE6 /* ChallengesViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93DC6D871DFA2C760004ABE6 /* LaunchScreen.storyboard in Resources */,
+				93DC6DC81DFB2D930004ABE6 /* GoogleService-Info.plist in Resources */,
 				93DC6D841DFA2C760004ABE6 /* Assets.xcassets in Resources */,
 				93DC6D821DFA2C760004ABE6 /* Main.storyboard in Resources */,
 			);
@@ -259,7 +339,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93DC6DB91DFA36C70004ABE6 /* LoginViewController.swift in Sources */,
+				93DC6DC21DFA3D890004ABE6 /* CreateChallengeViewController.swift in Sources */,
+				93DC6DC61DFA3F280004ABE6 /* FriendsViewController.swift in Sources */,
+				93DC6DAF1DFA2EAC0004ABE6 /* Set.swift in Sources */,
+				93DC6DB71DFA2FBB0004ABE6 /* ChallengeController.swift in Sources */,
 				93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */,
+				93DC6DBE1DFA37EF0004ABE6 /* ChallengesViewController.swift in Sources */,
+				93DC6DC41DFA3F0D0004ABE6 /* ProfileViewController.swift in Sources */,
+				93DC6DBC1DFA37580004ABE6 /* CreateAccountViewController.swift in Sources */,
+				93DC6DC01DFA3C0F0004ABE6 /* CustomTabBarViewController.swift in Sources */,
+				93DC6DAD1DFA2EA20004ABE6 /* Challenge.swift in Sources */,
+				93DC6DAB1DFA2D730004ABE6 /* Athlete.swift in Sources */,
+				93DC6DB41DFA2F860004ABE6 /* AthleteController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
