@@ -10,15 +10,33 @@ import Foundation
 
 class Set {
     
+    private let movementTypeKey = "movementType"
+    private let repsKey = "reps"
+    private let timestampKey = "timestamp"
+    private let athleteRefKey = "athleteRef"
+    
     var movementType: String
     var reps: Int
     var timestamp: Date
+    var uid: String
+    var athleteRef: String
     
-    init(movementType: String, reps: Int, timestamp: Date) {
+    init(movementType: String, reps: Int, timestamp: Date, uid: String = UUID().uuidString, athleteRef: String) {
         
         self.movementType = movementType
         self.reps = reps
         self.timestamp = timestamp
+        self.uid = uid
+    }
+    
+//    init?(uid: String, dictionary: [String:Any]) {
+//        
+//        
+//    }
+    
+    var dictionaryRepresentation: [String:Any] {
+        
+        return [movementTypeKey: movementType, repsKey: reps, timestampKey: timestamp, athleteRefKey: athleteRef]
     }
 }
 

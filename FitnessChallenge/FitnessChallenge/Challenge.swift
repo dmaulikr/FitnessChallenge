@@ -9,15 +9,36 @@
 import Foundation
 
 class Challenge {
+
+    private let nameKey = "name"
+    private let isCompleteKey = "isComplete"
+    private let durationKey = "duration"
+    private let participantsKey = "participants"
     
     var name: String
     var isComplete: Bool
-    var participants: [Athlete:[Set]]
+    var duration: Double
+    var participants: [Athlete] = []
+    var uid: String
+    var creatorId: String
     
-    init(name: String, isComplete: Bool, participants: [Athlete:[Set]]) {
+    init(name: String, isComplete: Bool, duration: Double, participants: [Athlete] = [], uid: String = UUID().uuidString, creatorId: String) {
     
-    self.name = name
-    self.isComplete = isComplete
-    self.participants = participants
+        self.name = name
+        self.isComplete = isComplete
+        self.duration = duration
+        self.participants = participants
+        self.uid = uid
+        self.creatorId = creatorId
+    }
+    
+//    init?(uid: String, dictionary: [String:Any]) {
+//        
+//        
+//    }
+    
+    var dictionaryRepresentation: [String:Any] {
+        
+        return [nameKey: name, isCompleteKey: isComplete, durationKey: duration, creatorId: creatorId]
     }
 }

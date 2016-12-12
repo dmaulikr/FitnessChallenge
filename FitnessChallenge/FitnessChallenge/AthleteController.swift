@@ -11,7 +11,22 @@ import Foundation
 class AthleteController {
     
     //C
+    //?
+    func createAthlete() {
+        
+        
+    }
     
+    static func addAthleteToFirebase() {
+        
+        let athlete = Athlete(username: "usernameMock", email: "mock@email.com", password: "hello")
+        
+        let allAthletesRef = ChallengeController.baseRef.child("athletes")
+        
+        let testAthleteRef = allAthletesRef.child(athlete.uid)
+        
+        testAthleteRef.setValue(athlete.dictionaryRepresentation)
+    }
     
     
     //R
