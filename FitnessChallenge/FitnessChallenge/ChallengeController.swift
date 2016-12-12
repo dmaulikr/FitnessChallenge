@@ -13,22 +13,21 @@ class ChallengeController {
     
     static let baseRef = FIRDatabase.database().reference()
     
-    //C
+    static let sharedController = ChallengeController()
+    
+    var currentChallenges = [Challenge]()
+    var pastChallenges = [Challenge]()
+    
+    //CRUD
 
-    func createChallenge() {
-        
-        
-    }
-    
-    //R
-    
-    //U
-    
-    //D
+//    func createChallenge() {
+//        
+//        let challenge = Challenge(name: <#T##String#>, isComplete: <#T##Bool#>, duration: <#T##Double#>, creatorId: <#T##String#>)
+//    }
 
     
     
-    static func sendChallengeToFirebase() {
+    func sendChallengeToFirebase() {
         
 //        let challenge = Challenge(name: "Test", isComplete: false, startDate: Date(), duration: 3600)
 //        

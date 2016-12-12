@@ -222,11 +222,11 @@
 			children = (
 				93DC6DB81DFA36C70004ABE6 /* LoginViewController.swift */,
 				93DC6DBB1DFA37580004ABE6 /* CreateAccountViewController.swift */,
+				93DC6DBD1DFA37EF0004ABE6 /* ChallengesViewController.swift */,
 				93DC6DC11DFA3D890004ABE6 /* CreateChallengeViewController.swift */,
 				93DC6DC31DFA3F0D0004ABE6 /* ProfileViewController.swift */,
 				93DC6DC51DFA3F280004ABE6 /* FriendsViewController.swift */,
 				93DC6DBF1DFA3C0F0004ABE6 /* CustomTabBarViewController.swift */,
-				93DC6DBD1DFA37EF0004ABE6 /* ChallengesViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

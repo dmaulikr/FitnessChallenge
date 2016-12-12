@@ -7,37 +7,56 @@
 //
 
 import Foundation
+import Firebase
 
 class AthleteController {
     
-    //C
-    //?
-    func createAthlete() {
-        
-        
-    }
+    static var currentUserRef: String = ""
+    static var currentUserUID: String = ""
     
-    static func addAthleteToFirebase() {
+    //CRUD
+    
+    static func addAthleteToFirebase(username: String, email: String, password: String) {
         
-        let athlete = Athlete(username: "usernameMock", email: "mock@email.com", password: "hello")
+        let athlete = Athlete(username: username, email: email, password: password)
         
         let allAthletesRef = ChallengeController.baseRef.child("athletes")
+        let athleteRef = allAthletesRef.child(athlete.uid)
         
-        let testAthleteRef = allAthletesRef.child(athlete.uid)
+        athleteRef.setValue(athlete.dictionaryRepresentation)
+    }
+    
+    static func loginAthlete(email: String, password: String, completion: @escaping (_ success: Bool) -> Void) {
         
-        testAthleteRef.setValue(athlete.dictionaryRepresentation)
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            
+            if error != nil {
+                print("There was an error logging in: \(error?.localizedDescription)")
+                completion(false)
+                return
+            } else {
+                guard let user = user else { return }
+                currentUserUID = user.uid
+                print("\(user.displayName) has been successfully logged in.")
+                completion(true)
+            }
+        })
+    }
+    
+    static func logoutAthlete() {
+        
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
     
     
-    //R
     
-    
-    
-    //U
-    
-    
-    
-    //D
+
 
 }
+
 

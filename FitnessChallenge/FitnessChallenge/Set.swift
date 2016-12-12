@@ -27,6 +27,7 @@ class Set {
         self.reps = reps
         self.timestamp = timestamp
         self.uid = uid
+        self.athleteRef = athleteRef
     }
     
 //    init?(uid: String, dictionary: [String:Any]) {
