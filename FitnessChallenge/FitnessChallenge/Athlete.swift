@@ -22,7 +22,7 @@ class Athlete {
     var uid: String
     var challenges: [String] = []
     
-    init(username: String, email: String, password: String, uid: String = UUID().uuidString) {
+    init(username: String, email: String, password: String, uid: String) {
         
         self.username = username
         self.email = email

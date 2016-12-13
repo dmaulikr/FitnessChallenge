@@ -72,6 +72,7 @@
                         <outlet property="emailTextField" destination="mHI-ex-7nr" id="brA-Ki-BKd"/>
                         <outlet property="passwordTextField" destination="5tk-TQ-eJl" id="e5j-pa-nag"/>
                         <outlet property="usernameTextField" destination="Ctd-Eg-M7M" id="r3z-Wg-GGz"/>
+                        <segue destination="PLP-sx-C6h" kind="show" identifier="toChallengesView" id="Q9h-bR-jdy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fpQ-1h-m3F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -96,7 +97,11 @@
                                 <items>
                                     <navigationItem title="Create challenge" id="EAG-8b-psT">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="M9V-EG-5K8"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Create" id="17a-ql-V77"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Create" id="17a-ql-V77">
+                                            <connections>
+                                                <action selector="createChallengeButtonTapped:" destination="bQi-ff-EBK" id="K4f-Af-6cQ"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -121,9 +126,33 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2kP-QJ-aYA">
+                                <rect key="frame" x="0.0" y="124" width="320" height="436"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fG8-5h-49C">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="T6Q-Mn-6Jq">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="challengeNameTextField" destination="KMo-JM-yRs" id="HHb-hx-fEm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xke-qY-6lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -265,7 +294,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="2Ah-kh-tfm" detailTextLabel="rBL-Vn-KJr" style="IBUITableViewCellStyleValue1" id="rh4-eY-b38">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="currentChallengeCell" textLabel="2Ah-kh-tfm" detailTextLabel="rBL-Vn-KJr" style="IBUITableViewCellStyleValue1" id="rh4-eY-b38">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rh4-eY-b38" id="zCg-PD-Cyr">
@@ -339,6 +368,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="currentChallengesTableView" destination="jZj-Uu-goQ" id="2g4-U1-1Nn"/>
+                        <outlet property="welcomeLabel" destination="lyT-jd-hYn" id="1wP-f7-teO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWt-uf-ai6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -422,4 +455,7 @@
             <point key="canvasLocation" x="1980" y="260"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Q9h-bR-jdy"/>
+    </inferredMetricsTieBreakers>
 </document>

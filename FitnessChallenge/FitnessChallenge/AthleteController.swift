@@ -11,16 +11,18 @@ import Firebase
 
 class AthleteController {
     
-    static var currentUserRef: String = ""
+//    static var currentUserRef: String = ""
     static var currentUserUID: String = ""
+    static var currentUser: Athlete?
     
     //CRUD
     
-    static func addAthleteToFirebase(username: String, email: String, password: String) {
+    static func addAthleteToFirebase(username: String, email: String, password: String, uid: String) {
         
-        let athlete = Athlete(username: username, email: email, password: password)
+        let athlete = Athlete(username: username, email: email, password: password, uid: uid)
+        currentUser = athlete
         
-        let allAthletesRef = ChallengeController.baseRef.child("athletes")
+        let allAthletesRef = ChallengeController.sharedController.baseRef.child("athletes")
         let athleteRef = allAthletesRef.child(athlete.uid)
         
         athleteRef.setValue(athlete.dictionaryRepresentation)
@@ -37,10 +39,31 @@ class AthleteController {
             } else {
                 guard let user = user else { return }
                 currentUserUID = user.uid
-                print("\(user.displayName) has been successfully logged in.")
+                fetchCurrentUserFromFirebaseWith(uid: currentUserUID)
+                // Fetch user from firebase here
+                print("\(user.uid) has been successfully logged in.")
                 completion(true)
             }
         })
+    }
+    
+    static func fetchCurrentUserFromFirebaseWith(uid: String) {
+        let currentUserRef = FIRDatabase.database().reference().child("athletes").child(uid)
+        // Documentation how to fetch user, read data once
+        currentUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            guard let valueDictionary = snapshot.value as? [String:Any],
+                let username = valueDictionary["username"] as? String,
+                let email = valueDictionary["email"] as? String,
+                let password = valueDictionary["password"] as? String
+                else { return }
+            
+            let user = Athlete(username: username, email: email, password: password, uid: uid)
+            currentUser = user
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     static func logoutAthlete() {

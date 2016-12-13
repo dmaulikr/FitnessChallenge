@@ -30,10 +30,17 @@ class LoginViewController: UIViewController {
             if success == true {
                 
                 self.performSegue(withIdentifier: "toChallengesVC", sender: self)
-            } 
-            
+            } else {
+                let alertController = UIAlertController(title: "Oh no!", message: "We couldn't get you signed in. Please try again.", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(tryAgainAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
-        
     }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {

@@ -9,6 +9,8 @@
 import UIKit
 
 class CreateChallengeViewController: UIViewController {
+    
+    @IBOutlet weak var challengeNameTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +19,15 @@ class CreateChallengeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func createChallengeButtonTapped(_ sender: Any) {
+        
+        guard let challengeName = challengeNameTextField.text,
+            let currentUser = AthleteController.currentUser else { return }
+        
+        ChallengeController.sharedController.createChallenge(name: challengeName, isComplete: false, creatorId: currentUser.uid)
+    }
 
+    
     /*
     // MARK: - Navigation
 

@@ -10,33 +10,32 @@ import Foundation
 import FirebaseDatabase
 
 class ChallengeController {
+
     
-    static let baseRef = FIRDatabase.database().reference()
+    let baseRef = FIRDatabase.database().reference()
     
     static let sharedController = ChallengeController()
     
     var currentChallenges = [Challenge]()
     var pastChallenges = [Challenge]()
     
+    var nonParticipatingFriends = [Athlete]()
+    var invitedFriends = [Athlete]()
+    var participationFriends = [Athlete]()
+    
+    
     //CRUD
 
-//    func createChallenge() {
-//        
-//        let challenge = Challenge(name: <#T##String#>, isComplete: <#T##Bool#>, duration: <#T##Double#>, creatorId: <#T##String#>)
-//    }
-
-    
-    
-    func sendChallengeToFirebase() {
+    // Create challenge and send it to firebase.
+    func createChallenge(name: String, isComplete: Bool, creatorId: String) {
         
-//        let challenge = Challenge(name: "Test", isComplete: false, startDate: Date(), duration: 3600)
-//        
-//        let allChallengesRef = baseRef.child("challenges")
-//        
-//        let testChallengeRef = allChallengesRef.child(challenge.uid)
-//        
-//        testChallengeRef.setValue(challenge.dictionaryRepresentation)
+        let challenge = Challenge(name: name, isComplete: isComplete, creatorId: creatorId)
+        currentChallenges.append(challenge)
         
+        let allChallenges = baseRef.child("challenges")
+        let challengeRef = allChallenges.child(challenge.uid)
+        
+        challengeRef.setValue(challenge.dictionaryRepresentation)
     }
     
     func endChallenge() {
@@ -44,17 +43,6 @@ class ChallengeController {
         
     }
     
-    func inviteFriends() {
-        
-    }
-    
-    func cancelInvitation() {
-        
-    }
-    
-    func acceptRequestToJoin() {
-        
-        
-    }
+
 }
 
