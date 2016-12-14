@@ -48,7 +48,9 @@ class AthleteController {
     }
     
     static func fetchCurrentUserFromFirebaseWith(uid: String) {
+        
         let currentUserRef = FIRDatabase.database().reference().child("athletes").child(uid)
+        
         // Documentation how to fetch user, read data once
         currentUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
@@ -76,6 +78,9 @@ class AthleteController {
         }
     }
     
+    func addSet() {
+        
+    }
     
     
 

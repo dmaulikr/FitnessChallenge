@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         
+        ChallengeController.sharedController.fetchChallenges()
+        
         guard let email = emailTextField.text,
             let password = passwordTextField.text
             else { return }
@@ -29,7 +31,9 @@ class LoginViewController: UIViewController {
         AthleteController.loginAthlete(email: email, password: password) { (success) in
             if success == true {
                 
+                
                 self.performSegue(withIdentifier: "toChallengesVC", sender: self)
+                
             } else {
                 let alertController = UIAlertController(title: "Oh no!", message: "We couldn't get you signed in. Please try again.", preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -41,11 +45,6 @@ class LoginViewController: UIViewController {
                 self.present(alertController, animated: true, completion: nil)
             }
         }
-    }
-    
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-        
-        AthleteController.logoutAthlete()
     }
     
     

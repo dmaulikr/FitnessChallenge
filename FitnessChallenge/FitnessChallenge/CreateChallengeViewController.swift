@@ -25,7 +25,9 @@ class CreateChallengeViewController: UIViewController {
             let currentUser = AthleteController.currentUser else { return }
         
         ChallengeController.sharedController.createChallenge(name: challengeName, isComplete: false, creatorId: currentUser.uid)
+        self.dismiss(animated: true, completion: nil)
     }
+
 
     
     /*

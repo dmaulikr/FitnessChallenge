@@ -16,12 +16,29 @@ class ChallengeController {
     
     static let sharedController = ChallengeController()
     
-    var currentChallenges = [Challenge]()
-    var pastChallenges = [Challenge]()
+    var allChallenges = [Challenge]()
+    
+    var userCurrentChallenges: [Challenge] {
+        
+        guard let currentUser = AthleteController.currentUser
+            else { return [] }
+        
+        let activeChallenges = allChallenges.filter({ $0.isComplete == false })
+        
+        // This will need to change to populate any challenge the current user is tied to.
+        return activeChallenges.filter({ $0.creatorId == currentUser.uid })
+    }
+    
+    var pastChallenges: [Challenge] {
+        
+        return allChallenges.filter({ $0.isComplete == true})
+    }
     
     var nonParticipatingFriends = [Athlete]()
     var invitedFriends = [Athlete]()
-    var participationFriends = [Athlete]()
+    var participatingFriends = [Athlete]()
+    
+    var currentlySelectedChallenge: Challenge?
     
     
     //CRUD
@@ -30,7 +47,7 @@ class ChallengeController {
     func createChallenge(name: String, isComplete: Bool, creatorId: String) {
         
         let challenge = Challenge(name: name, isComplete: isComplete, creatorId: creatorId)
-        currentChallenges.append(challenge)
+        self.allChallenges.append(challenge)
         
         let allChallenges = baseRef.child("challenges")
         let challengeRef = allChallenges.child(challenge.uid)
@@ -38,11 +55,21 @@ class ChallengeController {
         challengeRef.setValue(challenge.dictionaryRepresentation)
     }
     
-    func endChallenge() {
+    func endChallenge(challenge: Challenge) {
         
-        
+        challenge.isComplete = !challenge.isComplete
     }
     
+    func fetchChallenges() {
+    
+        let allChallengesRef = baseRef.child("challenges")
+        allChallengesRef.observe(FIRDataEventType.value, with: { (snapshot) in
+            let challengesDictionary = snapshot.value as? [String : [String: Any]]
+            
+            guard let challenges = challengesDictionary?.flatMap({Challenge(uid: $0.key, dictionary: $0.value)}) else { return }
 
+            self.allChallenges = challenges
+        })
+    }
 }
 

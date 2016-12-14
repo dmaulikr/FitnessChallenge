@@ -12,12 +12,11 @@ class Challenge {
 
     private let nameKey = "name"
     private let isCompleteKey = "isComplete"
-//    private let durationKey = "duration"
     private let participantsKey = "participants"
+    private let creatorIdKey = "creatorId"
     
     var name: String
     var isComplete: Bool
-//    var duration: Double
     var participants: [Athlete] = []
     var uid: String
     var creatorId: String
@@ -26,19 +25,28 @@ class Challenge {
     
         self.name = name
         self.isComplete = isComplete
-//        self.duration = duration
         self.participants = participants
         self.uid = uid
         self.creatorId = creatorId
     }
     
-//    init?(uid: String, dictionary: [String:Any]) {
-//        
-//        
-//    }
+    init?(uid: String, dictionary: [String:Any]) {
+        
+        guard let name = dictionary[nameKey] as? String,
+            let isComplete = dictionary[isCompleteKey] as? Bool,
+            let creatorId = dictionary[creatorIdKey] as? String
+            else { return nil }
+        
+        self.name = name
+        self.isComplete = isComplete
+        self.uid = uid
+        self.creatorId = creatorId
+        
+        
+    }
     
     var dictionaryRepresentation: [String:Any] {
         
-        return [nameKey: name, isCompleteKey: isComplete, creatorId: creatorId]
+        return [nameKey: name, isCompleteKey: isComplete, creatorIdKey: creatorId]
     }
 }

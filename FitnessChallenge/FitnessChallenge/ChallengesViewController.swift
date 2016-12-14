@@ -15,24 +15,26 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.currentChallengesTableView.delegate = self
-        self.currentChallengesTableView.dataSource = self
 
         guard let username = AthleteController.currentUser?.username else { return }
             self.welcomeLabel.text = "Welcome \(username)!"
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        currentChallengesTableView.reloadData()
+    }
 
     // Current Challenges TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ChallengeController.sharedController.currentChallenges.count
+        return ChallengeController.sharedController.userCurrentChallenges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "currentChallengeCell", for: indexPath)
         
-        let challenge = ChallengeController.sharedController.currentChallenges[indexPath.row]
+        let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
         
+//        let creator = challenge.creatorId
         cell.textLabel?.text = challenge.name
         cell.detailTextLabel?.text = challenge.creatorId
         
