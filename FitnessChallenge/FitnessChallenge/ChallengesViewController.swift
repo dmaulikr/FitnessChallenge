@@ -16,6 +16,9 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ChallengeController.sharedController.fetchChallenges {
+            self.currentChallengesTableView.reloadData()
+        }
         guard let username = AthleteController.currentUser?.username else { return }
             self.welcomeLabel.text = "Welcome \(username)!"
     }
@@ -39,6 +42,15 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.detailTextLabel?.text = challenge.creatorId
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
+        
+        ChallengeController.sharedController.currentlySelectedChallenge = challenge
+        
+        self.performSegue(withIdentifier: "showChallengeView", sender: self)
     }
 
     /*

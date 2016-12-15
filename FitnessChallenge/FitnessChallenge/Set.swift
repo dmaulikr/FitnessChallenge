@@ -14,6 +14,7 @@ class Set {
     private let repsKey = "reps"
     private let timestampKey = "timestamp"
     private let athleteRefKey = "athleteRef"
+    private let uidKey = "uid"
     
     var movementType: String
     var reps: Int
@@ -21,7 +22,7 @@ class Set {
     var uid: String
     var athleteRef: String
     
-    init(movementType: String, reps: Int, timestamp: Date, uid: String = UUID().uuidString, athleteRef: String) {
+    init(movementType: String, reps: Int, timestamp: Date = Date(), uid: String = UUID().uuidString, athleteRef: String) {
         
         self.movementType = movementType
         self.reps = reps
@@ -37,7 +38,9 @@ class Set {
     
     var dictionaryRepresentation: [String:Any] {
         
-        return [movementTypeKey: movementType, repsKey: reps, timestampKey: timestamp, athleteRefKey: athleteRef]
+        let dateInterval = timestamp.timeIntervalSince1970
+        
+        return [movementTypeKey: movementType, repsKey: reps, timestampKey: dateInterval, athleteRefKey: athleteRef, uidKey: uid]
     }
 }
 

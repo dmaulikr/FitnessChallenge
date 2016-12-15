@@ -8,24 +8,54 @@
 
 import UIKit
 
-class CustomTabBarViewController: UITabBarController {
-
+class CustomTabBarViewController: UITabBarController, CustomTabBarViewDelegate {
+    
+    var tabView: CustomTabBarView!
+    
+    override var selectedIndex: Int {
+        didSet {
+            tabView.selectIndex(index: selectedIndex)
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tabBar.isHidden = true
+        
+        let frame = CGRect(x: 0,
+                           y: view.frame.height - 60,
+                           width: view.frame.width,
+                           height: 60)
+        
+        tabView = CustomTabBarView(frame: frame)
+        tabView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        tabView.delegate = self
+        tabView.selectIndex(index: 0)
+        view.addSubview(tabView)
     }
-
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tabBarButtonTapped(index: Int) {
+        
+        
+        if index == 2 {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let addSetVC = storyboard.instantiateViewController(withIdentifier: "addSetViewController") as? AddSetViewController else {
+                return }
+            self.present(addSetVC, animated: true, completion: nil)
+            }
+        
+        selectedIndex = index
     }
-    */
-
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

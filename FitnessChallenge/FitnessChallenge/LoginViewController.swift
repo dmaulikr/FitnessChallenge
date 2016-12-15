@@ -22,8 +22,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         
-        ChallengeController.sharedController.fetchChallenges()
-        
         guard let email = emailTextField.text,
             let password = passwordTextField.text
             else { return }

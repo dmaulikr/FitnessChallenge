@@ -48,3 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+/* Colors
+
+UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+UIColor(red: 35/255, green: 40/255, blue: 40/255, alpha: 1)// Darkest Gray
+UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
+ 
+*/

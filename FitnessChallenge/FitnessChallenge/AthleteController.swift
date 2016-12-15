@@ -39,15 +39,19 @@ class AthleteController {
             } else {
                 guard let user = user else { return }
                 currentUserUID = user.uid
-                fetchCurrentUserFromFirebaseWith(uid: currentUserUID)
+                fetchCurrentUserFromFirebaseWith(uid: currentUserUID, completion: { 
+                    ChallengeController.sharedController.fetchChallenges {
+                        completion(true)
+                    }
+                })
                 // Fetch user from firebase here
                 print("\(user.uid) has been successfully logged in.")
-                completion(true)
+                
             }
         })
     }
     
-    static func fetchCurrentUserFromFirebaseWith(uid: String) {
+    static func fetchCurrentUserFromFirebaseWith(uid: String, completion: @escaping () -> Void) {
         
         let currentUserRef = FIRDatabase.database().reference().child("athletes").child(uid)
         
@@ -62,6 +66,7 @@ class AthleteController {
             
             let user = Athlete(username: username, email: email, password: password, uid: uid)
             currentUser = user
+            completion()
             
         }) { (error) in
             print(error.localizedDescription)
@@ -78,8 +83,19 @@ class AthleteController {
         }
     }
     
-    func addSet() {
+    static func addSet(selectedReps: Int) {
         
+        guard let user = AthleteController.currentUser,
+            let challenge = ChallengeController.sharedController.currentlySelectedChallenge else { return }
+        
+        
+        
+        let set = Set(movementType: challenge.movementType, reps: selectedReps, athleteRef: user.uid)
+        
+        let allSets = ChallengeController.sharedController.baseRef.child("sets")
+        let setRef = allSets.child(set.uid)
+        
+        setRef.setValue(set.dictionaryRepresentation)
     }
     
     

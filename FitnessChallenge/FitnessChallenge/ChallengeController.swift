@@ -60,7 +60,7 @@ class ChallengeController {
         challenge.isComplete = !challenge.isComplete
     }
     
-    func fetchChallenges() {
+    func fetchChallenges(completion: @escaping () -> Void) {
     
         let allChallengesRef = baseRef.child("challenges")
         allChallengesRef.observe(FIRDataEventType.value, with: { (snapshot) in
@@ -68,7 +68,8 @@ class ChallengeController {
             
             guard let challenges = challengesDictionary?.flatMap({Challenge(uid: $0.key, dictionary: $0.value)}) else { return }
 
-            self.allChallenges = challenges
+            ChallengeController.sharedController.allChallenges = challenges
+            completion()
         })
     }
 }
