@@ -10,11 +10,24 @@ import Foundation
 
 class FriendController {
     
-    static var currentUserFriendList = [Athlete]()
+    //=======================================================
+    // MARK: - Properties
+    //=======================================================
     
-    // Mock friends
-    var mockFriendsArray = [Athlete]()
-    let friend1 = Athlete(username: "captianKirke", email: "cap@trek.com", password: "captainkirke", uid: "blahblahuidblah")
+//    static var currentUserFriendList: [Athlete] {
+//        
+//        guard let currentUser = AthleteController.currentUser else {
+//                return []
+//        }
+//        let allUsers = AthleteController.allAthletes
+//        
+//        let currentUserFriends = allUsers.filter( { )
+//        
+//    }
+    
+    var nonParticipatingFriends = [Athlete]()
+    var invitedFriends = [Athlete]()
+    var participatingFriends = [Athlete]()
     
     
     
@@ -23,9 +36,9 @@ class FriendController {
         
     }
     
-    func addFriend() {
+    func addFriend(username: String) {
         
-        
+//        AthleteController.allAthletes
     }
     
     func removeFriend() {
@@ -42,6 +55,11 @@ class FriendController {
     }
     
     func acceptRequestToJoin() {
+        
+        
+    }
+    
+    func declineRequestToJoin() {
         
         
     }

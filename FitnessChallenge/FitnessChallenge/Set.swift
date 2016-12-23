@@ -31,10 +31,25 @@ class Set {
         self.athleteRef = athleteRef
     }
     
-//    init?(uid: String, dictionary: [String:Any]) {
-//        
-//        
-//    }
+    init?(uid: String, dictionary: [String:Any]) {
+        
+        guard let movementType = dictionary[movementTypeKey] as? String,
+            let reps = dictionary[repsKey] as? Int,
+            let timeInterval = dictionary[timestampKey] as? TimeInterval,
+            let uid = dictionary[uidKey] as? String,
+            let athleteRef = dictionary[athleteRefKey] as? String else {
+            return nil
+        }
+        let timestamp = Date(timeIntervalSince1970: timeInterval)
+        
+        self.movementType = movementType
+        self.reps = reps
+        self.timestamp = timestamp
+        self.uid = uid
+        self.athleteRef = athleteRef
+        
+        
+    }
     
     var dictionaryRepresentation: [String:Any] {
         

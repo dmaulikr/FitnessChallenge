@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7pI-87-4nZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7pI-87-4nZ">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -140,7 +140,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2kP-QJ-aYA">
-                                <rect key="frame" x="0.0" y="124" width="320" height="436"/>
+                                <rect key="frame" x="0.0" y="216" width="320" height="344"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fG8-5h-49C">
                                     <size key="itemSize" width="50" height="50"/>
@@ -159,6 +159,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0Kc-Tu-83D">
+                                <rect key="frame" x="48" y="124" width="75" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add New Friend"/>
+                                <connections>
+                                    <action selector="addFriendButtonTapped:" destination="bQi-ff-EBK" eventType="touchUpInside" id="g2f-e5-tKq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -167,7 +175,7 @@
                             <constraint firstAttribute="trailing" secondItem="tkR-4J-a14" secondAttribute="trailing" id="5ag-B9-Qxe"/>
                             <constraint firstItem="tkR-4J-a14" firstAttribute="top" secondItem="PIm-If-5An" secondAttribute="bottom" id="8lZ-EY-ClT"/>
                             <constraint firstItem="tkR-4J-a14" firstAttribute="trailing" secondItem="vRd-AL-b3s" secondAttribute="trailing" id="FcG-r5-3We"/>
-                            <constraint firstItem="2kP-QJ-aYA" firstAttribute="top" secondItem="vRd-AL-b3s" secondAttribute="bottom" constant="8" symbolic="YES" id="UgQ-nb-ghI"/>
+                            <constraint firstItem="2kP-QJ-aYA" firstAttribute="top" secondItem="vRd-AL-b3s" secondAttribute="bottom" constant="100" id="UgQ-nb-ghI"/>
                             <constraint firstItem="tkR-4J-a14" firstAttribute="leading" secondItem="mjH-Oz-kOf" secondAttribute="leading" id="YcH-8v-SSx"/>
                             <constraint firstItem="vRd-AL-b3s" firstAttribute="trailing" secondItem="2kP-QJ-aYA" secondAttribute="trailing" id="c4L-cV-szt"/>
                             <constraint firstItem="vRd-AL-b3s" firstAttribute="leading" secondItem="2kP-QJ-aYA" secondAttribute="leading" id="jvB-5b-2jD"/>
@@ -514,21 +522,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMH-oe-9ym">
-                                <rect key="frame" x="115" y="274" width="91" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61x-UW-cKB" customClass="ORKDiscreteGraphChartView">
+                                <rect key="frame" x="31" y="35" width="258" height="458"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OMH-oe-9ym" firstAttribute="centerY" secondItem="GBl-7j-avB" secondAttribute="centerY" id="O1u-YN-CTi"/>
-                            <constraint firstItem="OMH-oe-9ym" firstAttribute="centerX" secondItem="GBl-7j-avB" secondAttribute="centerX" id="gXk-Hs-YXm"/>
-                            <constraint firstItem="OMH-oe-9ym" firstAttribute="leading" secondItem="GBl-7j-avB" secondAttribute="leadingMargin" constant="99" id="wz6-Bm-FXV"/>
+                            <constraint firstItem="61x-UW-cKB" firstAttribute="leading" secondItem="GBl-7j-avB" secondAttribute="leadingMargin" constant="15" id="6l2-Sz-KyN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="61x-UW-cKB" secondAttribute="trailing" constant="15" id="SIy-V3-vMV"/>
+                            <constraint firstItem="huS-IN-Xvh" firstAttribute="top" secondItem="61x-UW-cKB" secondAttribute="bottom" constant="75" id="Sch-N9-NHp"/>
+                            <constraint firstItem="61x-UW-cKB" firstAttribute="top" secondItem="tfC-1B-gy3" secondAttribute="bottom" constant="15" id="tB5-NP-U1T"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="o8T-Zj-a7u"/>
+                    <connections>
+                        <outlet property="graphView" destination="61x-UW-cKB" id="7fh-vS-7bY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YOa-dv-mPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,6 +12,8 @@ class CreateChallengeViewController: UIViewController {
     
     @IBOutlet weak var challengeNameTextField: UITextField!
 
+    var test: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +30,25 @@ class CreateChallengeViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func addFriendButtonTapped(_ sender: Any) {
+        
+        let alertController = UIAlertController(title: "Add a Friend", message: "What's their username?", preferredStyle: .alert)
+        
+        var usernameTextField: UITextField?
+        alertController.addTextField { (textfield) in
+            usernameTextField = textfield
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
+            self.test = usernameTextField?.text
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(addAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 
     
     /*

@@ -9,8 +9,7 @@ target 'FitnessChallenge' do
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
-pod ‘Firebase/Auth’
-pod 'ResearchKit', '~> 1.0'
+pod 'Firebase/Auth'
 
   target 'FitnessChallengeTests' do
     inherit! :search_paths

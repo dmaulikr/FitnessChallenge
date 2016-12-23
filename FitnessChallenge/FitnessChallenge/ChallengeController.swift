@@ -11,6 +11,9 @@ import FirebaseDatabase
 
 class ChallengeController {
 
+    //=======================================================
+    // MARK: - Properties
+    //=======================================================
     
     let baseRef = FIRDatabase.database().reference()
     
@@ -31,12 +34,13 @@ class ChallengeController {
     
     var pastChallenges: [Challenge] {
         
-        return allChallenges.filter({ $0.isComplete == true})
+        guard let currentUser = AthleteController.currentUser
+            else { return [] }
+        
+        let allPastChallenges = allChallenges.filter({ $0.isComplete == true })
+        
+        return allPastChallenges.filter({ $0.creatorId == currentUser.uid})
     }
-    
-    var nonParticipatingFriends = [Athlete]()
-    var invitedFriends = [Athlete]()
-    var participatingFriends = [Athlete]()
     
     var currentlySelectedChallenge: Challenge?
     

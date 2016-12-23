@@ -15,6 +15,15 @@ class AthleteController {
     static var currentUserUID: String = ""
     static var currentUser: Athlete?
     
+    static var allAthletes: [Athlete] = []
+    
+    static var allSets: [Set] = []
+    
+    static var currentUserSets: [Set] {
+        
+        return allSets.filter( { $0.athleteRef == currentUserUID } )
+    }
+    
     //CRUD
     
     static func addAthleteToFirebase(username: String, email: String, password: String, uid: String) {
@@ -48,6 +57,22 @@ class AthleteController {
                 print("\(user.uid) has been successfully logged in.")
                 
             }
+        })
+    }
+    
+    static func fetchAllAthletes(completion: @escaping () -> Void) {
+        
+        let usersRef = ChallengeController.sharedController.baseRef.child("athletes")
+        
+        usersRef.observe(FIRDataEventType.value, with: { (snapshot) in
+            
+            guard let valueDictionary = snapshot.value as? [String:[String:Any]] else {
+                return
+            }
+            let athletes = valueDictionary.flatMap({ Athlete(uid: $0.key, dictionary: $0.value) })
+            
+            AthleteController.allAthletes = athletes
+            completion()
         })
     }
     
@@ -96,6 +121,21 @@ class AthleteController {
         let setRef = allSets.child(set.uid)
         
         setRef.setValue(set.dictionaryRepresentation)
+    }
+    
+    static func fetchCurrentUserSets(completion: @escaping () -> Void) {
+        
+        let allSetsRef = ChallengeController.sharedController.baseRef.child("sets")
+        allSetsRef.observe(FIRDataEventType.value, with: { (snapshot) in
+            let setsDictionary = snapshot.value as? [String : [String: Any]]
+            
+            guard let sets = setsDictionary?.flatMap({ Set(uid: $0.key, dictionary: $0.value) }) else {
+                return
+            }
+            
+            AthleteController.allSets = sets
+            completion()
+        })
     }
     
     
