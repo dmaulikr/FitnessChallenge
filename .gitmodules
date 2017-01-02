@@ -1,0 +1,3 @@
+[submodule "Frameworks/ResearchKit"]
+	path = Frameworks/ResearchKit
+	url = https://github.com/ResearchKit/ResearchKit.git
