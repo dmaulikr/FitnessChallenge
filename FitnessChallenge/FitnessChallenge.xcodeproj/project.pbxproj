@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7DF8F56DD036C6C22544FB53 /* Pods_FitnessChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B532632B6508AF4299EDF426 /* Pods_FitnessChallengeUITests.framework */; };
 		931A039D1DFF615300F98112 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A039C1DFF615300F98112 /* FriendController.swift */; };
+		9397F6B61E1AEB0F00187E63 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; };
+		9397F6B71E1AEB0F00187E63 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */; };
 		93DC6D821DFA2C760004ABE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6D801DFA2C760004ABE6 /* Main.storyboard */; };
 		93DC6D841DFA2C760004ABE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6D831DFA2C760004ABE6 /* Assets.xcassets */; };
@@ -37,6 +39,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9397F6B21E1AEB0000187E63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B183A5951A8535D100C76870;
+			remoteInfo = ResearchKit;
+		};
+		9397F6B41E1AEB0000187E63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
+			remoteInfo = ResearchKitTests;
+		};
+		9397F6B81E1AEB0F00187E63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B183A4731A8535D100C76870;
+			remoteInfo = ResearchKit;
+		};
 		93DC6D8E1DFA2C760004ABE6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93DC6D711DFA2C760004ABE6 /* Project object */;
@@ -53,6 +76,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9397F6BA1E1AEB0F00187E63 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9397F6B71E1AEB0F00187E63 /* ResearchKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3155C9CB543F844A61CA60C0 /* Pods-FitnessChallengeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeUITests/Pods-FitnessChallengeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		34762EBB4B6D7B188C15F076 /* Pods_FitnessChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitnessChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +97,7 @@
 		444791B66D11DFE81770F05C /* Pods-FitnessChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeTests/Pods-FitnessChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
 		4EFC1C0FC2AF3189BE6646CC /* Pods-FitnessChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeUITests/Pods-FitnessChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		931A039C1DFF615300F98112 /* FriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
+		9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../../../../../../../Downloads/ResearchKit-master/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 		93DC6D791DFA2C760004ABE6 /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DC6D811DFA2C760004ABE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9397F6B61E1AEB0F00187E63 /* ResearchKit.framework in Frameworks */,
 				CFF41F5835C4F9AA11F6F3B9 /* Pods_FitnessChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,9 +183,19 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		9397F6AD1E1AEAFF00187E63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9397F6B31E1AEB0000187E63 /* ResearchKit.framework */,
+				9397F6B51E1AEB0000187E63 /* ResearchKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		93DC6D701DFA2C760004ABE6 = {
 			isa = PBXGroup;
 			children = (
+				9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */,
 				93DC6D7B1DFA2C760004ABE6 /* FitnessChallenge */,
 				93DC6D901DFA2C760004ABE6 /* FitnessChallengeTests */,
 				93DC6D9B1DFA2C760004ABE6 /* FitnessChallengeUITests */,
@@ -277,10 +326,12 @@
 				93DC6D771DFA2C760004ABE6 /* Resources */,
 				CB9FE621A695A6FD02FEA2C0 /* [CP] Embed Pods Frameworks */,
 				22493117C3BDCCC83A21FE1F /* [CP] Copy Pods Resources */,
+				9397F6BA1E1AEB0F00187E63 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9397F6B91E1AEB0F00187E63 /* PBXTargetDependency */,
 			);
 			name = FitnessChallenge;
 			productName = FitnessChallenge;
@@ -369,6 +420,12 @@
 			mainGroup = 93DC6D701DFA2C760004ABE6;
 			productRefGroup = 93DC6D7A1DFA2C760004ABE6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9397F6AD1E1AEAFF00187E63 /* Products */;
+					ProjectRef = 9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				93DC6D781DFA2C760004ABE6 /* FitnessChallenge */,
@@ -377,6 +434,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9397F6B31E1AEB0000187E63 /* ResearchKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchKit.framework;
+			remoteRef = 9397F6B21E1AEB0000187E63 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9397F6B51E1AEB0000187E63 /* ResearchKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchKitTests.xctest;
+			remoteRef = 9397F6B41E1AEB0000187E63 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		93DC6D771DFA2C760004ABE6 /* Resources */ = {
@@ -589,6 +663,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9397F6B91E1AEB0F00187E63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ResearchKit;
+			targetProxy = 9397F6B81E1AEB0F00187E63 /* PBXContainerItemProxy */;
+		};
 		93DC6D8F1DFA2C760004ABE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 93DC6D781DFA2C760004ABE6 /* FitnessChallenge */;
@@ -718,6 +797,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EFC297892682C23E001EACB2 /* Pods-FitnessChallenge.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = D9JMB4MDLY;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -736,6 +816,7 @@
 					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = FitnessChallenge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaronmartinez.FitnessChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -747,6 +828,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AAFA298C35CC8F25E2EC31A3 /* Pods-FitnessChallenge.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = D9JMB4MDLY;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -765,6 +847,7 @@
 					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = FitnessChallenge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaronmartinez.FitnessChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";

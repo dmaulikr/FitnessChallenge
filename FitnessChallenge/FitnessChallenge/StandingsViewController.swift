@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Charts
+import ResearchKit
 
 class StandingsViewController: UIViewController {
 
