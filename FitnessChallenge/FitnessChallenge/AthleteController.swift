@@ -8,21 +8,17 @@
 
 import Foundation
 import Firebase
+import ResearchKit
 
 class AthleteController {
     
-//    static var currentUserRef: String = ""
     static var currentUserUID: String = ""
     static var currentUser: Athlete?
     
     static var allAthletes: [Athlete] = []
     
-    static var allSets: [Set] = []
+
     
-    static var currentUserSets: [Set] {
-        
-        return allSets.filter( { $0.athleteRef == currentUserUID } )
-    }
     
     //CRUD
     
@@ -108,35 +104,7 @@ class AthleteController {
         }
     }
     
-    static func addSet(selectedReps: Int) {
-        
-        guard let user = AthleteController.currentUser,
-            let challenge = ChallengeController.sharedController.currentlySelectedChallenge else { return }
-        
-        
-        
-        let set = Set(movementType: challenge.movementType, reps: selectedReps, athleteRef: user.uid)
-        
-        let allSets = ChallengeController.sharedController.baseRef.child("sets")
-        let setRef = allSets.child(set.uid)
-        
-        setRef.setValue(set.dictionaryRepresentation)
-    }
-    
-    static func fetchCurrentUserSets(completion: @escaping () -> Void) {
-        
-        let allSetsRef = ChallengeController.sharedController.baseRef.child("sets")
-        allSetsRef.observe(FIRDataEventType.value, with: { (snapshot) in
-            let setsDictionary = snapshot.value as? [String : [String: Any]]
-            
-            guard let sets = setsDictionary?.flatMap({ Set(uid: $0.key, dictionary: $0.value) }) else {
-                return
-            }
-            
-            AthleteController.allSets = sets
-            completion()
-        })
-    }
+
     
     
 

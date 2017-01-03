@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7DF8F56DD036C6C22544FB53 /* Pods_FitnessChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B532632B6508AF4299EDF426 /* Pods_FitnessChallengeUITests.framework */; };
 		931A039D1DFF615300F98112 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A039C1DFF615300F98112 /* FriendController.swift */; };
+		932E62631E1BF22300EC267C /* SetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E62621E1BF22300EC267C /* SetController.swift */; };
 		9397F6B61E1AEB0F00187E63 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; };
 		9397F6B71E1AEB0F00187E63 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */; };
@@ -97,6 +98,7 @@
 		444791B66D11DFE81770F05C /* Pods-FitnessChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeTests/Pods-FitnessChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
 		4EFC1C0FC2AF3189BE6646CC /* Pods-FitnessChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeUITests/Pods-FitnessChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		931A039C1DFF615300F98112 /* FriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
+		932E62621E1BF22300EC267C /* SetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetController.swift; sourceTree = "<group>"; };
 		9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../../../../../../../Downloads/ResearchKit-master/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 		93DC6D791DFA2C760004ABE6 /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -279,8 +281,9 @@
 		93DC6DB51DFA2F940004ABE6 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
-				93DC6DB31DFA2F860004ABE6 /* AthleteController.swift */,
 				93DC6DB61DFA2FBB0004ABE6 /* ChallengeController.swift */,
+				93DC6DB31DFA2F860004ABE6 /* AthleteController.swift */,
+				932E62621E1BF22300EC267C /* SetController.swift */,
 			);
 			name = ModelControllers;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				93DC6DC61DFA3F280004ABE6 /* FriendsViewController.swift in Sources */,
 				93DC6DAF1DFA2EAC0004ABE6 /* Set.swift in Sources */,
 				93DC6DB71DFA2FBB0004ABE6 /* ChallengeController.swift in Sources */,
+				932E62631E1BF22300EC267C /* SetController.swift in Sources */,
 				93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */,
 				93DC6DBE1DFA37EF0004ABE6 /* ChallengesViewController.swift in Sources */,
 				93EE95D71E00E3C700A4E02A /* ParticipantsViewController.swift in Sources */,

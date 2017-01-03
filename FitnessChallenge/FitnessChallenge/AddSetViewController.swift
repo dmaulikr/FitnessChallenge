@@ -29,7 +29,7 @@ class AddSetViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         guard let reps = pickerValue else { return }
-        AthleteController.addSet(selectedReps: reps)
+        SetController.addSet(selectedReps: reps)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

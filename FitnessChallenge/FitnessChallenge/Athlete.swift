@@ -19,7 +19,6 @@ class Athlete {
     var username: String
     var email: String
     var password: String
-    
     var sets: [Set] = []
     var uid: String
     var challenges: [String] = []
