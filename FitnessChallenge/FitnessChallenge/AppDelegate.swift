@@ -19,6 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
 
+        if FIRAuth.auth()?.currentUser != nil {
+            guard let currentUser = FIRAuth.auth()?.currentUser else { return true }
+            let uid = currentUser.uid
+            
+            AthleteController.fetchCurrentUserFromFirebaseWith(uid: uid, completion: { 
+                
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let challengesVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "ChallengesView") as UIViewController
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                self.window?.rootViewController = challengesVC
+                self.window?.makeKeyAndVisible()
+            })
+        } else {
+            
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginScreen") as UIViewController
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = loginVC
+            self.window?.makeKeyAndVisible()
+        }
         
         return true
     }

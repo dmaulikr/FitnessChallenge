@@ -24,7 +24,7 @@ class AthleteController {
     
     static func addAthleteToFirebase(username: String, email: String, password: String, uid: String) {
         
-        let athlete = Athlete(username: username, email: email, password: password, uid: uid)
+        let athlete = Athlete(username: username, email: email, uid: uid)
         currentUser = athlete
         
         let allAthletesRef = ChallengeController.sharedController.baseRef.child("athletes")
@@ -81,11 +81,10 @@ class AthleteController {
             // Get user value
             guard let valueDictionary = snapshot.value as? [String:Any],
                 let username = valueDictionary["username"] as? String,
-                let email = valueDictionary["email"] as? String,
-                let password = valueDictionary["password"] as? String
+                let email = valueDictionary["email"] as? String
                 else { return }
             
-            let user = Athlete(username: username, email: email, password: password, uid: uid)
+            let user = Athlete(username: username, email: email, uid: uid)
             currentUser = user
             completion()
             
@@ -103,12 +102,6 @@ class AthleteController {
             print ("Error signing out: %@", signOutError)
         }
     }
-    
-
-    
-    
-
-
 }
 
 

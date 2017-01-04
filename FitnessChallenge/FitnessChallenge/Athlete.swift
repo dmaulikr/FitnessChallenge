@@ -12,22 +12,19 @@ class Athlete {
     
     private let usernameKey = "username"
     private let emailKey = "email"
-    private let passwordKey = "password"
     private let uidKey = "uid"
     private let challengesKey = "challenges"
     
     var username: String
     var email: String
-    var password: String
     var sets: [Set] = []
     var uid: String
     var challenges: [String] = []
     
-    init(username: String, email: String, password: String, uid: String) {
+    init(username: String, email: String, uid: String) {
         
         self.username = username
         self.email = email
-        self.password = password
         self.uid = uid
     }
     
@@ -35,7 +32,6 @@ class Athlete {
         
         guard let username = dictionary[usernameKey] as? String,
             let email = dictionary[emailKey] as? String,
-            let password = dictionary[passwordKey] as? String,
             let uid = dictionary[uidKey] as? String,
             let challenges = dictionary[challengesKey] as? [String] else {
                 return nil
@@ -43,14 +39,13 @@ class Athlete {
         
         self.username = username
         self.email = email
-        self.password = password
         self.uid = uid
         self.challenges = challenges
     }
     
     var dictionaryRepresentation: [String: Any] {
         
-        return [usernameKey: username, emailKey: email, passwordKey: password, uidKey: uid, challengesKey: challenges]
+        return [usernameKey: username, emailKey: email, uidKey: uid, challengesKey: challenges]
     }
 }
 
