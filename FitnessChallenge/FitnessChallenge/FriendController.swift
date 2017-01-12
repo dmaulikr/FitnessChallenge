@@ -21,13 +21,15 @@ class FriendController {
 //        }
 //        let allUsers = AthleteController.allAthletes
 //        
-//        let currentUserFriends = allUsers.filter( { )
+//        let currentUserFriends = allUsers.filter( { } )
 //        
 //    }
     
     var nonParticipatingFriends = [Athlete]()
     var invitedFriends = [Athlete]()
     var participatingFriends = [Athlete]()
+    
+    static var sentFriendRequestsPending = [String]() // Array of their uids.
     
     
     
@@ -36,9 +38,52 @@ class FriendController {
         
     }
     
-    func addFriend(username: String) {
+    func fetchFriendRequests() {
         
-//        AthleteController.allAthletes
+        
+    }
+    
+    static func sendFriendRequest(username: String, completion: @escaping(Bool) -> Void) {
+        
+        guard let currentUser = AthleteController.currentUser else { completion(false); return }
+        
+        let allAthleteUsernames = AthleteController.allAthletes.flatMap( {$0.username})
+        
+        if allAthleteUsernames.contains(username) {
+            
+            let athleteRequestedArray = AthleteController.allAthletes.filter({ $0.username == username })
+            guard let athleteRequested = athleteRequestedArray.first else { return }
+            athleteRequested.friendRequestsReceived.append(currentUser.username)
+            
+            addFriendRequestToFirebase(athlete: athleteRequested)
+//            sentFriendRequestsPending.append(username)
+            
+            
+            completion(true)
+        } else {
+            completion(false)
+        }
+        
+    }
+    
+    static func addFriendRequestToFirebase(athlete: Athlete) {
+        
+        let baseRef = ChallengeController.sharedController.baseRef
+        let athletesRef = baseRef.child("athletes").child(athlete.uid).child("friendRequestsReceived")
+        athletesRef.setValue(athlete.friendRequestsReceived)
+        
+        
+        
+    }
+    
+    func acceptFriendRequest() {
+        
+        
+    }
+    
+    func declineFriendRequest() {
+        
+        
     }
     
     func removeFriend() {
@@ -54,12 +99,12 @@ class FriendController {
         
     }
     
-    func acceptRequestToJoin() {
+    func acceptRequestToJoinChallenge() {
         
         
     }
     
-    func declineRequestToJoin() {
+    func declineRequestToJoinChallenge() {
         
         
     }

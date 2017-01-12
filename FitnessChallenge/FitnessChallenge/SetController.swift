@@ -17,21 +17,32 @@ class SetController {
     
     // All sets in currently selected challenge
     static var allSets: [Set] = []
-    
-    static var currentUserSets: [ORKValueStack] {
-        
-        var tempArray: [ORKValueStack] = []
-        let allUserSets = allSets.filter( { $0.athleteRef == AthleteController.currentUserUID } )
-        let setsAsInts = allUserSets.flatMap({ $0.reps })
-        let setsAsNSNumbers = setsAsInts.flatMap({ $0 as NSNumber })
-        let stack = ORKValueStack(stackedValues: setsAsNSNumbers)
-        tempArray.append(stack)
-        return tempArray
-    }
+    static var currentUserSets: [ORKValueStack] = []
+//    static var currentUserSets: [ORKValueStack] {
+//        
+//        var tempArray: [ORKValueStack] = []
+//        let allUserSets = allSets.filter( { $0.athleteRef == AthleteController.currentUserUID } )
+//        let setsAsInts = allUserSets.flatMap({ $0.reps })
+//        let setsAsNSNumbers = setsAsInts.flatMap({ $0 as NSNumber })
+//        let stack = ORKValueStack(stackedValues: setsAsNSNumbers)
+//        tempArray.append(stack)
+//        return tempArray
+//    }
     
     //=======================================================
     // MARK: - Functions
     //=======================================================
+    
+    static func createCurrentUserSetsAsValueStack(from allSets: [Set]) {
+        
+        var tempArray: [ORKValueStack] = []
+        let allUserSets = allSets.filter( { $0.athleteRef == AthleteController.currentUser?.uid} )
+        let setsAsInts = allUserSets.flatMap({ $0.reps })
+        let setsAsNSNumbers = setsAsInts.flatMap({ $0 as NSNumber })
+        let stack = ORKValueStack(stackedValues: setsAsNSNumbers)
+        tempArray.append(stack)
+        self.currentUserSets = tempArray
+    }
     
     static func addSet(selectedReps: Int) {
         
@@ -52,7 +63,7 @@ class SetController {
         
         guard let currentChallengeUid = ChallengeController.sharedController.currentlySelectedChallenge?.uid else { return }
         
-        let allSetsRef = ChallengeController.sharedController.baseRef.child("sets").queryEqual(toValue: currentChallengeUid, childKey: "challengeRef")
+        let allSetsRef = ChallengeController.sharedController.baseRef.child("sets").queryOrdered(byChild: "challengeRef").queryEqual(toValue: currentChallengeUid)
         allSetsRef.observe(.value, with: { (snapshot) in
             let setsDictionary = snapshot.value as? [String : [String: Any]]
             
@@ -60,7 +71,8 @@ class SetController {
                 return
             }
             
-            SetController.allSets = sets
+//            SetController.allSets = sets
+            SetController.createCurrentUserSetsAsValueStack(from: sets)
             completion()
         })
     }

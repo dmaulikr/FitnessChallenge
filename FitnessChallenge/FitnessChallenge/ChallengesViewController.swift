@@ -12,21 +12,26 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var currentChallengesTableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         ChallengeController.sharedController.fetchChallenges {
             self.currentChallengesTableView.reloadData()
         }
+        
+        AthleteController.fetchAllAthletes {
+            
+        }
+        
         guard let username = AthleteController.currentUser?.username else { return }
-            self.welcomeLabel.text = "Welcome \(username)!"
+        self.welcomeLabel.text = "Welcome \(username)!"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         currentChallengesTableView.reloadData()
     }
-
+    
     // Current Challenges TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ChallengeController.sharedController.userCurrentChallenges.count
@@ -37,7 +42,7 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
         
-//        let creator = challenge.creatorId
+        //        let creator = challenge.creatorId
         cell.textLabel?.text = challenge.name
         cell.detailTextLabel?.text = challenge.creatorId
         
@@ -52,15 +57,23 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.performSegue(withIdentifier: "showChallengeView", sender: self)
     }
-
-    /*
+    
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        // Do if segue.identifier later
+        if segue.identifier == "showChallengeView" {
+            guard let selectedIndex = self.currentChallengesTableView.indexPathForSelectedRow, let destination = segue.destination as? CustomTabBarViewController, let standings = destination.childViewControllers.first as? StandingsViewController else { return }
+            
+            let challenge = ChallengeController.sharedController.allChallenges[selectedIndex.row]
+            
+            standings.challenge = challenge
+            
+        }
+        
     }
-    */
-
+    
+    
 }

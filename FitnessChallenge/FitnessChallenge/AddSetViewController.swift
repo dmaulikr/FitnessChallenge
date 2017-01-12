@@ -30,6 +30,7 @@ class AddSetViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         guard let reps = pickerValue else { return }
         SetController.addSet(selectedReps: reps)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

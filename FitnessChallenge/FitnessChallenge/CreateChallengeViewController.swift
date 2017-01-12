@@ -8,9 +8,10 @@
 
 import UIKit
 
-class CreateChallengeViewController: UIViewController {
+class CreateChallengeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var challengeNameTextField: UITextField!
+    @IBOutlet weak var friendsCollectionView: UICollectionView!
 
     var test: String?
     
@@ -32,6 +33,11 @@ class CreateChallengeViewController: UIViewController {
 
     @IBAction func addFriendButtonTapped(_ sender: Any) {
         
+        self.presentAddFriendAlertController()
+    }
+    
+    func presentAddFriendAlertController() {
+    
         let alertController = UIAlertController(title: "Add a Friend", message: "What's their username?", preferredStyle: .alert)
         
         var usernameTextField: UITextField?
@@ -40,15 +46,59 @@ class CreateChallengeViewController: UIViewController {
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
-            self.test = usernameTextField?.text
+            print("\(usernameTextField?.text)")
+            guard let username = usernameTextField?.text else { return }
+            FriendController.sendFriendRequest(username: username, completion: { (success) in
+                if success == true {
+                    print("FriendController: Successfully added friend request")
+                } else {
+                    self.presentNoUserWithThatUsernameAlert()
+                }
+            })
         }
         
         alertController.addAction(cancelAction)
         alertController.addAction(addAction)
         
-        self.present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
+        
     }
     
+    func presentNoUserWithThatUsernameAlert() {
+        
+        let alertController = UIAlertController(title: "Oops", message: "No user with that username found.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: { (_) in
+            self.presentAddFriendAlertController()
+        })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(tryAgainAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    //=======================================================
+    // MARK: - Collection View Data Source functions
+    //=======================================================
+    
+    func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
+        return CGRect(x: x, y: y, width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let currentUser = AthleteController.currentUser else { return 0 }
+        return currentUser.friendsUids.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendCell", for: indexPath) as? FriendCollectionViewCell else { return UICollectionViewCell() }
+        
+        
+        
+        return cell
+    }
 
     
     /*
