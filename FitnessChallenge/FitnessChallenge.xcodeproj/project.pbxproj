@@ -10,6 +10,8 @@
 		7DF8F56DD036C6C22544FB53 /* Pods_FitnessChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B532632B6508AF4299EDF426 /* Pods_FitnessChallengeUITests.framework */; };
 		931A039D1DFF615300F98112 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A039C1DFF615300F98112 /* FriendController.swift */; };
 		932E62631E1BF22300EC267C /* SetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E62621E1BF22300EC267C /* SetController.swift */; };
+		9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */; };
+		9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */; };
 		936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */; };
 		9397F6B61E1AEB0F00187E63 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; };
 		9397F6B71E1AEB0F00187E63 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -100,6 +102,8 @@
 		4EFC1C0FC2AF3189BE6646CC /* Pods-FitnessChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeUITests/Pods-FitnessChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		931A039C1DFF615300F98112 /* FriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		932E62621E1BF22300EC267C /* SetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetController.swift; sourceTree = "<group>"; };
+		9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
+		9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
 		936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../../../../../../../Downloads/ResearchKit-master/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 		93DC6D791DFA2C760004ABE6 /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +196,7 @@
 			children = (
 				93EE95D81E00E51500A4E02A /* CustomTabBarView.swift */,
 				936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */,
+				9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 				93DC6DC51DFA3F280004ABE6 /* FriendsViewController.swift */,
 				93DC6DB81DFA36C70004ABE6 /* LoginViewController.swift */,
 				93EE95D61E00E3C700A4E02A /* ParticipantsViewController.swift */,
+				9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */,
 				93DC6DC31DFA3F0D0004ABE6 /* ProfileViewController.swift */,
 				93EE95D21E00E35F00A4E02A /* StandingsViewController.swift */,
 			);
@@ -644,6 +650,7 @@
 				93DC6DAF1DFA2EAC0004ABE6 /* Set.swift in Sources */,
 				93DC6DB71DFA2FBB0004ABE6 /* ChallengeController.swift in Sources */,
 				932E62631E1BF22300EC267C /* SetController.swift in Sources */,
+				9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */,
 				93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */,
 				93DC6DBE1DFA37EF0004ABE6 /* ChallengesViewController.swift in Sources */,
 				93EE95D71E00E3C700A4E02A /* ParticipantsViewController.swift in Sources */,
@@ -654,6 +661,7 @@
 				93DC6DBC1DFA37580004ABE6 /* CreateAccountViewController.swift in Sources */,
 				93DC6DC01DFA3C0F0004ABE6 /* CustomTabBarViewController.swift in Sources */,
 				93DC6DAD1DFA2EA20004ABE6 /* Challenge.swift in Sources */,
+				9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */,
 				93DC6DAB1DFA2D730004ABE6 /* Athlete.swift in Sources */,
 				93DC6DB41DFA2F860004ABE6 /* AthleteController.swift in Sources */,
 				93EE95D31E00E35F00A4E02A /* StandingsViewController.swift in Sources */,

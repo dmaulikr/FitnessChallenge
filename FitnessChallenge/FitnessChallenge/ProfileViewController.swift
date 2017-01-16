@@ -9,14 +9,24 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func changePasswordButtonTapped(_ sender: Any) {
+    }
     
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+    }
 
     /*
     // MARK: - Navigation
