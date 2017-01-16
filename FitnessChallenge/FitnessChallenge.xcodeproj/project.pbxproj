@@ -236,7 +236,6 @@
 		93DC6D7B1DFA2C760004ABE6 /* FitnessChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */,
 				93DC6DB01DFA2ECD0004ABE6 /* Model */,
 				93DC6DB51DFA2F940004ABE6 /* ModelControllers */,
 				931A039E1DFF618A00F98112 /* Controllers */,
@@ -279,6 +278,7 @@
 		93DC6DB11DFA2EEF0004ABE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */,
 				93DC6D831DFA2C760004ABE6 /* Assets.xcassets */,
 				93DC6DC71DFB2D930004ABE6 /* GoogleService-Info.plist */,
 				93DC6D881DFA2C760004ABE6 /* Info.plist */,

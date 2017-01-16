@@ -28,7 +28,7 @@ class ProfileTabViewController: UITabBarController, ProfileTabViewDelegate {
         let frame = CGRect(x: 0.0, y: 15.0, width: view.frame.width, height: 50)
         
         tabView = ProfileTabView(frame: frame)
-        tabView.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+        tabView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         tabView.delegate = self
         tabView.selectIndex(index: 0)
         view.addSubview(tabView)

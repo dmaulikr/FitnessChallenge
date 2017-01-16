@@ -13,13 +13,16 @@ class ProfileTabView: UIView {
     weak var delegate: ProfileTabViewDelegate?
     
     var button0 = UIButton()
-    var button2 = UIButton()
+    var button1 = UIButton()
     
-    var imageView0 = UIView()
-    var imageView1 = UIView()
+    var imageView0 = UIImageView()
+    var imageView1 = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        setupTabViewItem()
+        setupConstraints()
         
     }
     
@@ -29,14 +32,24 @@ class ProfileTabView: UIView {
     
     func setupTabViewItem() {
         
-        // Button0 (Profile)
+        // Button0 and imageView0 (Profile)
+        
         button0.tag = 0
         button0.addTarget(self, action: #selector(didTapButton(sender:)), for: .touchUpInside)
         
         self.addSubview(button0)
         
-        // Button1 (Friends)
+        imageView0.image = #imageLiteral(resourceName: "ProfileAndIconLight")
         
+        // Button1 and imageView1 (Friends)
+        
+        button1.tag = 1
+        button1.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+        button1.addTarget(self, action: #selector(didTapButton(sender:)), for: .touchUpInside)
+        
+        self.addSubview(button1)
+        
+        imageView1.image = #imageLiteral(resourceName: "FriendsAndIconDark")
     }
     
     func setupConstraints() {
@@ -45,6 +58,7 @@ class ProfileTabView: UIView {
     }
     
     func selectIndex(index: Int) {
+        
         
         
 //        switch index {
