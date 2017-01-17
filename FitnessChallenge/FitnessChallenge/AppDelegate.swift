@@ -26,10 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AthleteController.fetchCurrentUserFromFirebaseWith(uid: uid, completion: { 
                 
                 let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let challengesVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "ChallengesView") as UIViewController
+//                let challengesVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "ChallengesView") as UIViewController
+                if let navigationVC = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController {
                 self.window = UIWindow(frame: UIScreen.main.bounds)
-                self.window?.rootViewController = challengesVC
+                self.window?.rootViewController = navigationVC
                 self.window?.makeKeyAndVisible()
+                }
             })
         } else {
             

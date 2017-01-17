@@ -12,6 +12,7 @@
 		932E62631E1BF22300EC267C /* SetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E62621E1BF22300EC267C /* SetController.swift */; };
 		9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */; };
 		9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */; };
+		9364E0E21E2EB54D0083D3E0 /* FriendRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0E11E2EB54D0083D3E0 /* FriendRequestsViewController.swift */; };
 		936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */; };
 		9397F6B61E1AEB0F00187E63 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; };
 		9397F6B71E1AEB0F00187E63 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -104,6 +105,7 @@
 		932E62621E1BF22300EC267C /* SetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetController.swift; sourceTree = "<group>"; };
 		9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
+		9364E0E11E2EB54D0083D3E0 /* FriendRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestsViewController.swift; sourceTree = "<group>"; };
 		936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../../../../../../../Downloads/ResearchKit-master/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 		93DC6D791DFA2C760004ABE6 /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -314,6 +316,7 @@
 				93DC6DC11DFA3D890004ABE6 /* CreateChallengeViewController.swift */,
 				93DC6DBF1DFA3C0F0004ABE6 /* CustomTabBarViewController.swift */,
 				93DC6DC51DFA3F280004ABE6 /* FriendsViewController.swift */,
+				9364E0E11E2EB54D0083D3E0 /* FriendRequestsViewController.swift */,
 				93DC6DB81DFA36C70004ABE6 /* LoginViewController.swift */,
 				93EE95D61E00E3C700A4E02A /* ParticipantsViewController.swift */,
 				9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */,
@@ -650,6 +653,7 @@
 				93DC6DAF1DFA2EAC0004ABE6 /* Set.swift in Sources */,
 				93DC6DB71DFA2FBB0004ABE6 /* ChallengeController.swift in Sources */,
 				932E62631E1BF22300EC267C /* SetController.swift in Sources */,
+				9364E0E21E2EB54D0083D3E0 /* FriendRequestsViewController.swift in Sources */,
 				9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */,
 				93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */,
 				93DC6DBE1DFA37EF0004ABE6 /* ChallengesViewController.swift in Sources */,
