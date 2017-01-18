@@ -9,8 +9,20 @@
 import UIKit
 
 class FriendCollectionViewCell: UICollectionViewCell {
- 
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+//    var athlete: Athlete?
+    
     func updateWith(athlete: Athlete) {
         
+        usernameLabel.text = athlete.username
+    }
+    
+    func updateAddButton() {
+        
+        profileImageView.image = #imageLiteral(resourceName: "Plus Filled-100")
+        usernameLabel.text = "Add Friend"
     }
 }

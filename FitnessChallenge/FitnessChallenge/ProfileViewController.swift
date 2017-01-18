@@ -26,6 +26,16 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
+        
+        AthleteController.logoutAthlete { (success) in
+            if success {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginScreen")
+                self.present(loginVC, animated: true, completion: nil)
+            } else {
+                //
+            }
+        }
     }
 
     /*

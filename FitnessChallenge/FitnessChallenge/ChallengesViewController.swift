@@ -20,9 +20,13 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
             self.currentChallengesTableView.reloadData()
         }
         
+        FriendController.shared.fetchFriendRequestsReceived()
+        
         AthleteController.fetchAllAthletes {
             
         }
+        
+        FriendController.shared.fetchFriendsList()
         
         guard let username = AthleteController.currentUser?.username else { return }
         self.welcomeLabel.text = "Welcome \(username)!"

@@ -84,7 +84,7 @@ class AthleteController {
                 let email = valueDictionary["email"] as? String
                 else { return }
             
-            let user = Athlete(username: username, email: email, uid: uid)
+                let user = Athlete(uid: uid, dictionary: valueDictionary)
             currentUser = user
             completion()
             
@@ -93,13 +93,15 @@ class AthleteController {
         }
     }
     
-    static func logoutAthlete() {
+    static func logoutAthlete(completion: (Bool) -> Void) {
         
         let firebaseAuth = FIRAuth.auth()
         do {
             try firebaseAuth?.signOut()
+            completion(true)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
+            completion(false)
         }
     }
 }
