@@ -56,7 +56,7 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
         cell.textLabel?.text = challenge.name
-        cell.detailTextLabel?.text = challenge.creatorId
+        cell.detailTextLabel?.text = challenge.creatorUsername
         
         return cell
     }

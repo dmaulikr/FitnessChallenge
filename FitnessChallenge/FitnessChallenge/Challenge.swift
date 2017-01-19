@@ -12,24 +12,29 @@ class Challenge {
 
     private let nameKey = "name"
     private let isCompleteKey = "isComplete"
-    private let participantsKey = "participants"
-    private let creatorIdKey = "creatorId"
+    private let endDateKey = "endDate"
+    private let participantsUidsKey = "participantsUids"
+    private let pendingParticipantsUidsKey = "pendingParticipantsUids"
+    private let creatorUsernameKey = "creatorUsername"
     private let movementTypeKey = "movementType"
     
     var name: String
     var isComplete: Bool
-    var participants: [Athlete] = []
+    var endDate: Date
+    var participantsUids: [String] = []
+    var pendingParticipantsUids: [String] = []
     var uid: String
-    var creatorId: String
+    var creatorUsername: String
     var movementType: String
     
-    init(name: String, isComplete: Bool, participants: [Athlete] = [], uid: String = UUID().uuidString, creatorId: String, movementType: String = "Push ups") {
+    init(name: String, isComplete: Bool, endDate: Date, pendingParticipantsUids: [String] = [], uid: String = UUID().uuidString, creatorUsername: String, movementType: String = "Push ups") {
     
         self.name = name
         self.isComplete = isComplete
-        self.participants = participants
+        self.endDate = endDate
+        self.pendingParticipantsUids = pendingParticipantsUids
         self.uid = uid
-        self.creatorId = creatorId
+        self.creatorUsername = creatorUsername
         self.movementType = movementType
     }
     
@@ -37,20 +42,27 @@ class Challenge {
         
         guard let name = dictionary[nameKey] as? String,
             let isComplete = dictionary[isCompleteKey] as? Bool,
-            let creatorId = dictionary[creatorIdKey] as? String,
+            let endDate = dictionary[endDateKey] as? Double,
+            let creatorUsername = dictionary[creatorUsernameKey] as? String,
             let movementType = dictionary[movementTypeKey] as? String
             else { return nil }
         
+        let participantsUids = dictionary[participantsUidsKey] as? [String]
+        let pendingParticipantsUids = dictionary[pendingParticipantsUidsKey] as? [String]
+        
         self.name = name
         self.isComplete = isComplete
+        self.endDate = Date(timeIntervalSince1970: endDate)
         self.uid = uid
-        self.creatorId = creatorId
+        self.creatorUsername = creatorUsername
         self.movementType = movementType
+        self.participantsUids = participantsUids ?? []
+        self.pendingParticipantsUids = pendingParticipantsUids ?? []
         
     }
     
     var dictionaryRepresentation: [String:Any] {
         
-        return [nameKey: name, isCompleteKey: isComplete, creatorIdKey: creatorId, movementTypeKey: movementType]
+        return [nameKey: name, isCompleteKey: isComplete, endDateKey: endDate.timeIntervalSince1970, creatorUsernameKey: creatorUsername, movementTypeKey: movementType, pendingParticipantsUidsKey: pendingParticipantsUids]
     }
 }

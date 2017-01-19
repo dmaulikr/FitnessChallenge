@@ -176,23 +176,7 @@ class FriendController {
         
     }
     
-    func inviteFriendsToChallenge() {
-        
-    }
     
-    func cancelInvitation() {
-        
-    }
-    
-    func acceptRequestToJoinChallenge() {
-        
-        
-    }
-    
-    func declineRequestToJoinChallenge() {
-        
-        
-    }
     
     
 }

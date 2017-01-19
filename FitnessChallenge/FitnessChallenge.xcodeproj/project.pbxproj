@@ -13,6 +13,8 @@
 		9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */; };
 		9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */; };
 		9364E0E41E2EF9630083D3E0 /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0E31E2EF9630083D3E0 /* FriendRequestTableViewCell.swift */; };
+		9364E0E81E305BCD0083D3E0 /* CreateChallengeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0E71E305BCD0083D3E0 /* CreateChallengeCollectionViewCell.swift */; };
+		9364E0EC1E3143FD0083D3E0 /* ChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0EB1E3143FD0083D3E0 /* ChallengeTableViewCell.swift */; };
 		936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */; };
 		9397F6B61E1AEB0F00187E63 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; };
 		9397F6B71E1AEB0F00187E63 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -106,6 +108,8 @@
 		9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
 		9364E0E31E2EF9630083D3E0 /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
+		9364E0E71E305BCD0083D3E0 /* CreateChallengeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChallengeCollectionViewCell.swift; sourceTree = "<group>"; };
+		9364E0EB1E3143FD0083D3E0 /* ChallengeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeTableViewCell.swift; sourceTree = "<group>"; };
 		936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../../../../../../../Downloads/ResearchKit-master/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 		93DC6D791DFA2C760004ABE6 /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +200,8 @@
 		936D05131E23E33600FBCD57 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9364E0EB1E3143FD0083D3E0 /* ChallengeTableViewCell.swift */,
+				9364E0E71E305BCD0083D3E0 /* CreateChallengeCollectionViewCell.swift */,
 				93EE95D81E00E51500A4E02A /* CustomTabBarView.swift */,
 				936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */,
 				9364E0E31E2EF9630083D3E0 /* FriendRequestTableViewCell.swift */,
@@ -646,6 +652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9364E0E81E305BCD0083D3E0 /* CreateChallengeCollectionViewCell.swift in Sources */,
 				93DC6DB91DFA36C70004ABE6 /* LoginViewController.swift in Sources */,
 				931A039D1DFF615300F98112 /* FriendController.swift in Sources */,
 				93DC6DC21DFA3D890004ABE6 /* CreateChallengeViewController.swift in Sources */,
@@ -664,6 +671,7 @@
 				93DC6DBC1DFA37580004ABE6 /* CreateAccountViewController.swift in Sources */,
 				9364E0E41E2EF9630083D3E0 /* FriendRequestTableViewCell.swift in Sources */,
 				93DC6DC01DFA3C0F0004ABE6 /* CustomTabBarViewController.swift in Sources */,
+				9364E0EC1E3143FD0083D3E0 /* ChallengeTableViewCell.swift in Sources */,
 				93DC6DAD1DFA2EA20004ABE6 /* Challenge.swift in Sources */,
 				9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */,
 				93DC6DAB1DFA2D730004ABE6 /* Athlete.swift in Sources */,

@@ -15,11 +15,11 @@ class ChallengeController {
     // MARK: - Properties
     //=======================================================
     
-    let baseRef = FIRDatabase.database().reference()
-    
     static let sharedController = ChallengeController()
     
+    let baseRef = FIRDatabase.database().reference()
     var allChallenges = [Challenge]()
+    var currentlySelectedChallenge: Challenge?
     
     var userCurrentChallenges: [Challenge] {
         
@@ -29,7 +29,7 @@ class ChallengeController {
         let activeChallenges = allChallenges.filter({ $0.isComplete == false })
         
         // This will need to change to populate any challenge the current user is tied to.
-        return activeChallenges.filter({ $0.creatorId == currentUser.uid })
+        return activeChallenges.filter({ $0.creatorUsername == currentUser.username })
     }
     
     var pastChallenges: [Challenge] {
@@ -39,18 +39,17 @@ class ChallengeController {
         
         let allPastChallenges = allChallenges.filter({ $0.isComplete == true })
         
-        return allPastChallenges.filter({ $0.creatorId == currentUser.uid})
+        return allPastChallenges.filter({ $0.creatorUsername == currentUser.username})
     }
     
-    var currentlySelectedChallenge: Challenge?
     
     
     //CRUD
 
     // Create challenge and send it to firebase.
-    func createChallenge(name: String, isComplete: Bool, creatorId: String) {
+    func createChallenge(name: String, isComplete: Bool, endDate: Date, creatorUsername: String) {
         
-        let challenge = Challenge(name: name, isComplete: isComplete, creatorId: creatorId)
+        let challenge = Challenge(name: name, isComplete: isComplete, endDate: endDate, creatorUsername: creatorUsername)
         self.allChallenges.append(challenge)
         
         let allChallenges = baseRef.child("challenges")
@@ -75,6 +74,24 @@ class ChallengeController {
             ChallengeController.sharedController.allChallenges = challenges
             completion()
         })
+    }
+    
+    func inviteFriendsToChallenge() {
+        
+    }
+    
+    func cancelInvitationToChallenge() {
+        
+    }
+    
+    func acceptRequestToJoinChallenge() {
+        
+        
+    }
+    
+    func declineRequestToJoinChallenge() {
+        
+        
     }
 }
 

@@ -12,14 +12,15 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
     
     @IBOutlet weak var challengeNameTextField: UITextField!
     @IBOutlet weak var friendsCollectionView: UICollectionView!
-
+    @IBOutlet weak var endDatePicker: UIDatePicker!
+    
     var test: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
-        // Do any additional setup after loading the view.
+        friendsCollectionView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
     }
     
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
@@ -27,17 +28,18 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         guard let challengeName = challengeNameTextField.text,
             let currentUser = AthleteController.currentUser else { return }
         
-        ChallengeController.sharedController.createChallenge(name: challengeName, isComplete: false, creatorId: currentUser.uid)
+        
+        ChallengeController.sharedController.createChallenge(name: challengeName, isComplete: false, endDate: endDatePicker.date, creatorUsername: currentUser.username)
         self.dismiss(animated: true, completion: nil)
     }
-
-    @IBAction func addFriendButtonTapped(_ sender: Any) {
-        
-        self.presentAddFriendAlertController()
+    
+    @IBAction func endDatePicker(_ sender: Any) {
+        print(endDatePicker.date)
     }
     
-    func presentAddFriendAlertController() {
     
+    func presentAddFriendAlertController() {
+        
         let alertController = UIAlertController(title: "Add a Friend", message: "What's their username?", preferredStyle: .alert)
         
         var usernameTextField: UITextField?
@@ -88,16 +90,37 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let currentUser = AthleteController.currentUser else { return 0 }
-        return currentUser.friendsUids.count
+        
+        return FriendController.shared.currentUserFriendList.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendCell", for: indexPath) as? FriendCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendCell", for: indexPath) as? CreateChallengeCollectionViewCell else { return UICollectionViewCell() }
         
-        
-        
-        return cell
+        if indexPath.row == 0 {
+            
+            // Make the cell here.
+            cell.updateAddButton()
+            
+            return cell
+        } else {
+            let athlete = FriendController.shared.currentUserFriendList[indexPath.row - 1]
+            
+            cell.updateWith(athlete: athlete)
+            
+            return cell
+        }
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            
+            presentAddFriendAlertController()
+        } else {
+            // Pull up the selected athlete, and segue to their profile.
+            let selectedAthlete = FriendController.shared.currentUserFriendList[indexPath.row - 1]
+            print("Friend cell tapped")
+        }
+    }
+    
 }

@@ -25,7 +25,7 @@ class ProfileTabViewController: UITabBarController, ProfileTabViewDelegate {
 
         tabBar.isHidden = true
         
-        let frame = CGRect(x: 0.0, y: 63.0, width: view.frame.width, height: 50)
+        let frame = CGRect(x: 0.0, y: 63.0, width: view.frame.width, height: 40)
         
         tabView = ProfileTabView(frame: frame)
         tabView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
