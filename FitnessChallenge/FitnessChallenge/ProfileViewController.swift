@@ -18,14 +18,21 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profileImageView.image = AthleteController.currentUser?.profileImage
-        
+        self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        profileImageView.layer.borderWidth = 2.0
+        profileImageView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1).cgColor// Light Gray
+        
+        if AthleteController.currentUser?.profileImageUrl != "" {
+            profileImageView.image = AthleteController.currentUser?.profileImage
+        } else {
+            profileImageView.image = #imageLiteral(resourceName: "UserProfileIcon")
+        }
     }
     
     //=======================================================

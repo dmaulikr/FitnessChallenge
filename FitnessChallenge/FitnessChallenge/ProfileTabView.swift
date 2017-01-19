@@ -95,7 +95,7 @@ class ProfileTabView: UIView {
     func selectIndex(index: Int) {
         
         imageView0.image = #imageLiteral(resourceName: "ProfileAndIconLight")
-        button0.backgroundColor = UIColor(red: 47/255, green: 51/255, blue: 45/255, alpha: 1)// Light Gray
+        button0.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         imageView1.image = #imageLiteral(resourceName: "FriendsAndIconDark")
         button1.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         
@@ -104,8 +104,6 @@ class ProfileTabView: UIView {
             imageView0.image = #imageLiteral(resourceName: "ProfileAndIconLight")
             button0.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         case 1:
-//            imageView1.image = #imageLiteral(resourceName: "FriendsAndIconLight")
-//            button1.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
             imageView1.image = #imageLiteral(resourceName: "FriendsAndIconDark")
             button1.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         default:

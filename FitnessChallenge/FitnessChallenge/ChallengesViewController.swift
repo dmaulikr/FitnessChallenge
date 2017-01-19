@@ -22,10 +22,6 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         FriendController.shared.fetchFriendRequestsReceived()
         
-        AthleteController.fetchAllAthletes {
-            
-        }
-        
         FriendController.shared.fetchFriendsList()
         
         guard let currentUser = AthleteController.currentUser else { return }
@@ -34,6 +30,10 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
             DispatchQueue.main.async {
                 AthleteController.loadImageFromData(url: url)
             }
+        }
+        
+        FriendController.shared.getFriendProfileImages { 
+            
         }
         
         guard let username = AthleteController.currentUser?.username else { return }

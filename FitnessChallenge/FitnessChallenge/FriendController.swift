@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class FriendController {
     
@@ -42,21 +43,41 @@ class FriendController {
     
     func getFriendProfileImages(completion: @escaping () -> Void) {
         
-        guard let currentUser = AthleteController.currentUser else { return }
+        guard let currentUser = AthleteController.currentUser else { completion(); return }
         let allUsers = AthleteController.allAthletes
         
         let friends = allUsers.filter( {$0.friendsUids.contains(currentUser.uid) } )
         
         var friendsWithImages: [Athlete] = []
-//        for friend in friends {
-//            
-//            
-//            AthleteController.loadImageFromData(url: friend.profileImageUrl)
-//            
-//        }
+        let group = DispatchGroup()
         
-        // Once done, set the array
-        // Call completion so that when you call this function, you know that the array is up to date.
+        for friend in friends {
+            
+            group.enter()
+            if friend.profileImageUrl != "" {
+                
+                let downloadedData = FIRStorage.storage().reference(forURL: friend.profileImageUrl)
+                downloadedData.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        guard let imageData = data,
+                            let image = UIImage(data: imageData) else { completion(); return }
+                        friend.profileImage = image
+                        friendsWithImages.append(friend)
+                        group.leave()
+                    }
+                    
+                }
+            } else {
+                friendsWithImages.append(friend)
+                group.leave()
+            }
+        }
+        group.notify(queue: DispatchQueue.main) { 
+            self.currentUserFriendList = friendsWithImages
+            completion()
+        }
     }
     
     func fetchFriendRequestsReceived() {

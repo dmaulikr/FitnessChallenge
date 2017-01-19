@@ -19,9 +19,17 @@ class FriendCollectionViewCell: UICollectionViewCell {
         
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.clipsToBounds = true
-        profileImageView.image = athlete.profileImage
+        profileImageView.layer.borderWidth = 2.0
+        profileImageView.layer.borderColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1).cgColor//Background Dark Gray
+        
+        if athlete.profileImage != nil {
+            profileImageView.image = athlete.profileImage
+        } else {
+            profileImageView.image = #imageLiteral(resourceName: "UserProfileIcon")
+        }
 
         usernameLabel.text = athlete.username
+        
     }
     
     func updateAddButton() {

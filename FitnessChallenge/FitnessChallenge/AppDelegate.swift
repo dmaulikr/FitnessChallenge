@@ -41,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         
+        AthleteController.fetchAllAthletes {
+            
+        }
+        
         return true
     }
 
