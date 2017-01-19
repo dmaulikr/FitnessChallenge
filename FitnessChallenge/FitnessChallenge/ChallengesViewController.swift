@@ -28,6 +28,14 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         FriendController.shared.fetchFriendsList()
         
+        guard let currentUser = AthleteController.currentUser else { return }
+        let url = currentUser.profileImageUrl
+        if url != "" {
+            DispatchQueue.main.async {
+                AthleteController.loadImageFromData(url: url)
+            }
+        }
+        
         guard let username = AthleteController.currentUser?.username else { return }
         self.welcomeLabel.text = "Welcome \(username)!"
     }
@@ -46,7 +54,7 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
         
-        //        let creator = challenge.creatorId
+        
         cell.textLabel?.text = challenge.name
         cell.detailTextLabel?.text = challenge.creatorId
         

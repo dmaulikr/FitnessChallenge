@@ -16,17 +16,7 @@ class FriendController {
     // MARK: - Properties
     //=======================================================
     
-    var currentUserFriendList: [Athlete] {
-        
-        guard let currentUser = AthleteController.currentUser else {
-                return []
-        }
-        let allUsers = AthleteController.allAthletes
-        
-        return allUsers.filter( {$0.friendsUids.contains(currentUser.uid) } )
-        
-    }
-    
+    var currentUserFriendList: [Athlete] = []
     var currentUserFriendsUids: [String] = []
     var friendRequestsReceived = [String]()
     var nonParticipatingFriends = [Athlete]()
@@ -48,6 +38,25 @@ class FriendController {
             
             self.currentUserFriendsUids = friendsArray
         })
+    }
+    
+    func getFriendProfileImages(completion: @escaping () -> Void) {
+        
+        guard let currentUser = AthleteController.currentUser else { return }
+        let allUsers = AthleteController.allAthletes
+        
+        let friends = allUsers.filter( {$0.friendsUids.contains(currentUser.uid) } )
+        
+        var friendsWithImages: [Athlete] = []
+//        for friend in friends {
+//            
+//            
+//            AthleteController.loadImageFromData(url: friend.profileImageUrl)
+//            
+//        }
+        
+        // Once done, set the array
+        // Call completion so that when you call this function, you know that the array is up to date.
     }
     
     func fetchFriendRequestsReceived() {

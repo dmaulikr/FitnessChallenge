@@ -16,9 +16,9 @@ class AthleteController {
     static var currentUser: Athlete?
     
     static var allAthletes: [Athlete] = []
+    static let storageRef = FIRStorage.storage().reference()
     
 
-    
     
     //CRUD
     
@@ -102,6 +102,41 @@ class AthleteController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
             completion(false)
+        }
+    }
+    
+    static func saveProfilePhotoToFirebase(image: UIImage) {
+        
+        guard let currentUser = currentUser,
+            let imageData = UIImageJPEGRepresentation(image, 1.0) else { return }
+        
+        storageRef.child(currentUser.uid).put(imageData, metadata: nil) { (metadata, error) in
+            if error != nil {
+                print("AthleteController: There was an error saving profile photo to firebase")
+            } else {
+                guard let downloadedImageURL = metadata?.downloadURL()?.absoluteString else { return }
+                
+                currentUser.profileImageUrl = downloadedImageURL
+                
+                let athleteRef = ChallengeController.sharedController.baseRef.child("athletes").child(currentUser.uid).child("profileImageUrl")
+                athleteRef.setValue(downloadedImageURL)
+            }
+        }
+        
+    }
+    
+    static func loadImageFromData(url: String) {
+        
+        let downloadedData = FIRStorage.storage().reference(forURL: url)
+        downloadedData.data(withMaxSize: 5 * 1024 * 1024) { (data, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                guard let imageData = data,
+                    let image = UIImage(data: imageData) else { return }
+                currentUser?.profileImage = image
+            }
+            
         }
     }
 }

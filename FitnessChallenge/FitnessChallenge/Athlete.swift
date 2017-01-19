@@ -6,7 +6,7 @@
 //  Copyright © 2016 Aaron Martinez. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Athlete {
     
@@ -17,6 +17,7 @@ class Athlete {
     private let friendsUidsKey = "friendsUids"
     private let friendRequestsReceivedKey = "friendRequestsReceived"
     private let friendRequestsSentKey = "friendRequestsSent"
+    private let profileImageUrlKey = "profileImageUrl"
     
     var username: String
     var email: String
@@ -26,6 +27,8 @@ class Athlete {
     var friendsUids: [String] = []
     var friendRequestsReceived: [String] = []
     var friendRequestsSent: [String] = []
+    var profileImageUrl: String = ""
+    var profileImage: UIImage?
     
     init(username: String, email: String, uid: String) {
         
@@ -46,6 +49,7 @@ class Athlete {
         let friendsUids = dictionary[friendsUidsKey] as? [String]
         let friendRequestsReceived = dictionary[friendRequestsReceivedKey] as? [String]
         let friendRequestsSent = dictionary[friendRequestsSentKey] as? [String]
+        let profileImageUrl = dictionary[profileImageUrlKey] as? String
         
         self.username = username
         self.email = email
@@ -54,11 +58,12 @@ class Athlete {
         self.friendsUids = friendsUids ?? []
         self.friendRequestsReceived = friendRequestsReceived ?? []
         self.friendRequestsSent = friendRequestsSent ?? []
+        self.profileImageUrl = profileImageUrl ?? ""
     }
     
     var dictionaryRepresentation: [String: Any] {
         
-        return [usernameKey: username, emailKey: email, uidKey: uid, challengesKey: challenges, friendsUidsKey: friendsUids, friendRequestsReceivedKey: friendRequestsReceived, friendRequestsSentKey: friendRequestsSent]
+        return [usernameKey: username, emailKey: email, uidKey: uid, challengesKey: challenges, friendsUidsKey: friendsUids, friendRequestsReceivedKey: friendRequestsReceived, friendRequestsSentKey: friendRequestsSent, profileImageUrlKey: profileImageUrl]
     }
 }
 

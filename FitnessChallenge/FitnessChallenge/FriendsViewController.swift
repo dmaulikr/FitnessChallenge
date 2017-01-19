@@ -38,13 +38,11 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         switch segmentedControl.selectedSegmentIndex
         {
         case 0:
-//            friendCollectionView.delegate = self
-//            friendCollectionView.dataSource = self
+
             friendCollectionView.isHidden = false
             requestsTableView.isHidden = true
         case 1:
-//            requestsTableView.delegate = self
-//            requestsTableView.dataSource = self
+
             friendCollectionView.isHidden = true
             requestsTableView.isHidden = false
             requestsTableView.reloadData()
@@ -84,9 +82,6 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
             return cell
 
         }
-        
-        
-       
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

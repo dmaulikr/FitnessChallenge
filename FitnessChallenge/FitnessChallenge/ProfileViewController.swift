@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
@@ -17,12 +17,23 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        // Do any additional setup after loading the view.
+        profileImageView.image = AthleteController.currentUser?.profileImage
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+    }
+    
+    //=======================================================
+    // MARK: - Actions
+    //=======================================================
 
     @IBAction func changePasswordButtonTapped(_ sender: Any) {
+        
     }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
@@ -37,15 +48,51 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func profileImageButtonTapped(_ sender: Any) {
+        
+        let alertController = UIAlertController(title: "Change Photo", message: "How would you like to get the photo?", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (_) in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (_) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .photoLibrary
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(cameraAction)
+        alertController.addAction(photoLibraryAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
-    */
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+            profileImageView.image = image
+            AthleteController.saveProfilePhotoToFirebase(image: image)
+        } else {
+            if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                profileImageView.image = image
+                AthleteController.saveProfilePhotoToFirebase(image: image)
+            }
+        }
+    }
+
 
 }

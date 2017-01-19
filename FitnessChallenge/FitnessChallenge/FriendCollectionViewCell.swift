@@ -17,6 +17,10 @@ class FriendCollectionViewCell: UICollectionViewCell {
     
     func updateWith(athlete: Athlete) {
         
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        profileImageView.clipsToBounds = true
+        profileImageView.image = athlete.profileImage
+
         usernameLabel.text = athlete.username
     }
     
