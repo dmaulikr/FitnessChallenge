@@ -20,8 +20,9 @@ class ChallengeController {
     let baseRef = FIRDatabase.database().reference()
     var allChallenges = [Challenge]()
     var currentlySelectedChallenge: Challenge?
+    var pendingUsersUids: [String] = [] // Used to hold the UIDs of the athletes to be invited to a new challenge. (Because a challenge with a "pendingParticipantsUids" dosen't exist yet.
     
-    var userChallengeInvites: [Challenge] = []
+    var userPendingChallengeInvites: [Challenge] = []
     
     var userCurrentChallenges: [Challenge] {
         
@@ -52,12 +53,15 @@ class ChallengeController {
     func createChallenge(name: String, isComplete: Bool, endDate: Date, creatorUsername: String) {
         
         let challenge = Challenge(name: name, isComplete: isComplete, endDate: endDate, creatorUsername: creatorUsername)
+        challenge.pendingParticipantsUids = pendingUsersUids
         self.allChallenges.append(challenge)
+        pendingUsersUids = []
         
         let allChallenges = baseRef.child("challenges")
         let challengeRef = allChallenges.child(challenge.uid)
         
         challengeRef.setValue(challenge.dictionaryRepresentation)
+        
     }
     
     func endChallenge(challenge: Challenge) {
@@ -78,15 +82,29 @@ class ChallengeController {
         })
     }
     
-    func filterChallengesByCurrentUserInvites() {
+    func filterUserPendingChallengeInvites() {
         
         guard let currentUser = AthleteController.currentUser else { return }
         
-        userChallengeInvites = allChallenges.filter({$0.pendingParticipantsUids.contains(currentUser.uid)})
-        let challengePendingParticipantsUidsRef = baseRef.child("challenges").child(currentUser.uid).child("pendingParticipantsUids")
+        userPendingChallengeInvites = allChallenges.filter({$0.pendingParticipantsUids.contains(currentUser.uid)})
+//        let challengePendingParticipantsUidsRef = baseRef.child("challenges").child(currentUser.uid).child("pendingParticipantsUids")
 //        challengePendingParticipantsUidsRef.setValue(
 
     }
+    
+    func toggleAthleteInvitedStatus(selectedAthlete: Athlete, completion: () -> Void) {
+        
+        if self.pendingUsersUids.contains(selectedAthlete.uid) {
+            guard let index = pendingUsersUids.index(of: selectedAthlete.uid) else { return }
+            pendingUsersUids.remove(at: index)
+            completion()
+        } else {
+            self.pendingUsersUids.append(selectedAthlete.uid)
+            completion()
+        }
+    }
+    
+
     
     func inviteFriendsToChallenge() {
         

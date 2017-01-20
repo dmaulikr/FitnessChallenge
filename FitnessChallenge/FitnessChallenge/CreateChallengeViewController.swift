@@ -14,8 +14,6 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
     @IBOutlet weak var friendsCollectionView: UICollectionView!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     
-    var test: String?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +32,7 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         
         
         ChallengeController.sharedController.createChallenge(name: challengeName, isComplete: false, endDate: endDatePicker.date, creatorUsername: currentUser.username)
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -118,13 +117,38 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            
             presentAddFriendAlertController()
         } else {
-            // Pull up the selected athlete, and segue to their profile.
             let selectedAthlete = FriendController.shared.currentUserFriendList[indexPath.row - 1]
-            print("Friend cell tapped")
+            
+            ChallengeController.sharedController.toggleAthleteInvitedStatus(selectedAthlete: selectedAthlete, completion: { 
+                self.friendsCollectionView.reloadData()
+            })
         }
     }
     
 }
+
+
+//func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//    if indexPath.row == 0 {
+//        presentAddFriendAlertController()
+//    } else {
+//        // Add user to challenge's array of pending invitees. Locally and on Firebase.
+//        let selectedAthlete = FriendController.shared.currentUserFriendList[indexPath.row - 1]
+//        
+//        if let currentlySelectedChallenge = ChallengeController.sharedController.currentlySelectedChallenge {
+//            if currentlySelectedChallenge.pendingParticipantsUids.contains(selectedAthlete.uid) {
+//                guard let index = currentlySelectedChallenge.pendingParticipantsUids.index(of: selectedAthlete.uid) else { return }
+//                currentlySelectedChallenge.pendingParticipantsUids.remove(at: index)
+//            } else {
+//                self.pendingUsersUids.append(selectedAthlete.uid)
+//            }
+//            
+//        } else {
+//            // Add to array that will be used when saving a new challenge
+//            self.pendingUsersUids.append(selectedAthlete.uid)
+//            self.friendsCollectionView.reloadData()
+//        }
+//    }
+//}

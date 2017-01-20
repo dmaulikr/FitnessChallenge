@@ -19,7 +19,10 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         ChallengeController.sharedController.fetchChallenges {
+            ChallengeController.sharedController.filterUserPendingChallengeInvites()
             self.currentChallengesTableView.reloadData()
+            self.invitesTableView.reloadData()
+            self.pastChallengesTableView.reloadData()
         }
         
         FriendController.shared.fetchFriendRequestsReceived()
@@ -44,6 +47,8 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         currentChallengesTableView.reloadData()
+        invitesTableView.reloadData()
+        pastChallengesTableView.reloadData()
     }
     
     //=======================================================
@@ -53,7 +58,7 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView ==  invitesTableView {
-            return ChallengeController.sharedController.userChallengeInvites.count
+            return ChallengeController.sharedController.userPendingChallengeInvites.count
         } else if tableView == currentChallengesTableView {
             return ChallengeController.sharedController.userCurrentChallenges.count
         } else {
@@ -62,27 +67,34 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "currentChallengeCell", for: indexPath) as? ChallengeTableViewCell else { return UITableViewCell() }
+        
         if tableView == invitesTableView {
-            let challenge = ChallengeController.sharedController.userChallengeInvites[indexPath.row]
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "invitesCell", for: indexPath) as? ChallengeTableViewCell else { return UITableViewCell() }
+            let challenge = ChallengeController.sharedController.userPendingChallengeInvites[indexPath.row]
             cell.updateWith(challenge: challenge)
+            return cell
         } else if tableView == currentChallengesTableView {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "currentChallengesCell", for: indexPath) as? ChallengeTableViewCell else { return UITableViewCell() }
             let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
             cell.updateWith(challenge: challenge)
+            return cell
         } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "pastChallengesCell", for: indexPath) as? ChallengeTableViewCell else { return UITableViewCell() }
             let challenge = ChallengeController.sharedController.userPastChallenges[indexPath.row]
             cell.updateWith(challenge: challenge)
+            return cell
         }
         
-        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView == invitesTableView {
             // Present way of joining or declining.
-            let challenge = ChallengeController.sharedController.userChallengeInvites[indexPath.row]
-            ChallengeController.sharedController.currentlySelectedChallenge = challenge
+            let challenge = ChallengeController.sharedController.userPendingChallengeInvites[indexPath.row]
+            presentJoinOrDeclineAlert(challenge: challenge)
+//            ChallengeController.sharedController.currentlySelectedChallenge = challenge
         } else if tableView == currentChallengesTableView {
             let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
             ChallengeController.sharedController.currentlySelectedChallenge = challenge
@@ -100,13 +112,13 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func presentJoinOrDeclineAlert(challenge: Challenge) {
         
-        let alertController = UIAlertController(title: "Oh no!", message: "We couldn't get you signed in. Please try again.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Choose what you'd like to do with this challenge.", message: nil, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let joinAction = UIAlertAction(title: "Join", style: .default) { (_) in
             //
         }
         let declineAction = UIAlertAction(title: "Decline", style: .default) { (_) in
-            guard let index = ChallengeController.sharedController.userChallengeInvites.index(of: challenge) else { return }
+            guard let index = ChallengeController.sharedController.userPendingChallengeInvites.index(of: challenge) else { return }
             
 //            ChallengeController.sharedController.userChallengeInvites.remove(at: index)
         }

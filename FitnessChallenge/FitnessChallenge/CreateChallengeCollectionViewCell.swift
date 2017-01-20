@@ -16,7 +16,6 @@ class CreateChallengeCollectionViewCell: UICollectionViewCell {
     
     func updateWith(athlete: Athlete) {
         
-        checkBoxImageView.image = #imageLiteral(resourceName: "emtpy checkbox")
         usernameLabel.text = athlete.username
         usernameLabel.textColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
         
@@ -29,6 +28,12 @@ class CreateChallengeCollectionViewCell: UICollectionViewCell {
             profileImageView.image = athlete.profileImage
         } else {
             profileImageView.image = #imageLiteral(resourceName: "UserProfileIcon")
+        }
+        
+        if ChallengeController.sharedController.pendingUsersUids.contains(athlete.uid) {
+            checkBoxImageView.image = #imageLiteral(resourceName: "Checked Box")
+        } else {
+            checkBoxImageView.image = #imageLiteral(resourceName: "emtpy checkbox")
         }
     }
     

@@ -16,7 +16,9 @@ class ChallengeTableViewCell: UITableViewCell {
   
     func updateWith(challenge: Challenge) {
         
-        
+        challengeNameLabel.text = challenge.name
+        creatorUsernameLabel.text = challenge.creatorUsername
+        endDateLabel.text = "\(challenge.endDate)"
     }
 
 }
