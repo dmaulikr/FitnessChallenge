@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Challenge {
+class Challenge: Equatable {
 
     private let nameKey = "name"
     private let isCompleteKey = "isComplete"
@@ -65,4 +65,8 @@ class Challenge {
         
         return [nameKey: name, isCompleteKey: isComplete, endDateKey: endDate.timeIntervalSince1970, creatorUsernameKey: creatorUsername, movementTypeKey: movementType, pendingParticipantsUidsKey: pendingParticipantsUids]
     }
+}
+
+func == (lhs: Challenge, rhs: Challenge) -> Bool {
+    return lhs.uid == rhs.uid
 }

@@ -10,8 +10,10 @@ import UIKit
 
 class ChallengesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var invitesTableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var currentChallengesTableView: UITableView!
+    @IBOutlet weak var pastChallengesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,34 +46,81 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         currentChallengesTableView.reloadData()
     }
     
-    // Current Challenges TableView DataSource
+    //=======================================================
+    // MARK: - TableView DataSource and Delegate Functions
+    //=======================================================
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ChallengeController.sharedController.userCurrentChallenges.count
+        
+        if tableView ==  invitesTableView {
+            return ChallengeController.sharedController.userChallengeInvites.count
+        } else if tableView == currentChallengesTableView {
+            return ChallengeController.sharedController.userCurrentChallenges.count
+        } else {
+            return ChallengeController.sharedController.userPastChallenges.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "currentChallengeCell", for: indexPath)
-        
-        let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
-        
-        
-        cell.textLabel?.text = challenge.name
-        cell.detailTextLabel?.text = challenge.creatorUsername
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "currentChallengeCell", for: indexPath) as? ChallengeTableViewCell else { return UITableViewCell() }
+        if tableView == invitesTableView {
+            let challenge = ChallengeController.sharedController.userChallengeInvites[indexPath.row]
+            cell.updateWith(challenge: challenge)
+        } else if tableView == currentChallengesTableView {
+            let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
+            cell.updateWith(challenge: challenge)
+        } else {
+            let challenge = ChallengeController.sharedController.userPastChallenges[indexPath.row]
+            cell.updateWith(challenge: challenge)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
-        
-        ChallengeController.sharedController.currentlySelectedChallenge = challenge
+        if tableView == invitesTableView {
+            // Present way of joining or declining.
+            let challenge = ChallengeController.sharedController.userChallengeInvites[indexPath.row]
+            ChallengeController.sharedController.currentlySelectedChallenge = challenge
+        } else if tableView == currentChallengesTableView {
+            let challenge = ChallengeController.sharedController.userCurrentChallenges[indexPath.row]
+            ChallengeController.sharedController.currentlySelectedChallenge = challenge
+        } else {
+            let challenge = ChallengeController.sharedController.userPastChallenges[indexPath.row]
+            ChallengeController.sharedController.currentlySelectedChallenge = challenge
+        }
         
         self.performSegue(withIdentifier: "showChallengeView", sender: self)
     }
     
+    //=======================================================
+    // MARK: - Helper Functions
+    //=======================================================
     
+    func presentJoinOrDeclineAlert(challenge: Challenge) {
+        
+        let alertController = UIAlertController(title: "Oh no!", message: "We couldn't get you signed in. Please try again.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let joinAction = UIAlertAction(title: "Join", style: .default) { (_) in
+            //
+        }
+        let declineAction = UIAlertAction(title: "Decline", style: .default) { (_) in
+            guard let index = ChallengeController.sharedController.userChallengeInvites.index(of: challenge) else { return }
+            
+//            ChallengeController.sharedController.userChallengeInvites.remove(at: index)
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(joinAction)
+        alertController.addAction(declineAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //=======================================================
     // MARK: - Navigation
+    //=======================================================
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

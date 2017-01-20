@@ -21,6 +21,8 @@ class ChallengeController {
     var allChallenges = [Challenge]()
     var currentlySelectedChallenge: Challenge?
     
+    var userChallengeInvites: [Challenge] = []
+    
     var userCurrentChallenges: [Challenge] {
         
         guard let currentUser = AthleteController.currentUser
@@ -32,7 +34,7 @@ class ChallengeController {
         return activeChallenges.filter({ $0.creatorUsername == currentUser.username })
     }
     
-    var pastChallenges: [Challenge] {
+    var userPastChallenges: [Challenge] {
         
         guard let currentUser = AthleteController.currentUser
             else { return [] }
@@ -74,6 +76,16 @@ class ChallengeController {
             ChallengeController.sharedController.allChallenges = challenges
             completion()
         })
+    }
+    
+    func filterChallengesByCurrentUserInvites() {
+        
+        guard let currentUser = AthleteController.currentUser else { return }
+        
+        userChallengeInvites = allChallenges.filter({$0.pendingParticipantsUids.contains(currentUser.uid)})
+        let challengePendingParticipantsUidsRef = baseRef.child("challenges").child(currentUser.uid).child("pendingParticipantsUids")
+//        challengePendingParticipantsUidsRef.setValue(
+
     }
     
     func inviteFriendsToChallenge() {

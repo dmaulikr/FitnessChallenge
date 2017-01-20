@@ -10,6 +10,13 @@ import UIKit
 
 class ChallengeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var challengeNameLabel: UILabel!
+    @IBOutlet weak var creatorUsernameLabel: UILabel!
+    @IBOutlet weak var endDateLabel: UILabel!
   
+    func updateWith(challenge: Challenge) {
+        
+        
+    }
 
 }
