@@ -20,14 +20,14 @@ class Challenge: Equatable {
     
     var name: String
     var isComplete: Bool
-    var endDate: Date
+    var endDate: String
     var participantsUids: [String] = []
     var pendingParticipantsUids: [String] = []
     var uid: String
     var creatorUsername: String
     var movementType: String
     
-    init(name: String, isComplete: Bool, endDate: Date, pendingParticipantsUids: [String] = [], uid: String = UUID().uuidString, creatorUsername: String, movementType: String = "Push ups") {
+    init(name: String, isComplete: Bool, endDate: String, pendingParticipantsUids: [String] = [], uid: String = UUID().uuidString, creatorUsername: String, movementType: String = "Push ups") {
     
         self.name = name
         self.isComplete = isComplete
@@ -42,7 +42,7 @@ class Challenge: Equatable {
         
         guard let name = dictionary[nameKey] as? String,
             let isComplete = dictionary[isCompleteKey] as? Bool,
-            let endDate = dictionary[endDateKey] as? Double,
+            let endDate = dictionary[endDateKey] as? String,
             let creatorUsername = dictionary[creatorUsernameKey] as? String,
             let movementType = dictionary[movementTypeKey] as? String
             else { return nil }
@@ -52,7 +52,7 @@ class Challenge: Equatable {
         
         self.name = name
         self.isComplete = isComplete
-        self.endDate = Date(timeIntervalSince1970: endDate)
+        self.endDate = endDate
         self.uid = uid
         self.creatorUsername = creatorUsername
         self.movementType = movementType
@@ -63,7 +63,7 @@ class Challenge: Equatable {
     
     var dictionaryRepresentation: [String:Any] {
         
-        return [nameKey: name, isCompleteKey: isComplete, endDateKey: endDate.timeIntervalSince1970, creatorUsernameKey: creatorUsername, movementTypeKey: movementType, pendingParticipantsUidsKey: pendingParticipantsUids]
+        return [nameKey: name, isCompleteKey: isComplete, endDateKey: endDate, participantsUidsKey: participantsUids, creatorUsernameKey: creatorUsername, movementTypeKey: movementType, pendingParticipantsUidsKey: pendingParticipantsUids]
     }
 }
 

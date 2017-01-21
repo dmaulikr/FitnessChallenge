@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7DF8F56DD036C6C22544FB53 /* Pods_FitnessChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B532632B6508AF4299EDF426 /* Pods_FitnessChallengeUITests.framework */; };
+		930A0D4E1E31C9770059912B /* ParticipantsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A0D4D1E31C9770059912B /* ParticipantsCollectionViewCell.swift */; };
 		931A039D1DFF615300F98112 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A039C1DFF615300F98112 /* FriendController.swift */; };
 		932E62631E1BF22300EC267C /* SetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E62621E1BF22300EC267C /* SetController.swift */; };
 		9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */; };
@@ -18,9 +19,9 @@
 		936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */; };
 		9397F6B61E1AEB0F00187E63 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; };
 		9397F6B71E1AEB0F00187E63 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		93BEA0121E3270C600D129FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93BEA0111E3270C600D129FD /* Assets.xcassets */; };
 		93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */; };
 		93DC6D821DFA2C760004ABE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6D801DFA2C760004ABE6 /* Main.storyboard */; };
-		93DC6D841DFA2C760004ABE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6D831DFA2C760004ABE6 /* Assets.xcassets */; };
 		93DC6D871DFA2C760004ABE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6D851DFA2C760004ABE6 /* LaunchScreen.storyboard */; };
 		93DC6D921DFA2C760004ABE6 /* FitnessChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D911DFA2C760004ABE6 /* FitnessChallengeTests.swift */; };
 		93DC6D9D1DFA2C760004ABE6 /* FitnessChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D9C1DFA2C760004ABE6 /* FitnessChallengeUITests.swift */; };
@@ -103,6 +104,7 @@
 		35954DC28AAA93469D15E517 /* Pods_FitnessChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitnessChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		444791B66D11DFE81770F05C /* Pods-FitnessChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeTests/Pods-FitnessChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
 		4EFC1C0FC2AF3189BE6646CC /* Pods-FitnessChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeUITests/Pods-FitnessChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		930A0D4D1E31C9770059912B /* ParticipantsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCollectionViewCell.swift; sourceTree = "<group>"; };
 		931A039C1DFF615300F98112 /* FriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		932E62621E1BF22300EC267C /* SetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetController.swift; sourceTree = "<group>"; };
 		9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
@@ -112,10 +114,10 @@
 		9364E0EB1E3143FD0083D3E0 /* ChallengeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeTableViewCell.swift; sourceTree = "<group>"; };
 		936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../../../../../../../Downloads/ResearchKit-master/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
+		93BEA0111E3270C600D129FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93DC6D791DFA2C760004ABE6 /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DC6D811DFA2C760004ABE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		93DC6D831DFA2C760004ABE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93DC6D861DFA2C760004ABE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93DC6D881DFA2C760004ABE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93DC6D8D1DFA2C760004ABE6 /* FitnessChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitnessChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +202,7 @@
 		936D05131E23E33600FBCD57 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				930A0D4D1E31C9770059912B /* ParticipantsCollectionViewCell.swift */,
 				9364E0EB1E3143FD0083D3E0 /* ChallengeTableViewCell.swift */,
 				9364E0E71E305BCD0083D3E0 /* CreateChallengeCollectionViewCell.swift */,
 				93EE95D81E00E51500A4E02A /* CustomTabBarView.swift */,
@@ -287,8 +290,8 @@
 		93DC6DB11DFA2EEF0004ABE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				93BEA0111E3270C600D129FD /* Assets.xcassets */,
 				93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */,
-				93DC6D831DFA2C760004ABE6 /* Assets.xcassets */,
 				93DC6DC71DFB2D930004ABE6 /* GoogleService-Info.plist */,
 				93DC6D881DFA2C760004ABE6 /* Info.plist */,
 			);
@@ -488,7 +491,7 @@
 			files = (
 				93DC6D871DFA2C760004ABE6 /* LaunchScreen.storyboard in Resources */,
 				93DC6DC81DFB2D930004ABE6 /* GoogleService-Info.plist in Resources */,
-				93DC6D841DFA2C760004ABE6 /* Assets.xcassets in Resources */,
+				93BEA0121E3270C600D129FD /* Assets.xcassets in Resources */,
 				93DC6D821DFA2C760004ABE6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -672,6 +675,7 @@
 				9364E0E41E2EF9630083D3E0 /* FriendRequestTableViewCell.swift in Sources */,
 				93DC6DC01DFA3C0F0004ABE6 /* CustomTabBarViewController.swift in Sources */,
 				9364E0EC1E3143FD0083D3E0 /* ChallengeTableViewCell.swift in Sources */,
+				930A0D4E1E31C9770059912B /* ParticipantsCollectionViewCell.swift in Sources */,
 				93DC6DAD1DFA2EA20004ABE6 /* Challenge.swift in Sources */,
 				9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */,
 				93DC6DAB1DFA2D730004ABE6 /* Athlete.swift in Sources */,
@@ -835,6 +839,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = D9JMB4MDLY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -866,6 +871,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = D9JMB4MDLY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

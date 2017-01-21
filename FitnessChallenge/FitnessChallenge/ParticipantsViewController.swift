@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ParticipantsViewController: UIViewController {
+class ParticipantsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var participantsCollectionView: UICollectionView!
     
     
     override func viewDidLoad() {
@@ -17,17 +18,25 @@ class ParticipantsViewController: UIViewController {
 
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         
+        ChallengeController.sharedController.filterParticipantsInCurrentChallenge()
+        
     }
- 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.participantsCollectionView.reloadData()
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return ChallengeController.sharedController.participatingFriends.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "participantCell", for: indexPath) as? ParticipantsCollectionViewCell else { return UICollectionViewCell() }
+        
+        let athlete = ChallengeController.sharedController.participatingFriends[indexPath.row]
+        
+        cell.updateWith(athlete: athlete)
+        
+        return cell
+    }
 }

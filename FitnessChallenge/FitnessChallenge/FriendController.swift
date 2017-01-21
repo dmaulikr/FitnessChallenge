@@ -22,7 +22,7 @@ class FriendController {
     var friendRequestsReceived = [String]()
     var nonParticipatingFriends = [Athlete]()
     var invitedFriends = [Athlete]()
-    var participatingFriends = [Athlete]()
+    
     
     static var sentFriendRequestsPending = [String]() // Array of their uids.
     

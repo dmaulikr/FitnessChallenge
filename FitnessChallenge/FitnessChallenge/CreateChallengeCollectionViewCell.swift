@@ -31,15 +31,18 @@ class CreateChallengeCollectionViewCell: UICollectionViewCell {
         }
         
         if ChallengeController.sharedController.pendingUsersUids.contains(athlete.uid) {
-            checkBoxImageView.image = #imageLiteral(resourceName: "Checked Box")
+            checkBoxImageView.image = #imageLiteral(resourceName: "Gray check box")
         } else {
-            checkBoxImageView.image = #imageLiteral(resourceName: "emtpy checkbox")
+            checkBoxImageView.image = #imageLiteral(resourceName: "Empty gray check box")
         }
     }
     
     func updateAddButton() {
         
         profileImageView.image = #imageLiteral(resourceName: "Plus Filled-100")
+        checkBoxImageView.image = nil
+        profileImageView.layer.borderWidth = 0.0
+        
         usernameLabel.text = "Add Friend"
         usernameLabel.textColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
     }

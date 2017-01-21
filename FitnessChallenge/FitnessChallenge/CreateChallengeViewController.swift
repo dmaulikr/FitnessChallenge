@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateChallengeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class CreateChallengeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var challengeNameTextField: UITextField!
     @IBOutlet weak var friendsCollectionView: UICollectionView!
@@ -17,6 +17,9 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        hideKeyboardWhenViewIsTapped()
+        
+        endDatePicker.tintColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         friendsCollectionView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
     }
@@ -30,14 +33,20 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         guard let challengeName = challengeNameTextField.text,
             let currentUser = AthleteController.currentUser else { return }
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+        let date = dateFormatter.string(from: endDatePicker.date)
         
-        ChallengeController.sharedController.createChallenge(name: challengeName, isComplete: false, endDate: endDatePicker.date, creatorUsername: currentUser.username)
+        ChallengeController.sharedController.createChallenge(name: challengeName, isComplete: false, endDate: date, creatorUsername: currentUser.username)
         
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+
     }
     
     @IBAction func endDatePicker(_ sender: Any) {
-        print(endDatePicker.date)
+        
+        
+        challengeNameTextField.resignFirstResponder()
     }
     
     
@@ -84,6 +93,10 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         
     }
     
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        //
+//    }
+    
     //=======================================================
     // MARK: - Collection View Data Source functions
     //=======================================================
@@ -118,7 +131,9 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             presentAddFriendAlertController()
+            challengeNameTextField.resignFirstResponder()
         } else {
+            challengeNameTextField.resignFirstResponder()
             let selectedAthlete = FriendController.shared.currentUserFriendList[indexPath.row - 1]
             
             ChallengeController.sharedController.toggleAthleteInvitedStatus(selectedAthlete: selectedAthlete, completion: { 
@@ -129,6 +144,16 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
     
 }
 
+//extension UIViewController {
+//    func hideKeyboardWhenViewIsTapped() {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+//        view.addGestureRecognizer(tap)
+//    }
+//    
+//    func dismissKeyboard() {
+//        view.endEditing(true)
+//    }
+//}
 
 //func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //    if indexPath.row == 0 {

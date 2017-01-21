@@ -72,7 +72,7 @@ class ProfileTabView: UIView {
         let imageView0CenterY = NSLayoutConstraint(item: imageView0, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
         let imageView0CenterX = NSLayoutConstraint(item: imageView0, attribute: .centerX, relatedBy: .equal, toItem: button0, attribute: .centerX, multiplier: 1, constant: 0)
         let imageView0Height = NSLayoutConstraint(item: imageView0, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 1)
-        let imageView0Width = NSLayoutConstraint(item: imageView0, attribute: .width, relatedBy: .equal, toItem: imageView0, attribute: .height, multiplier: 4.0, constant: 0)
+        let imageView0Width = NSLayoutConstraint(item: imageView0, attribute: .width, relatedBy: .equal, toItem: imageView0, attribute: .height, multiplier: 5.2, constant: 0)
         
         // button1
         
@@ -86,7 +86,7 @@ class ProfileTabView: UIView {
         let imageView1CenterY = NSLayoutConstraint(item: imageView1, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
         let imageView1CenterX = NSLayoutConstraint(item: imageView1, attribute: .centerX, relatedBy: .equal, toItem: button1, attribute: .centerX, multiplier: 1, constant: 0)
         let imageView1Height = NSLayoutConstraint(item: imageView1, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 1)
-        let imageView1Width = NSLayoutConstraint(item: imageView1, attribute: .width, relatedBy: .equal, toItem: imageView1, attribute: .height, multiplier: 4.0, constant: 0)
+        let imageView1Width = NSLayoutConstraint(item: imageView1, attribute: .width, relatedBy: .equal, toItem: imageView1, attribute: .height, multiplier: 5.2, constant: 0)
         
         
         self.addConstraints([imageView0CenterY, imageView0CenterX, imageView0Height, imageView0Width, button0Top, button0Bottom, button0Leading, button0Trailing, button1Top, button1Bottom, button1Leading, button1Trailing, imageView1CenterY, imageView1CenterX, imageView1Height, imageView1Width])

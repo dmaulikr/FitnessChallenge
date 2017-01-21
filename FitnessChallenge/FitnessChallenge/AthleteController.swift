@@ -45,13 +45,14 @@ class AthleteController {
                 guard let user = user else { return }
                 currentUserUID = user.uid
                 fetchCurrentUserFromFirebaseWith(uid: currentUserUID, completion: { 
-                    ChallengeController.sharedController.fetchChallenges {
-                        completion(true)
-                    }
+//                    ChallengeController.sharedController.fetchChallenges {
+//                        completion(true)
+//                    }
+                    print("\(user.uid) has been successfully logged in.")
+                    completion(true)
                 })
-                // Fetch user from firebase here
-                print("\(user.uid) has been successfully logged in.")
-                
+                print("There was an error in the process of logging in.")
+                completion(false)
             }
         })
     }
@@ -60,9 +61,9 @@ class AthleteController {
         
         let usersRef = ChallengeController.sharedController.baseRef.child("athletes")
         
-        usersRef.observe(FIRDataEventType.value, with: { (snapshot) in
+        usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            guard let valueDictionary = snapshot.value as? [String:[String:Any]] else {
+            guard let valueDictionary = snapshot.value as? [String:[String:Any]] else { completion()
                 return
             }
             let athletes = valueDictionary.flatMap({ Athlete(uid: $0.key, dictionary: $0.value) })
@@ -108,9 +109,9 @@ class AthleteController {
     static func saveProfilePhotoToFirebase(image: UIImage) {
         
         guard let currentUser = currentUser,
-            let imageData = UIImageJPEGRepresentation(image, 1.0) else { return }
+            let imageData = UIImageJPEGRepresentation(image, 0.5) else { return }
         
-        storageRef.child(currentUser.uid).put(imageData, metadata: nil) { (metadata, error) in
+        storageRef.child(currentUser.username).put(imageData, metadata: nil) { (metadata, error) in
             if error != nil {
                 print("AthleteController: There was an error saving profile photo to firebase")
             } else {

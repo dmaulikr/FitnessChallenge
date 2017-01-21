@@ -13,6 +13,8 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
     
     //    let barGraphChartDataSource = BarGraphDataSource()
     @IBOutlet weak var graphView: ORKBarGraphChartView!
+    @IBOutlet weak var segmentedController: UISegmentedControl!
+    
     
     var currentUserSets: [ORKValueStack] = []
     
@@ -28,13 +30,9 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
             self.graphView.reloadData()
         }
         
-        
-        
+        segmentedController.tintColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
-        
-        
-        
         
         
         // ORKBarGraphChartView
@@ -45,6 +43,7 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
         // Optional custom configuration
         barGraphChartView.showsHorizontalReferenceLines = true
         barGraphChartView.showsVerticalReferenceLines = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +53,30 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
         SetController.fetchAllSets(by: challenge.uid) {
             self.graphView.reloadData()
         }
+        
+        ChallengeController.sharedController.filterParticipantsInCurrentChallenge()
+
     }
+    
+    //=======================================================
+    // MARK: - Actions
+    //=======================================================
+    
+    @IBAction func segmentedControllerIndexChanged(_ sender: Any) {
+        
+        switch segmentedController.selectedSegmentIndex {
+            
+        case 0:
+            title = "1"
+        case 1:
+            title = "2"
+        case 2:
+            title = "3"
+        default:
+            break
+        }
+    }
+    
     
     func numberOfPlots(in graphChartView: ORKGraphChartView) -> Int {
         return 1
@@ -69,7 +91,7 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
     }
     
     func graphChartView(_ graphChartView: ORKGraphChartView, titleForXAxisAtPointIndex pointIndex: Int) -> String? {
-//        return "\(pointIndex + 1)"
+        //        return "\(pointIndex + 1)"
         return AthleteController.currentUser?.username
     }
 }

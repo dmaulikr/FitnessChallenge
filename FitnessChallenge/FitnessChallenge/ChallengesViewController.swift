@@ -18,6 +18,14 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        invitesTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        invitesTableView.separatorStyle = .none
+        currentChallengesTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        currentChallengesTableView.separatorStyle = .none
+        pastChallengesTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        pastChallengesTableView.separatorStyle = .none
+        
+        
         ChallengeController.sharedController.fetchChallenges {
             ChallengeController.sharedController.filterUserPendingChallengeInvites()
             self.currentChallengesTableView.reloadData()
@@ -25,9 +33,8 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
             self.pastChallengesTableView.reloadData()
         }
         
-        FriendController.shared.fetchFriendRequestsReceived()
-        
         FriendController.shared.fetchFriendsList()
+        FriendController.shared.fetchFriendRequestsReceived()
         
         guard let currentUser = AthleteController.currentUser else { return }
         let url = currentUser.profileImageUrl
@@ -38,11 +45,14 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         FriendController.shared.getFriendProfileImages { 
-            
+            self.currentChallengesTableView.reloadData()
+            self.invitesTableView.reloadData()
+            self.pastChallengesTableView.reloadData()
         }
         
         guard let username = AthleteController.currentUser?.username else { return }
-        self.welcomeLabel.text = "Welcome \(username)!"
+        self.welcomeLabel.text = "Welcome    \(username)!"
+        self.welcomeLabel.tintColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,12 +125,13 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         let alertController = UIAlertController(title: "Choose what you'd like to do with this challenge.", message: nil, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let joinAction = UIAlertAction(title: "Join", style: .default) { (_) in
-            //
+            ChallengeController.sharedController.acceptRequestToJoinChallenge(challenge: challenge, completion: { 
+                self.invitesTableView.reloadData()
+                self.currentChallengesTableView.reloadData()
+            })
         }
         let declineAction = UIAlertAction(title: "Decline", style: .default) { (_) in
-            guard let index = ChallengeController.sharedController.userPendingChallengeInvites.index(of: challenge) else { return }
             
-//            ChallengeController.sharedController.userChallengeInvites.remove(at: index)
         }
         
         alertController.addAction(cancelAction)

@@ -21,6 +21,8 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         segmentedControl.setTitle("Friends", forSegmentAt: 0)
         segmentedControl.setTitle("Requests", forSegmentAt: 1)
         segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.tintColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        
         requestsTableView.isHidden = true
         friendCollectionView.isHidden = false
         
