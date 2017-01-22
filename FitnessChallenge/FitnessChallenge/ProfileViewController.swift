@@ -92,10 +92,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             
             profileImageView.image = image
+            AthleteController.currentUser?.profileImage = image
             AthleteController.saveProfilePhotoToFirebase(image: image)
         } else {
             if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 profileImageView.image = image
+                AthleteController.currentUser?.profileImage = image
                 AthleteController.saveProfilePhotoToFirebase(image: image)
             }
         }
