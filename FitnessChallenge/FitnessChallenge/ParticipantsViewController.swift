@@ -17,6 +17,7 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        participantsCollectionView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         
         ChallengeController.sharedController.filterParticipantsInCurrentChallenge()
         

@@ -318,7 +318,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Hh-3s-V08" id="REr-yP-ygN">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-Kq-P7g">
@@ -810,7 +810,7 @@
                                 </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many reps did you do?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usf-g5-Qme">
-                                <rect key="frame" x="16" y="122" width="288" height="28"/>
+                                <rect key="frame" x="16" y="107" width="288" height="28"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -826,10 +826,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM4-Y8-Tef">
-                                <rect key="frame" x="12" y="32" width="40" height="40"/>
+                                <rect key="frame" x="12" y="32" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="5ci-2L-m88"/>
-                                    <constraint firstAttribute="width" constant="40" id="k10-zU-pbf"/>
+                                    <constraint firstAttribute="height" constant="25" id="5ci-2L-m88"/>
+                                    <constraint firstAttribute="width" constant="25" id="k10-zU-pbf"/>
                                 </constraints>
                                 <state key="normal" image="Light Gray X"/>
                                 <connections>
@@ -858,7 +858,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xie-yV-8Lr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4523" y="687"/>
+            <point key="canvasLocation" x="4522.5" y="686.61971830985919"/>
         </scene>
         <!--Participants-->
         <scene sceneID="2wv-Db-HXB">
@@ -876,25 +876,25 @@
                                 <rect key="frame" x="15" y="79" width="290" height="425"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BmW-9R-KMY">
-                                    <size key="itemSize" width="82" height="95"/>
+                                    <size key="itemSize" width="100" height="115"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="participantCell" id="AUf-nV-yg6" customClass="ParticipantsCollectionViewCell" customModule="FitnessChallenge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="82" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="115"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="82" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="115"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qEh-NV-JRG">
-                                                    <rect key="frame" x="7" y="8" width="64" height="64"/>
+                                                    <rect key="frame" x="7" y="3" width="85" height="85"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fph-1E-8n6">
-                                                    <rect key="frame" x="0.0" y="74" width="82" height="21"/>
+                                                    <rect key="frame" x="7" y="90" width="85" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -931,7 +931,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZ9-6O-lde" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4523" y="1475"/>
+            <point key="canvasLocation" x="4522.5" y="1474.6478873239437"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="5o6-WK-bCa">
@@ -948,6 +948,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mm5-HB-TbF" customClass="ORKBarGraphChartView">
                                 <rect key="frame" x="16" y="122" width="288" height="307"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="noDataText" value="No sets have been completed in this challenge."/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="68G-tG-9uI">
                                 <rect key="frame" x="16" y="72" width="288" height="29"/>

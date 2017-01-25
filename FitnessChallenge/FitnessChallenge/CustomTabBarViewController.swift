@@ -29,7 +29,7 @@ class CustomTabBarViewController: UITabBarController, CustomTabBarViewDelegate {
                            height: 60)
         
         tabView = CustomTabBarView(frame: frame)
-        tabView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        tabView.backgroundColor = UIColor(red: 30/255, green: 31/255, blue: 33/255, alpha: 1)// a dark gray
         tabView.delegate = self
         tabView.selectIndex(index: 0)
         view.addSubview(tabView)

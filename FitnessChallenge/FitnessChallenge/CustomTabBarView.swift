@@ -41,14 +41,14 @@ class CustomTabBarView: UIView {
         
         // Line across top
         
-        lineAcross.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+        lineAcross.backgroundColor = UIColor(red: 91/255, green: 91/255, blue: 91/255, alpha: 1)// Lighter Gray
         
         self.addSubview(lineAcross)
 
         // Add Set
         
-        addSetView.backgroundColor = UIColor(red: 35/255, green: 40/255, blue: 40/255, alpha: 1)// Darkest Gray
-        addSetView.layer.cornerRadius = 5
+        addSetView.backgroundColor = UIColor(red: 57/255, green: 57/255, blue: 58/255, alpha: 1)
+        addSetView.layer.cornerRadius = 8
         
         self.addSubview(addSetView)
         
@@ -99,7 +99,7 @@ class CustomTabBarView: UIView {
         let lineBottom = NSLayoutConstraint(item: lineAcross, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
         let lineLeading = NSLayoutConstraint(item: lineAcross, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
         let lineTrailing = NSLayoutConstraint(item: lineAcross, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-        let lineHeight = NSLayoutConstraint(item: lineAcross, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 8)
+        let lineHeight = NSLayoutConstraint(item: lineAcross, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 7)
         
         // Add set View
         

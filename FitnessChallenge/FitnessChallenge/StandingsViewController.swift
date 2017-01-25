@@ -20,15 +20,14 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
     
     var challenge: Challenge?
     
+    let chartColors = [
+        UIColor(red: 51/255, green: 0/255, blue: 255/255, alpha: 1)//Blue
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let challenge = challenge else { return }
-        
-        SetController.fetchAllSets(by: challenge.uid) {
-            self.currentUserSets = SetController.currentUserSets
-            self.graphView.reloadData()
-        }
+        ChallengeController.sharedController.filterParticipantsInCurrentChallenge()
         
         segmentedController.tintColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         
@@ -38,11 +37,11 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
         // ORKBarGraphChartView
         let barGraphChartView = graphView as ORKBarGraphChartView
         graphView.dataSource = self
-        //        barGraphChartView.dataSource = self
-        barGraphChartView.tintColor = UIColor(red: 244/255, green: 190/255, blue: 74/255, alpha: 1)
+        barGraphChartView.tintColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
         // Optional custom configuration
-        barGraphChartView.showsHorizontalReferenceLines = true
-        barGraphChartView.showsVerticalReferenceLines = true
+        barGraphChartView.showsHorizontalReferenceLines = false
+        barGraphChartView.showsVerticalReferenceLines = false
+        barGraphChartView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         
     }
     
@@ -54,7 +53,7 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
             self.graphView.reloadData()
         }
         
-        ChallengeController.sharedController.filterParticipantsInCurrentChallenge()
+        
 
     }
     
@@ -77,22 +76,31 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
         }
     }
     
+    //=======================================================
+    // MARK: - Chart datasource functions
+    //=======================================================
     
     func numberOfPlots(in graphChartView: ORKGraphChartView) -> Int {
-        return 1
-    }
-    
-    func graphChartView(_ graphChartView: ORKGraphChartView, dataPointForPointIndex pointIndex: Int, plotIndex: Int) -> ORKValueStack {
-        return currentUserSets[pointIndex]
+        return SetController.allSetsAsORKValueStacks.count
     }
     
     func graphChartView(_ graphChartView: ORKGraphChartView, numberOfDataPointsForPlotIndex plotIndex: Int) -> Int {
-        return currentUserSets.count
+        return SetController.allSetsAsORKValueStacks[plotIndex].count
     }
     
-    func graphChartView(_ graphChartView: ORKGraphChartView, titleForXAxisAtPointIndex pointIndex: Int) -> String? {
-        //        return "\(pointIndex + 1)"
-        return AthleteController.currentUser?.username
+    func graphChartView(_ graphChartView: ORKGraphChartView, dataPointForPointIndex pointIndex: Int, plotIndex: Int) -> ORKValueStack {
+        return SetController.allSetsAsORKValueStacks[plotIndex][pointIndex]
     }
+    
+    
+    func graphChartView(_ graphChartView: ORKGraphChartView, titleForXAxisAtPointIndex pointIndex: Int) -> String? {
+        return SetController.usernamesForChart[pointIndex]
+    }
+    
+    func graphChartView(_ graphChartView: ORKGraphChartView, colorForPlotIndex plotIndex: Int) -> UIColor {
+        return chartColors[plotIndex]
+    }
+    
+    
 }
 

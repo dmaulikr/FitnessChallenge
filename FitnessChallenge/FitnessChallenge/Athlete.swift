@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Athlete {
+class Athlete: Equatable {
     
     private let usernameKey = "username"
     private let emailKey = "email"
@@ -67,4 +67,6 @@ class Athlete {
     }
 }
 
-
+func == (lhs: Athlete, rhs: Athlete) -> Bool {
+    return lhs.uid == rhs.uid
+}

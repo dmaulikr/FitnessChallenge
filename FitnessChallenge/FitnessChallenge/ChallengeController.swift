@@ -132,9 +132,14 @@ class ChallengeController {
     
     func filterParticipantsInCurrentChallenge() {
         
-        guard let currentlySelectedChallenge = currentlySelectedChallenge else { return }
+        guard let currentlySelectedChallenge = currentlySelectedChallenge,
+            let currentUser = AthleteController.currentUser else { return }
         
         participatingFriends = AthleteController.allAthletes.filter({ $0.challenges.contains(currentlySelectedChallenge.uid)})
+        // Place current user at the start of the order.
+        guard let indexOfCurrentUser = participatingFriends.index(of: currentUser) else { return }
+        participatingFriends.remove(at: indexOfCurrentUser)
+        participatingFriends.insert(currentUser, at: 0)
     }
     
 
