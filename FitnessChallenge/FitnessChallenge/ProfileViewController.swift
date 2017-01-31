@@ -11,14 +11,17 @@ import UIKit
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        usernameLabel.text = AthleteController.currentUser?.username
+        emailLabel.text = AthleteController.currentUser?.email
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,12 +29,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.borderWidth = 2.0
-        profileImageView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1).cgColor// Light Gray
+        profileImageView.layer.borderColor = UIColor(red: 91/255, green: 91/255, blue: 91/255, alpha: 1).cgColor// Lighter Gray
         
         if AthleteController.currentUser?.profileImageUrl != "" {
             profileImageView.image = AthleteController.currentUser?.profileImage
         } else {
-            profileImageView.image = #imageLiteral(resourceName: "UserProfileIcon")
+            profileImageView.image = #imageLiteral(resourceName: "Gray user filled")
         }
     }
     

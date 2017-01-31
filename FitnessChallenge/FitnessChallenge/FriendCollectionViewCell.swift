@@ -23,7 +23,7 @@ class FriendCollectionViewCell: UICollectionViewCell {
         if athlete.profileImage != nil {
             profileImageView.image = athlete.profileImage
         } else {
-            profileImageView.image = #imageLiteral(resourceName: "UserProfileIcon")
+            profileImageView.image = #imageLiteral(resourceName: "Gray user filled")
         }
 
         usernameLabel.text = athlete.username

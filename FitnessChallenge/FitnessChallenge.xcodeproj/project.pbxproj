@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7DF8F56DD036C6C22544FB53 /* Pods_FitnessChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B532632B6508AF4299EDF426 /* Pods_FitnessChallengeUITests.framework */; };
 		930A0D4E1E31C9770059912B /* ParticipantsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A0D4D1E31C9770059912B /* ParticipantsCollectionViewCell.swift */; };
+		93135FFE1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93135FFD1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift */; };
+		931360001E3FB590006594F9 /* InternetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93135FFF1E3FB590006594F9 /* InternetController.swift */; };
 		931A039D1DFF615300F98112 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A039C1DFF615300F98112 /* FriendController.swift */; };
 		932E62631E1BF22300EC267C /* SetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E62621E1BF22300EC267C /* SetController.swift */; };
 		9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */; };
@@ -105,6 +107,8 @@
 		444791B66D11DFE81770F05C /* Pods-FitnessChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeTests/Pods-FitnessChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
 		4EFC1C0FC2AF3189BE6646CC /* Pods-FitnessChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessChallengeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FitnessChallengeUITests/Pods-FitnessChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		930A0D4D1E31C9770059912B /* ParticipantsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCollectionViewCell.swift; sourceTree = "<group>"; };
+		93135FFD1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenCopyViewController.swift; sourceTree = "<group>"; };
+		93135FFF1E3FB590006594F9 /* InternetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetController.swift; sourceTree = "<group>"; };
 		931A039C1DFF615300F98112 /* FriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		932E62621E1BF22300EC267C /* SetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetController.swift; sourceTree = "<group>"; };
 		9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
@@ -191,6 +195,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		931360011E3FB594006594F9 /* Misc Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				93135FFF1E3FB590006594F9 /* InternetController.swift */,
+			);
+			name = "Misc Controllers";
+			sourceTree = "<group>";
+		};
 		931A039E1DFF618A00F98112 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +260,7 @@
 		93DC6D7B1DFA2C760004ABE6 /* FitnessChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				931360011E3FB594006594F9 /* Misc Controllers */,
 				93DC6DB01DFA2ECD0004ABE6 /* Model */,
 				93DC6DB51DFA2F940004ABE6 /* ModelControllers */,
 				931A039E1DFF618A00F98112 /* Controllers */,
@@ -326,6 +339,7 @@
 				93DC6DC11DFA3D890004ABE6 /* CreateChallengeViewController.swift */,
 				93DC6DBF1DFA3C0F0004ABE6 /* CustomTabBarViewController.swift */,
 				93DC6DC51DFA3F280004ABE6 /* FriendsViewController.swift */,
+				93135FFD1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift */,
 				93DC6DB81DFA36C70004ABE6 /* LoginViewController.swift */,
 				93EE95D61E00E3C700A4E02A /* ParticipantsViewController.swift */,
 				9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */,
@@ -670,6 +684,7 @@
 				93EE95D91E00E51500A4E02A /* CustomTabBarView.swift in Sources */,
 				93DC6DC41DFA3F0D0004ABE6 /* ProfileViewController.swift in Sources */,
 				936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */,
+				93135FFE1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift in Sources */,
 				93EE95D51E00E39300A4E02A /* AddSetViewController.swift in Sources */,
 				93DC6DBC1DFA37580004ABE6 /* CreateAccountViewController.swift in Sources */,
 				9364E0E41E2EF9630083D3E0 /* FriendRequestTableViewCell.swift in Sources */,
@@ -678,6 +693,7 @@
 				930A0D4E1E31C9770059912B /* ParticipantsCollectionViewCell.swift in Sources */,
 				93DC6DAD1DFA2EA20004ABE6 /* Challenge.swift in Sources */,
 				9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */,
+				931360001E3FB590006594F9 /* InternetController.swift in Sources */,
 				93DC6DAB1DFA2D730004ABE6 /* Athlete.swift in Sources */,
 				93DC6DB41DFA2F860004ABE6 /* AthleteController.swift in Sources */,
 				93EE95D31E00E35F00A4E02A /* StandingsViewController.swift in Sources */,
@@ -859,7 +875,7 @@
 				INFOPLIST_FILE = FitnessChallenge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.aaronmartinez.FitnessChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaronmartinez.FitnessWithFriends6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -891,7 +907,7 @@
 				INFOPLIST_FILE = FitnessChallenge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.aaronmartinez.FitnessChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaronmartinez.FitnessWithFriends6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

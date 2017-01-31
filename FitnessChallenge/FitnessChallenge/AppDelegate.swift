@@ -17,29 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
-
-        if FIRAuth.auth()?.currentUser != nil {
-            guard let currentUser = FIRAuth.auth()?.currentUser else { return true }
-            let uid = currentUser.uid
-            
-            AthleteController.fetchCurrentUserFromFirebaseWith(uid: uid, completion: { 
-                
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                let challengesVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "ChallengesView") as UIViewController
-                if let navigationVC = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController {
-                self.window = UIWindow(frame: UIScreen.main.bounds)
-                self.window?.rootViewController = navigationVC
-                self.window?.makeKeyAndVisible()
-                }
-            })
-        } else {
-            
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginScreen") as UIViewController
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = loginVC
-            self.window?.makeKeyAndVisible()
-        }
         
         AthleteController.fetchAllAthletes {
             

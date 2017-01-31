@@ -27,7 +27,7 @@ class ParticipantsCollectionViewCell: UICollectionViewCell {
         if athlete.profileImage != nil {
             profilePhotoImageView.image = athlete.profileImage
         } else {
-            profilePhotoImageView.image = #imageLiteral(resourceName: "UserProfileIcon")
+            profilePhotoImageView.image = #imageLiteral(resourceName: "Gray user filled")
         }
         
     }

@@ -42,17 +42,19 @@ class AthleteController {
                 completion(false)
                 return
             } else {
-                guard let user = user else { return }
+                guard let user = user else { completion(false); return }
                 currentUserUID = user.uid
-                fetchCurrentUserFromFirebaseWith(uid: currentUserUID, completion: { 
-//                    ChallengeController.sharedController.fetchChallenges {
-//                        completion(true)
-//                    }
-                    print("\(user.uid) has been successfully logged in.")
-                    completion(true)
-                })
-                print("There was an error in the process of logging in.")
-                completion(false)
+                fetchCurrentUserFromFirebaseWith(uid: currentUserUID) { (success) in
+                    if success {
+                        print("\(user.uid) has been successfully logged in.")
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
+                }
+//                print("There was an error in the process of logging in.")
+//                completion(false)
+//                return
             }
         })
     }
@@ -73,24 +75,22 @@ class AthleteController {
         })
     }
     
-    static func fetchCurrentUserFromFirebaseWith(uid: String, completion: @escaping () -> Void) {
+    static func fetchCurrentUserFromFirebaseWith(uid: String, completion: @escaping (_ success: Bool) -> Void) {
         
         let currentUserRef = FIRDatabase.database().reference().child("athletes").child(uid)
         
-        // Documentation how to fetch user, read data once
         currentUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
-            guard let valueDictionary = snapshot.value as? [String:Any],
-                let username = valueDictionary["username"] as? String,
-                let email = valueDictionary["email"] as? String
-                else { return }
+            guard let valueDictionary = snapshot.value as? [String:Any]
+                else { completion(false); return }
             
                 let user = Athlete(uid: uid, dictionary: valueDictionary)
             currentUser = user
-            completion()
+            completion(true)
             
         }) { (error) in
             print(error.localizedDescription)
+            completion(false)
         }
     }
     

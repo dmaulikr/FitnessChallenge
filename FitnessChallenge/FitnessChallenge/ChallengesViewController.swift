@@ -67,7 +67,7 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if tableView ==  invitesTableView {
+        if tableView == invitesTableView {
             return ChallengeController.sharedController.userPendingChallengeInvites.count
         } else if tableView == currentChallengesTableView {
             return ChallengeController.sharedController.userCurrentChallenges.count
@@ -94,7 +94,6 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.updateWith(challenge: challenge)
             return cell
         }
-        
         
     }
     
