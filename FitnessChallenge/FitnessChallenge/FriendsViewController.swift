@@ -88,11 +88,13 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            // Pull up the add new friend stuff.
-            print("Add button tapped")
+            
+            presentAddFriendAlertController()
+            
         } else {
+            
             // Pull up the selected athlete, and segue to their profile.
-            let selectedAthlete = FriendController.shared.currentUserFriendList[indexPath.row - 1]
+//            let selectedAthlete = FriendController.shared.currentUserFriendList[indexPath.row - 1]
             print("Friend cell tapped")
         }
     }
@@ -117,6 +119,52 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         return cell
     }
     
+    //=======================================================
+    // MARK: - Helper Functions
+    //=======================================================
+    
+    func presentAddFriendAlertController() {
+        
+        let alertController = UIAlertController(title: "Add a Friend", message: "What's their username?", preferredStyle: .alert)
+        
+        var usernameTextField: UITextField?
+        alertController.addTextField { (textfield) in
+            usernameTextField = textfield
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
+            print("\(usernameTextField?.text)")
+            guard let username = usernameTextField?.text else { return }
+            FriendController.sendFriendRequest(username: username, completion: { (success) in
+                if success == true {
+                    print("FriendController: Successfully added friend request")
+                } else {
+                    self.presentNoUserWithThatUsernameAlert()
+                }
+            })
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(addAction)
+        
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func presentNoUserWithThatUsernameAlert() {
+        
+        let alertController = UIAlertController(title: "Oops", message: "No user with that username found.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: { (_) in
+            self.presentAddFriendAlertController()
+        })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(tryAgainAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
     
     //=======================================================
     // MARK: - Reload Tableview delegate function
