@@ -71,11 +71,11 @@ class AddSetViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
-        let font = UIFontDescriptor(name: "Avenir Next", size: 18)
+        let font = UIFontDescriptor(name: "Avenir Next", size: 30)
         pickerLabel.textAlignment = NSTextAlignment.center
         pickerLabel.textColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         pickerLabel.text = pickerData[row]
-        pickerLabel.font = UIFont(descriptor: font , size: 18)
+        pickerLabel.font = UIFont(descriptor: font , size: 30)
         return pickerLabel
     }
     
