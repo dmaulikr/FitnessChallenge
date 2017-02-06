@@ -17,20 +17,42 @@ class AthleteController {
     
     static var allAthletes: [Athlete] = []
     static let storageRef = FIRStorage.storage().reference()
-    
+    static var usernamesUsed: [String] = []
 
     
     //CRUD
     
-    static func addAthleteToFirebase(username: String, email: String, password: String, uid: String) {
+    static func addAthleteToFirebase(username: String, email: String, password: String, uid: String, completion: @escaping(_ success: Bool) -> Void) {
         
-        let athlete = Athlete(username: username, email: email, uid: uid)
-        currentUser = athlete
+        let baseRef = ChallengeController.sharedController.baseRef
+        let usernamesUsedRef = baseRef.child("usernamesUsed")
+        usernamesUsedRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let usernamesUsedArray = snapshot.value as? [String] else { completion(false); return }
+            
+            usernamesUsed = usernamesUsedArray
+            
+            if usernamesUsed.contains(username) {
+                
+                completion(false)
+                
+            } else {
+                
+                let athlete = Athlete(username: username, email: email, uid: uid)
+                currentUser = athlete
+                
+                let allAthletesRef = ChallengeController.sharedController.baseRef.child("athletes")
+                let athleteRef = allAthletesRef.child(athlete.uid)
+                athleteRef.setValue(athlete.dictionaryRepresentation)
+                
+                usernamesUsed.append(username)
+                usernamesUsedRef.setValue(usernamesUsed)
+                
+                completion(true)
+            }
+            
+        })
         
-        let allAthletesRef = ChallengeController.sharedController.baseRef.child("athletes")
-        let athleteRef = allAthletesRef.child(athlete.uid)
-        
-        athleteRef.setValue(athlete.dictionaryRepresentation)
     }
     
     static func loginAthlete(email: String, password: String, completion: @escaping (_ success: Bool) -> Void) {

@@ -21,6 +21,10 @@ class CreateAccountViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    //=======================================================
+    // MARK: - Actions
+    //=======================================================
+    
     @IBAction func createAccountButtonTapped(_ sender: Any) {
         
         guard let email = emailTextField.text,
@@ -35,34 +39,87 @@ class CreateAccountViewController: UIViewController {
                 return
             }
             guard let user = user else { return }
-            AthleteController.addAthleteToFirebase(username: username, email: email, password: password, uid: user.uid)
-            AthleteController.loginAthlete(email: email, password: password, completion: { (success) in
-                if success == true {
-                    self.performSegue(withIdentifier: "toChallengesView", sender: self)
+            AthleteController.addAthleteToFirebase(username: username, email: email, password: password, uid: user.uid, completion: { (success) in
+                
+                if !success {
+                    
+                    self.usernameAlreadyTakenAlert(email: email, password: password, uid: user.uid)
+                    
                 } else {
-                    let alertController = UIAlertController(title: "Oh no!", message: "We couldn't get you signed in. Please try again.", preferredStyle: .alert)
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                    let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
                     
-                    alertController.addAction(cancelAction)
-                    alertController.addAction(tryAgainAction)
+                    AthleteController.loginAthlete(email: email, password: password, completion: { (success) in
+                        if success == true {
+                            self.performSegue(withIdentifier: "toChallengesView", sender: self)
+                        } else {
+                            let alertController = UIAlertController(title: "Oh no!", message: "We couldn't get you signed in. Please try again.", preferredStyle: .alert)
+                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                            let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
+                            
+                            alertController.addAction(cancelAction)
+                            alertController.addAction(tryAgainAction)
+                            
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    })
                     
-                    self.present(alertController, animated: true, completion: nil)
                 }
+                
             })
+            
         })
     }
     
     
+    //=======================================================
+    // MARK: - Helper functions
+    //=======================================================
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func usernameAlreadyTakenAlert(email: String, password: String, uid: String) {
+        
+        let alertController = UIAlertController(title: "Username already taken", message: nil, preferredStyle: .alert)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        var usernameTextfield: UITextField?
+        
+        alertController.addTextField { (textfield) in
+            textfield.placeholder = "New username"
+            usernameTextfield = textfield
+        }
+        let submitAction = UIAlertAction(title: "Try Again", style: .default) { (_) in
+            
+            guard let newUsername = usernameTextfield?.text else { return }
+            AthleteController.addAthleteToFirebase(username: newUsername, email: email, password: password, uid: uid, completion: { (success) in
+                
+                if !success {
+                    
+                    self.usernameAlreadyTakenAlert(email: email, password: password, uid: uid)
+                    
+                } else {
+                    
+                    AthleteController.loginAthlete(email: email, password: password, completion: { (success) in
+                        if success == true {
+                            self.performSegue(withIdentifier: "toChallengesView", sender: self)
+                        } else {
+                            let alertController = UIAlertController(title: "Oh no!", message: "We couldn't get you signed in. Please try again.", preferredStyle: .alert)
+                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                            let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
+                            
+                            alertController.addAction(cancelAction)
+                            alertController.addAction(tryAgainAction)
+                            
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    })
+                    
+                }
+            })
+        }
+        
+        
+//        alertController.addAction(cancelAction)
+        alertController.addAction(submitAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     
 }
