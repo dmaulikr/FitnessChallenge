@@ -19,7 +19,7 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         
 //        hideKeyboardWhenViewIsTapped()
         
-        endDatePicker.tintColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+        endDatePicker.setValue(UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1), forKeyPath: "textColor") // Light gray
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         friendsCollectionView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
     }
