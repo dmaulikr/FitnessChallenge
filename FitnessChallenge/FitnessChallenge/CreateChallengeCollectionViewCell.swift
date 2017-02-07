@@ -39,7 +39,7 @@ class CreateChallengeCollectionViewCell: UICollectionViewCell {
     
     func updateAddButton() {
         
-        profileImageView.image = #imageLiteral(resourceName: "Plus Filled-100")
+        profileImageView.image = #imageLiteral(resourceName: "Orange Plus")
         checkBoxImageView.image = nil
         profileImageView.layer.borderWidth = 0.0
         

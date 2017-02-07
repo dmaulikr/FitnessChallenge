@@ -32,7 +32,7 @@ class FriendCollectionViewCell: UICollectionViewCell {
     
     func updateAddButton() {
         
-        profileImageView.image = #imageLiteral(resourceName: "Plus Filled-100")
+        profileImageView.image = #imageLiteral(resourceName: "Gray Plus")
         usernameLabel.text = "Add Friend"
     }
 }
