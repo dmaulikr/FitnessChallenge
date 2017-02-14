@@ -6,7 +6,7 @@
 //  Copyright © 2016 Aaron Martinez. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import FirebaseDatabase
 
 class ChallengeController {
@@ -60,7 +60,9 @@ class ChallengeController {
         return pastChallenges
     }
     
+    // Static data for PickChallengeTypeViewController's tableView
     
+    let challengeTypeDictionaries: [[String:Any]] = [["label":"Push ups" , "image": #imageLiteral(resourceName: "push ups") as UIImage], ["label":"Plank holds", "image": #imageLiteral(resourceName: "plank holds") as UIImage], ["label": "Air squats", "image":#imageLiteral(resourceName: "air squats") as UIImage]]
     
     //CRUD
 

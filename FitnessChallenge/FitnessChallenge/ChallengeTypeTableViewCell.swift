@@ -9,16 +9,18 @@
 import UIKit
 
 class ChallengeTypeTableViewCell: UITableViewCell {
+    
+    
+    @IBOutlet weak var challengeTypeImageView: UIImageView!
+    @IBOutlet weak var challengeTypeLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setupViews(challengeType: [String:Any]) {
+        
+        guard let image = challengeType["image"] as? UIImage,
+            let label = challengeType["label"] as? String else { return }
+        
+        challengeTypeImageView.image = image
+        challengeTypeLabel.text = label
     }
 
 }

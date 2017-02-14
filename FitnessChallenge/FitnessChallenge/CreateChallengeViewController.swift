@@ -39,7 +39,7 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         
         ChallengeController.sharedController.createChallenge(name: challengeName, isComplete: false, endDate: date, creatorUsername: currentUser.username)
         
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
 
     }
     

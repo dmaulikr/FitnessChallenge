@@ -8,20 +8,34 @@
 
 import UIKit
 
-class PickChallengeTypeViewController: UIViewController {
+class PickChallengeTypeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var typeTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        typeTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
     }
     
-
+    //=======================================================
+    // MARK: - Tableview Delegate and DataSource
+    //=======================================================
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ChallengeController.sharedController.challengeTypeDictionaries.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeTypeCell", for: indexPath) as? ChallengeTypeTableViewCell else { return UITableViewCell() }
+        
+        let challengeType = ChallengeController.sharedController.challengeTypeDictionaries[indexPath.row]
+        
+        cell.setupViews(challengeType: challengeType)
+        
+        return cell
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -51,7 +51,7 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         guard let username = AthleteController.currentUser?.username else { return }
-        self.welcomeLabel.text = "Welcome    \(username)!"
+        self.welcomeLabel.text = "Welcome   \(username)!"
         self.welcomeLabel.tintColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
     }
     
@@ -146,7 +146,7 @@ class ChallengesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Do if segue.identifier later
+        
         if segue.identifier == "showChallengeView" {
             guard let selectedIndex = self.currentChallengesTableView.indexPathForSelectedRow, let destination = segue.destination as? CustomTabBarViewController, let standings = destination.childViewControllers.first as? StandingsViewController else { return }
             
