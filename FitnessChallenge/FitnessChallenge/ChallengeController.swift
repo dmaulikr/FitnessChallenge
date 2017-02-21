@@ -110,11 +110,12 @@ class ChallengeController {
         })
     }
     
-    func filterUserPendingChallengeInvites() {
+    func filterUserPendingChallengeInvites(completion: (Bool) -> Void) {
         
-        guard let currentUser = AthleteController.currentUser else { return }
+        guard let currentUser = AthleteController.currentUser else { completion(false); return }
         
         userPendingChallengeInvites = allChallenges.filter({ $0.pendingParticipantsUids.contains(currentUser.uid) })
+        completion(true)
 //        let challengePendingParticipantsUidsRef = baseRef.child("challenges").child(currentUser.uid).child("pendingParticipantsUids")
 //        challengePendingParticipantsUidsRef.setValue(
 

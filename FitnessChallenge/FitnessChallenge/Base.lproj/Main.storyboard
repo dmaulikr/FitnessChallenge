@@ -110,7 +110,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Challenge Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZL9-NA-7un">
-                                                    <rect key="frame" x="6" y="4" width="160" height="23.5"/>
+                                                    <rect key="frame" x="6" y="4" width="160" height="24"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -271,10 +271,10 @@
             </objects>
             <point key="canvasLocation" x="2079" y="1695"/>
         </scene>
-        <!--View Controller-->
+        <!--Past Challenges View Controller-->
         <scene sceneID="LcR-56-GWd">
             <objects>
-                <viewController id="WAq-4I-FNK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pastChallengesVC" id="WAq-4I-FNK" customClass="PastChallengesViewController" customModule="FitnessChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jlf-oX-QkZ"/>
                         <viewControllerLayoutGuide type="bottom" id="xj7-Mi-E5l"/>
@@ -283,14 +283,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QWn-Y5-lID">
-                                <rect key="frame" x="40" y="420" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QWn-Y5-lID">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pastChallengesCell" rowHeight="70" id="hvT-7w-glf" customClass="ChallengeTableViewCell" customModule="FitnessChallenge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hvT-7w-glf" id="ZG9-bL-gql">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7g-nI-077">
+                                                    <rect key="frame" x="8" y="48" width="135" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N72-aA-Hsa">
+                                                    <rect key="frame" x="8" y="0.0" width="135" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpY-TT-ASy">
+                                                    <rect key="frame" x="177" y="-1" width="135" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1h-lb-vPi">
+                                                    <rect key="frame" x="177" y="47" width="135" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="challengeNameLabel" destination="N72-aA-Hsa" id="cai-i9-blb"/>
+                                            <outlet property="creatorUsernameLabel" destination="r7g-nI-077" id="atR-cF-c2K"/>
+                                            <outlet property="endDateLabel" destination="T1h-lb-vPi" id="3Aq-52-opA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WAq-4I-FNK" id="Ydc-Qm-vSc"/>
+                                    <outlet property="delegate" destination="WAq-4I-FNK" id="ggI-yw-bSO"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xj7-Mi-E5l" firstAttribute="top" secondItem="QWn-Y5-lID" secondAttribute="bottom" id="J9n-Xc-8g7"/>
+                            <constraint firstItem="QWn-Y5-lID" firstAttribute="top" secondItem="jlf-oX-QkZ" secondAttribute="bottom" id="coC-mg-n5G"/>
+                            <constraint firstItem="QWn-Y5-lID" firstAttribute="leading" secondItem="Iv4-Ny-Bqm" secondAttribute="leading" id="s6p-Vi-mxI"/>
+                            <constraint firstAttribute="trailing" secondItem="QWn-Y5-lID" secondAttribute="trailing" id="xtK-3k-EXZ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pastChallengesTableView" destination="QWn-Y5-lID" id="V0x-CV-ht8"/>
+                        <segue destination="T8i-Gq-ez2" kind="show" identifier="pastToCustomTB" id="taX-Hk-t6G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gO-sP-LAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -427,18 +485,18 @@
             </objects>
             <point key="canvasLocation" x="3336" y="-1237"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Challenges Page View Controller-->
         <scene sceneID="sSI-A9-Olw">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="IDV-vj-97x" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="IDV-vj-97x" customClass="ChallengesPageViewController" customModule="FitnessChallenge" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rbB-HF-vgl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2370" y="550"/>
         </scene>
-        <!--View Controller-->
+        <!--Challenge Invites View Controller-->
         <scene sceneID="7vp-x9-JDQ">
             <objects>
-                <viewController id="05N-8J-qca" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="challengeInvitesVC" id="05N-8J-qca" customClass="ChallengeInvitesViewController" customModule="FitnessChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eDx-K5-Vhe"/>
                         <viewControllerLayoutGuide type="bottom" id="KzG-ys-UYr"/>
@@ -447,23 +505,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fl3-GX-y2w">
-                                <rect key="frame" x="40" y="420" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fl3-GX-y2w">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="inviteCell" rowHeight="70" id="6hl-iw-CdJ" customClass="ChallengeTableViewCell" customModule="FitnessChallenge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6hl-iw-CdJ" id="8hH-cF-Rj8">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IbQ-ZV-uXl">
+                                                    <rect key="frame" x="8" y="48" width="135" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEq-EV-Rzp">
+                                                    <rect key="frame" x="8" y="0.0" width="135" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pft-ok-fJM">
+                                                    <rect key="frame" x="177" y="-1" width="135" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFK-bn-V4o">
+                                                    <rect key="frame" x="177" y="47" width="135" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="challengeNameLabel" destination="CEq-EV-Rzp" id="ERB-Gr-Q1P"/>
+                                            <outlet property="creatorUsernameLabel" destination="IbQ-ZV-uXl" id="Syk-X3-cQB"/>
+                                            <outlet property="endDateLabel" destination="KFK-bn-V4o" id="MHo-x1-Xkv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="05N-8J-qca" id="f8B-BY-c18"/>
+                                    <outlet property="delegate" destination="05N-8J-qca" id="8zk-Bk-DH4"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fl3-GX-y2w" secondAttribute="trailing" id="BwY-Fu-rbh"/>
+                            <constraint firstItem="fl3-GX-y2w" firstAttribute="top" secondItem="eDx-K5-Vhe" secondAttribute="bottom" id="HRQ-hi-fQ6"/>
+                            <constraint firstItem="fl3-GX-y2w" firstAttribute="leading" secondItem="NfD-SZ-YCu" secondAttribute="leading" id="IAg-yF-caQ"/>
+                            <constraint firstItem="fl3-GX-y2w" firstAttribute="top" secondItem="eDx-K5-Vhe" secondAttribute="bottom" id="TnA-AO-wRy"/>
+                            <constraint firstItem="KzG-ys-UYr" firstAttribute="top" secondItem="fl3-GX-y2w" secondAttribute="bottom" id="bJ8-Ts-bAK"/>
+                            <constraint firstAttribute="trailing" secondItem="fl3-GX-y2w" secondAttribute="trailing" id="kFa-Kc-63h"/>
+                            <constraint firstItem="KzG-ys-UYr" firstAttribute="top" secondItem="fl3-GX-y2w" secondAttribute="bottom" id="wfU-bX-e8z"/>
+                            <constraint firstItem="fl3-GX-y2w" firstAttribute="leading" secondItem="NfD-SZ-YCu" secondAttribute="leading" id="zej-6e-cTN"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="invitesTableView" destination="fl3-GX-y2w" id="Fvg-tz-LKJ"/>
+                        <segue destination="T8i-Gq-ez2" kind="show" identifier="invitesToCustomTB" id="h8j-zL-03l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNd-bW-z4S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3336" y="148"/>
+            <point key="canvasLocation" x="3311.25" y="90.845070422535215"/>
         </scene>
-        <!--View Controller-->
+        <!--Current Challenges View Controller-->
         <scene sceneID="Tmz-7c-uyo">
             <objects>
-                <viewController id="qBh-L4-HId" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="currentChallengesVC" id="qBh-L4-HId" customClass="CurrentChallengesViewController" customModule="FitnessChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="co9-1Y-Dlh"/>
                         <viewControllerLayoutGuide type="bottom" id="R1V-52-nNg"/>
@@ -472,14 +592,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8r8-7H-Vps">
-                                <rect key="frame" x="40" y="420" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8r8-7H-Vps">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="currentChallengesCell" rowHeight="60" id="vSc-mu-0F8" customClass="ChallengeTableViewCell" customModule="FitnessChallenge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vSc-mu-0F8" id="b92-IB-f2o">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixo-x4-sz1">
+                                                    <rect key="frame" x="6" y="36" width="154" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9K-Zk-Xc1">
+                                                    <rect key="frame" x="6" y="3" width="154" height="25"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryG-U9-aO9">
+                                                    <rect key="frame" x="160" y="3" width="154" height="22"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLC-XR-7I7">
+                                                    <rect key="frame" x="160" y="34.5" width="154" height="22"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerX" secondItem="y9K-Zk-Xc1" secondAttribute="trailing" id="5sY-9f-S1d"/>
+                                                <constraint firstItem="ryG-U9-aO9" firstAttribute="top" secondItem="b92-IB-f2o" secondAttribute="top" constant="3" id="9N3-kQ-pmR"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ixo-x4-sz1" secondAttribute="bottom" constant="3" id="AII-2t-ToN"/>
+                                                <constraint firstItem="Ixo-x4-sz1" firstAttribute="trailing" secondItem="y9K-Zk-Xc1" secondAttribute="trailing" id="BDw-w6-aVK"/>
+                                                <constraint firstItem="zLC-XR-7I7" firstAttribute="leading" secondItem="Ixo-x4-sz1" secondAttribute="trailing" id="HoA-Fb-2cS"/>
+                                                <constraint firstAttribute="bottom" secondItem="zLC-XR-7I7" secondAttribute="bottom" constant="3" id="P0k-Ur-zX8"/>
+                                                <constraint firstItem="ryG-U9-aO9" firstAttribute="leading" secondItem="y9K-Zk-Xc1" secondAttribute="trailing" id="PzG-Xu-3oJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="zLC-XR-7I7" secondAttribute="trailing" constant="6" id="Ubk-3W-7Cr"/>
+                                                <constraint firstAttribute="trailing" secondItem="ryG-U9-aO9" secondAttribute="trailing" constant="6" id="kyW-bs-ici"/>
+                                                <constraint firstItem="y9K-Zk-Xc1" firstAttribute="top" secondItem="b92-IB-f2o" secondAttribute="top" constant="3" id="rFY-Sj-Fdm"/>
+                                                <constraint firstItem="y9K-Zk-Xc1" firstAttribute="leading" secondItem="b92-IB-f2o" secondAttribute="leading" constant="6" id="tr5-up-h8f"/>
+                                                <constraint firstItem="Ixo-x4-sz1" firstAttribute="leading" secondItem="b92-IB-f2o" secondAttribute="leading" constant="6" id="zdw-TS-z1q"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="challengeNameLabel" destination="y9K-Zk-Xc1" id="9gl-gL-xRn"/>
+                                            <outlet property="creatorUsernameLabel" destination="Ixo-x4-sz1" id="ixD-he-2F9"/>
+                                            <outlet property="endDateLabel" destination="zLC-XR-7I7" id="sbK-FA-c04"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qBh-L4-HId" id="mvO-Gt-KNv"/>
+                                    <outlet property="delegate" destination="qBh-L4-HId" id="L2Z-kT-QBn"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R1V-52-nNg" firstAttribute="top" secondItem="8r8-7H-Vps" secondAttribute="bottom" id="D7P-OW-U4A"/>
+                            <constraint firstAttribute="trailing" secondItem="8r8-7H-Vps" secondAttribute="trailing" id="T0J-5k-SJE"/>
+                            <constraint firstItem="8r8-7H-Vps" firstAttribute="top" secondItem="co9-1Y-Dlh" secondAttribute="bottom" id="Yho-Ae-DEF"/>
+                            <constraint firstItem="8r8-7H-Vps" firstAttribute="leading" secondItem="8Oo-Y9-V1M" secondAttribute="leading" id="bVJ-Qx-Drg"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentChallengesTableView" destination="8r8-7H-Vps" id="0hr-lw-6Mk"/>
+                        <segue destination="T8i-Gq-ez2" kind="show" identifier="currentToCustomTB" id="14v-24-u9k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zd5-wa-pXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1080,6 +1268,7 @@
         <image name="UserProfileIcon" width="70" height="74"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="14v-24-u9k"/>
         <segue reference="NKx-gE-paO"/>
     </inferredMetricsTieBreakers>
 </document>
