@@ -185,5 +185,13 @@ class ChallengeController {
         
         
     }
+    
+    ///=======================================================
+    // MARK: - Notifications
+    //=======================================================
+    
+    var currentPageIndexNotification = Notification.Name("currentPageIndex")
+    var currentSegmentNotification = Notification.Name("currentSegment")
+    
 }
 

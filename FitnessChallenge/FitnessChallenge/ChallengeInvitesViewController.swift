@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InvitesFilteredDelegate {
 
     //=======================================================
     // MARK: - Outlets
@@ -20,6 +20,8 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
     // MARK: - Properties
     //=======================================================
     
+    let challengesVC = ChallengesViewController()
+    
     //=======================================================
     // MARK: - Lifecycle functions
     //=======================================================
@@ -27,6 +29,8 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        challengesVC.delegate = self
+        
         invitesTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         invitesTableView.separatorStyle = .none
     }
@@ -96,5 +100,13 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
             
             standings.challenge = challenge
         }
+    }
+    
+    //=======================================================
+    // MARK: - InvitesFilteredDelegate
+    //=======================================================
+    
+    func invitesDidLoad() {
+        invitesTableView.reloadData()
     }
 }

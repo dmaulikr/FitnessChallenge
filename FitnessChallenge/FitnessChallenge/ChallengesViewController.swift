@@ -10,23 +10,29 @@ import UIKit
 
 class ChallengesViewController: UIViewController {
     
+    weak var delegate: InvitesFilteredDelegate?
+    
+    var currentSegmentIndex: Int = 0
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         
+        setupSegmentedControl()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSegmentedControlFromSwipe(notification:)), name: ChallengeController.sharedController.currentPageIndexNotification, object: nil)
+        
         ChallengeController.sharedController.fetchChallenges {
             ChallengeController.sharedController.filterUserPendingChallengeInvites(completion: { (success) in
                 if success {
-                    // Call delegate func to reloadData tableView on challengeInvitesTableViewController
-                    print("hi")
+                    self.delegate?.invitesDidLoad()
                 } else {
                     print("Completion was false in 'filterUserPendingChallengeInvites()'")
                 }
             })
-//            self.currentChallengesTableView.reloadData()
-//            self.invitesTableView.reloadData()
-//            self.pastChallengesTableView.reloadData()
         }
         
         FriendController.shared.fetchFriendsList()
@@ -40,18 +46,49 @@ class ChallengesViewController: UIViewController {
             }
         }
         
-        FriendController.shared.getFriendProfileImages { 
-//            self.currentChallengesTableView.reloadData()
-//            self.invitesTableView.reloadData()
-//            self.pastChallengesTableView.reloadData()
+        FriendController.shared.getFriendProfileImages {
+
         }
-//        
-//        guard let username = AthleteController.currentUser?.username else { return }
-//        self.welcomeLabel.text = "Welcome   \(username)!"
-//        self.welcomeLabel.tintColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
     }
     
+    //=======================================================
+    // MARK: - Segemented Control
+    //=======================================================
     
+    func setupSegmentedControl() {
+        
+        segmentedControl.tintColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+        segmentedControl.setTitle("Invites", forSegmentAt: 0)
+        segmentedControl.setTitle("Current", forSegmentAt: 1)
+        segmentedControl.setTitle("Past", forSegmentAt: 2)
+        segmentedControl.selectedSegmentIndex = 0
+    }
+    
+    //=======================================================
+    // MARK: - Actions
+    //=======================================================
+    
+    @IBAction func segmentedControllerValueChanged(_ sender: Any) {
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 0: self.currentSegmentIndex = 0
+        case 1: self.currentSegmentIndex = 1
+        case 2: self.currentSegmentIndex = 2
+        default:
+            break
+        }
+        
+        NotificationCenter.default.post(name: ChallengeController.sharedController.currentSegmentNotification, object: self, userInfo: ["segmentIndex": currentSegmentIndex as Any])
+    }
+    
+    func updateSegmentedControlFromSwipe(notification: Notification) {
+        
+        guard let index = notification.userInfo?["index"] as? Int else { return }
+        segmentedControl.selectedSegmentIndex = index
+    }
     
 }
 
+protocol InvitesFilteredDelegate: class {
+    func invitesDidLoad()
+}

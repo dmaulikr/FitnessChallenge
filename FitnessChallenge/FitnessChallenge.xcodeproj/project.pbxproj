@@ -17,6 +17,8 @@
 		93381A7F1E53466C00E2162F /* ChallengeInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93381A7E1E53466C00E2162F /* ChallengeInvitesViewController.swift */; };
 		93381A811E53469F00E2162F /* CurrentChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93381A801E53469F00E2162F /* CurrentChallengesViewController.swift */; };
 		93381A831E5346B100E2162F /* PastChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93381A821E5346B100E2162F /* PastChallengesViewController.swift */; };
+		934AA53C1E9472B20001A03F /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934AA5391E9472A50001A03F /* ResearchKit.framework */; };
+		934AA53D1E9472B20001A03F /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 934AA5391E9472A50001A03F /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		935631911E4B7B1900D08C66 /* PickChallengeTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935631901E4B7B1900D08C66 /* PickChallengeTypeViewController.swift */; };
 		9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */; };
 		9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */; };
@@ -25,8 +27,6 @@
 		9364E0EC1E3143FD0083D3E0 /* ChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0EB1E3143FD0083D3E0 /* ChallengeTableViewCell.swift */; };
 		936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */; };
 		937C79D91E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C79D81E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift */; };
-		9397F6B61E1AEB0F00187E63 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; };
-		9397F6B71E1AEB0F00187E63 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9397F6B31E1AEB0000187E63 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93BEA0121E3270C600D129FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93BEA0111E3270C600D129FD /* Assets.xcassets */; };
 		93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */; };
 		93DC6D821DFA2C760004ABE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6D801DFA2C760004ABE6 /* Main.storyboard */; };
@@ -55,23 +55,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9397F6B21E1AEB0000187E63 /* PBXContainerItemProxy */ = {
+		934AA5381E9472A50001A03F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */;
+			containerPortal = 934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B183A5951A8535D100C76870;
 			remoteInfo = ResearchKit;
 		};
-		9397F6B41E1AEB0000187E63 /* PBXContainerItemProxy */ = {
+		934AA53A1E9472A50001A03F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */;
+			containerPortal = 934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
 			remoteInfo = ResearchKitTests;
 		};
-		9397F6B81E1AEB0F00187E63 /* PBXContainerItemProxy */ = {
+		934AA53E1E9472B20001A03F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */;
+			containerPortal = 934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = B183A4731A8535D100C76870;
 			remoteInfo = ResearchKit;
@@ -99,7 +99,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9397F6B71E1AEB0F00187E63 /* ResearchKit.framework in Embed Frameworks */,
+				934AA53D1E9472B20001A03F /* ResearchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +121,7 @@
 		93381A7E1E53466C00E2162F /* ChallengeInvitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeInvitesViewController.swift; sourceTree = "<group>"; };
 		93381A801E53469F00E2162F /* CurrentChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentChallengesViewController.swift; sourceTree = "<group>"; };
 		93381A821E5346B100E2162F /* PastChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastChallengesViewController.swift; sourceTree = "<group>"; };
+		934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ../Frameworks/ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		935631901E4B7B1900D08C66 /* PickChallengeTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickChallengeTypeViewController.swift; sourceTree = "<group>"; };
 		9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +130,6 @@
 		9364E0EB1E3143FD0083D3E0 /* ChallengeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeTableViewCell.swift; sourceTree = "<group>"; };
 		936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		937C79D81E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeTypeTableViewCell.swift; sourceTree = "<group>"; };
-		9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../../../../../../../Downloads/ResearchKit-master/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 		93BEA0111E3270C600D129FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93DC6D791DFA2C760004ABE6 /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9397F6B61E1AEB0F00187E63 /* ResearchKit.framework in Frameworks */,
+				934AA53C1E9472B20001A03F /* ResearchKit.framework in Frameworks */,
 				CFF41F5835C4F9AA11F6F3B9 /* Pods_FitnessChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +223,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		934AA5331E9472A50001A03F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				934AA5391E9472A50001A03F /* ResearchKit.framework */,
+				934AA53B1E9472A50001A03F /* ResearchKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		936D05131E23E33600FBCD57 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,19 +247,10 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		9397F6AD1E1AEAFF00187E63 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9397F6B31E1AEB0000187E63 /* ResearchKit.framework */,
-				9397F6B51E1AEB0000187E63 /* ResearchKitTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		93DC6D701DFA2C760004ABE6 = {
 			isa = PBXGroup;
 			children = (
-				9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */,
+				934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */,
 				93DC6D7B1DFA2C760004ABE6 /* FitnessChallenge */,
 				93DC6D901DFA2C760004ABE6 /* FitnessChallengeTests */,
 				93DC6D9B1DFA2C760004ABE6 /* FitnessChallengeUITests */,
@@ -395,7 +395,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9397F6B91E1AEB0F00187E63 /* PBXTargetDependency */,
+				934AA53F1E9472B20001A03F /* PBXTargetDependency */,
 			);
 			name = FitnessChallenge;
 			productName = FitnessChallenge;
@@ -451,7 +451,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Aaron Martinez";
 				TargetAttributes = {
 					93DC6D781DFA2C760004ABE6 = {
@@ -486,8 +486,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9397F6AD1E1AEAFF00187E63 /* Products */;
-					ProjectRef = 9397F6AC1E1AEAFF00187E63 /* ResearchKit.xcodeproj */;
+					ProductGroup = 934AA5331E9472A50001A03F /* Products */;
+					ProjectRef = 934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -500,18 +500,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9397F6B31E1AEB0000187E63 /* ResearchKit.framework */ = {
+		934AA5391E9472A50001A03F /* ResearchKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ResearchKit.framework;
-			remoteRef = 9397F6B21E1AEB0000187E63 /* PBXContainerItemProxy */;
+			remoteRef = 934AA5381E9472A50001A03F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9397F6B51E1AEB0000187E63 /* ResearchKitTests.xctest */ = {
+		934AA53B1E9472A50001A03F /* ResearchKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ResearchKitTests.xctest;
-			remoteRef = 9397F6B41E1AEB0000187E63 /* PBXContainerItemProxy */;
+			remoteRef = 934AA53A1E9472A50001A03F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -743,10 +743,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9397F6B91E1AEB0F00187E63 /* PBXTargetDependency */ = {
+		934AA53F1E9472B20001A03F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ResearchKit;
-			targetProxy = 9397F6B81E1AEB0F00187E63 /* PBXContainerItemProxy */;
+			targetProxy = 934AA53E1E9472B20001A03F /* PBXContainerItemProxy */;
 		};
 		93DC6D8F1DFA2C760004ABE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -798,6 +798,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -848,6 +849,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

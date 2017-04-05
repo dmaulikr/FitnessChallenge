@@ -11,7 +11,18 @@ import UIKit
 class ChallengesPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var pages: [UIViewController] = []
+    var currentPageIndex: Int = 0
+    var lastPendingViewControllerIndex: Int?
 
+    let formatter: DateFormatter = {
+        let tempFormatter = DateFormatter()
+        tempFormatter.dateStyle = .short
+        tempFormatter.timeStyle = .short
+        tempFormatter.doesRelativeDateFormatting = true
+        
+        return tempFormatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,21 +40,58 @@ class ChallengesPageViewController: UIPageViewController, UIPageViewControllerDa
         
         setViewControllers([challengeInvitesVC], direction: .forward, animated: true, completion: nil)
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePageVCFromSegmented(notification:)), name: ChallengeController.sharedController.currentSegmentNotification, object: nil)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        guard let currentIndex = pages.index(of: viewController) else { return UIViewController() }
-        let previousIndex = abs((currentIndex - 1) % pages.count)
+        guard let currentIndex = pages.index(of: viewController) else { return nil }
+
+        let previousIndex = currentIndex - 1
+        
+        guard previousIndex >= 0 else { return nil }
+        
         return pages[previousIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let currentIndex = pages.index(of: viewController) else { return UIViewController() }
-        let nextIndex = (currentIndex + 1) % pages.count
+        
+        let nextIndex = currentIndex + 1
+        
+        guard nextIndex <= pages.count - 1 else { return nil }
+    
         return pages[nextIndex]
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        
+        if let viewController0 = pendingViewControllers[0] as? ChallengeInvitesViewController {
+            self.lastPendingViewControllerIndex = self.pages.index(of: viewController0)
+            self.currentPageIndex = 0
+        } else if let viewController1 = pendingViewControllers[0] as? CurrentChallengesViewController {
+            self.lastPendingViewControllerIndex = self.pages.index(of: viewController1)
+            self.currentPageIndex = 1
+        } else if let viewController2 = pendingViewControllers[0] as? PastChallengesViewController {
+            self.lastPendingViewControllerIndex = self.pages.index(of: viewController2)
+            self.currentPageIndex = 2
+        }
+        
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
+        guard let lastPendingViewControllerIndex = self.lastPendingViewControllerIndex else { return }
+        
+        if completed {
+            
+            self.currentPageIndex = lastPendingViewControllerIndex
+            
+            NotificationCenter.default.post(name: ChallengeController.sharedController.currentPageIndexNotification, object: self, userInfo: ["index": currentPageIndex as Any])
+
+        }
+
     }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
@@ -51,17 +99,20 @@ class ChallengesPageViewController: UIPageViewController, UIPageViewControllerDa
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return 0
+        return currentPageIndex
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func updatePageVCFromSegmented(notification: Notification) {
+        
+        guard let index = notification.userInfo?["segmentIndex"] as? Int else { return }
+        if index > currentPageIndex {
+            self.currentPageIndex = index
+            setViewControllers([pages[index]], direction: .forward, animated: true, completion: nil)
+        } else if index < currentPageIndex {
+            self.currentPageIndex = index
+            setViewControllers([pages[index]], direction: .reverse, animated: true, completion: nil)
+        }
+        self.currentPageIndex = index
+//        self.reloadInputViews()
     }
-    */
-
 }
