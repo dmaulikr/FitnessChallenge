@@ -40,7 +40,7 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         switch segmentedControl.selectedSegmentIndex
         {
         case 0:
-
+            
             friendCollectionView.isHidden = false
             requestsTableView.isHidden = true
         case 1:

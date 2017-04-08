@@ -30,10 +30,15 @@ class CurrentChallengesViewController: UIViewController, UITableViewDataSource, 
         super.viewDidLoad()
 
         currentChallengesTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
-        currentChallengesTableView.separatorStyle = .none
-        currentChallengesTableView.rowHeight = 80
+        currentChallengesTableView.separatorStyle = .singleLine
+        currentChallengesTableView.rowHeight = 60
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(challengesWereFetched), name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        currentChallengesTableView.reloadData()
+    }
     //=======================================================
     // MARK: - Tableview Datasource and Delegate
     //=======================================================
@@ -64,6 +69,14 @@ class CurrentChallengesViewController: UIViewController, UITableViewDataSource, 
             
             standings.challenge = challenge
         }
+    }
+    
+    //=======================================================
+    // MARK: - Challenges Fetched Notification Target Function
+    //=======================================================
+    
+    func challengesWereFetched() {
+        currentChallengesTableView.reloadData()
     }
 }
 

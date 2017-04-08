@@ -11,7 +11,7 @@ import UIKit
 class ChallengesPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var pages: [UIViewController] = []
-    var currentPageIndex: Int = 0
+    var currentPageIndex: Int = 1
     var lastPendingViewControllerIndex: Int?
 
     let formatter: DateFormatter = {
@@ -38,7 +38,7 @@ class ChallengesPageViewController: UIPageViewController, UIPageViewControllerDa
         pages.append(currentChallengesVC)
         pages.append(pastChallengesVC)
         
-        setViewControllers([challengeInvitesVC], direction: .forward, animated: true, completion: nil)
+        setViewControllers([currentChallengesVC], direction: .forward, animated: true, completion: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updatePageVCFromSegmented(notification:)), name: ChallengeController.sharedController.currentSegmentNotification, object: nil)
     }

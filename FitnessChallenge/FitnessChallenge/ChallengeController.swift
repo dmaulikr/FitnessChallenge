@@ -192,6 +192,7 @@ class ChallengeController {
     
     var currentPageIndexNotification = Notification.Name("currentPageIndex")
     var currentSegmentNotification = Notification.Name("currentSegment")
+    var challengesFetchedNotification = Notification.Name("challengesFetched")
     
 }
 

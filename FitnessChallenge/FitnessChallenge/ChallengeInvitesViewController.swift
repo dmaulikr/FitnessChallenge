@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InvitesFilteredDelegate {
+class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     //=======================================================
     // MARK: - Outlets
@@ -20,7 +20,7 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
     // MARK: - Properties
     //=======================================================
     
-    let challengesVC = ChallengesViewController()
+    
     
     //=======================================================
     // MARK: - Lifecycle functions
@@ -28,19 +28,13 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        challengesVC.delegate = self
         
         invitesTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
-        invitesTableView.separatorStyle = .none
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        invitesTableView.separatorStyle = .singleLine
+        invitesTableView.separatorColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 0.5)// Light Gray
         
-        invitesTableView.reloadData()
+        NotificationCenter.default.addObserver(self, selector: #selector(invitesDidLoad), name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
     }
-
     
     //=======================================================
     // MARK: - Tableview datasource and delegate
@@ -103,7 +97,7 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     //=======================================================
-    // MARK: - InvitesFilteredDelegate
+    // MARK: - Challenges Fetched notification target function
     //=======================================================
     
     func invitesDidLoad() {
