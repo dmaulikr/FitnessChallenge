@@ -133,7 +133,6 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
-            print("\(usernameTextField?.text)")
             guard let username = usernameTextField?.text else { return }
             FriendController.sendFriendRequest(username: username, completion: { (success) in
                 if success == true {

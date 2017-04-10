@@ -20,8 +20,6 @@ class ProfileTabViewController: UITabBarController, ProfileTabViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        guard let tabView = tabView else { return }
 
         tabBar.isHidden = true
         

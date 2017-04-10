@@ -77,7 +77,6 @@ class ChallengesPageViewController: UIPageViewController, UIPageViewControllerDa
             self.lastPendingViewControllerIndex = self.pages.index(of: viewController2)
             self.currentPageIndex = 2
         }
-        
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -89,7 +88,6 @@ class ChallengesPageViewController: UIPageViewController, UIPageViewControllerDa
             self.currentPageIndex = lastPendingViewControllerIndex
             
             NotificationCenter.default.post(name: ChallengeController.sharedController.currentPageIndexNotification, object: self, userInfo: ["index": currentPageIndex as Any])
-
         }
 
     }
@@ -113,6 +111,5 @@ class ChallengesPageViewController: UIPageViewController, UIPageViewControllerDa
             setViewControllers([pages[index]], direction: .reverse, animated: true, completion: nil)
         }
         self.currentPageIndex = index
-//        self.reloadInputViews()
     }
 }

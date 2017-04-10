@@ -27,8 +27,15 @@ class PastChallengesViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        
         pastChallengesTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
-        pastChallengesTableView.separatorStyle = .none
+        pastChallengesTableView.separatorStyle = .singleLine
+        pastChallengesTableView.separatorInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        pastChallengesTableView.separatorColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 0.25)// Light Gray
     }
     
     //=======================================================

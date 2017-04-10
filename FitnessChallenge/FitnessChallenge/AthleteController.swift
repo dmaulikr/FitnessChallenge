@@ -59,8 +59,8 @@ class AthleteController {
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             
-            if error != nil {
-                print("There was an error logging in: \(error?.localizedDescription)")
+            if let error = error {
+                print("There was an error logging in: \(error.localizedDescription)")
                 completion(false)
                 return
             } else {

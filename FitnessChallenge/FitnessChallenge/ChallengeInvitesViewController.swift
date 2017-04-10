@@ -29,11 +29,17 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        invitesTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
-        invitesTableView.separatorStyle = .singleLine
-        invitesTableView.separatorColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 0.5)// Light Gray
+        setupTableView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(invitesDidLoad), name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
+    }
+    
+    func setupTableView() {
+        
+        invitesTableView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        invitesTableView.separatorStyle = .singleLine
+        invitesTableView.separatorInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        invitesTableView.separatorColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 0.25)// Light Gray
     }
     
     //=======================================================
