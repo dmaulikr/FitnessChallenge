@@ -65,10 +65,10 @@ class SetController {
         let set = Set(movementType: challenge.movementType, reps: selectedReps, athleteRef: user.uid, challengeRef: challenge.uid)
         
         let allSets = ChallengeController.sharedController.baseRef.child("sets")
-        let setRef = allSets.child(set.uid)
+        let setRef = allSets.childByAutoId()
+        set.uid = setRef.key
         
         setRef.setValue(set.dictionaryRepresentation)
-        
         
     }
     
@@ -90,7 +90,8 @@ class SetController {
             // Get current user's sets and append them first.
             usernamesForChart.append(currentUser.username)
             let currentUserArrayOfSets: [Set] = sets.filter({$0.athleteRef == currentUser.uid })
-            let array = createSetsAsValueStack(setsArray: currentUserArrayOfSets)
+            let sortedByTimestamp = currentUserArrayOfSets.sorted(by: {$0.0.timestamp < $0.1.timestamp } )
+            let array = createSetsAsValueStack(setsArray: sortedByTimestamp)
             allSetsAsORKValueStacks.append(array)
             
             // Get all other particpants sets into arrays and append each.
@@ -104,7 +105,8 @@ class SetController {
                 
                 usernamesForChart.append(participant.username)
                 let participantSets = participantsArrayOfSets.filter({ $0.athleteRef == participant.uid })
-                let array = createSetsAsValueStack(setsArray: participantSets)
+                let sortedParticipantsSets = participantSets.sorted(by: { $0.0.timestamp < $0.1.timestamp } )
+                let array = createSetsAsValueStack(setsArray: sortedParticipantsSets)
                 allSetsAsORKValueStacks.append(array)
             }
             

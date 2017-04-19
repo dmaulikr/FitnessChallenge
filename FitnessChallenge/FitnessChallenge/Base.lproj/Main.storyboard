@@ -1229,7 +1229,7 @@
                                 <rect key="frame" x="20" y="78" width="290" height="371"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="noDataText" value="No sets have been completed in this challenge."/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="noDataText" value="Add your first set."/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="68G-tG-9uI">
