@@ -80,7 +80,7 @@ class SetController {
         guard let currentChallenge = ChallengeController.sharedController.currentlySelectedChallenge, let currentUser = AthleteController.currentUser else { completion(); return }
         
         let allSetsRef = ChallengeController.sharedController.baseRef.child("sets").queryOrdered(byChild: "challengeRef").queryEqual(toValue: currentChallenge.uid)
-        allSetsRef.observe(.value, with: { (snapshot) in
+        allSetsRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let setsDictionary = snapshot.value as? [String : [String: Any]]
             
             guard let sets = setsDictionary?.flatMap({ Set(uid: $0.key, dictionary: $0.value) }) else { completion()
@@ -99,9 +99,6 @@ class SetController {
             var participantsWithoutCurrentUser: [Athlete] = ChallengeController.sharedController.participatingFriends
             guard let indexOfCurrentUser = participantsWithoutCurrentUser.index(of: currentUser) else { completion(); return }
             participantsWithoutCurrentUser.remove(at: indexOfCurrentUser)
-            
-//            guard let index = currentChallenge.participantsUids.index(of: currentUser.uid) else { completion(); return }
-//            participantsUidsWithoutCurrentUser.remove(at: index)
             
             for participant in participantsWithoutCurrentUser {
                 
