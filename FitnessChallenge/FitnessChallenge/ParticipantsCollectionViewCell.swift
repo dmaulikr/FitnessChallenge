@@ -17,7 +17,8 @@ class ParticipantsCollectionViewCell: UICollectionViewCell {
     func updateWith(athlete: Athlete) {
         
         usernameLabel.text = athlete.username
-        usernameLabel.textColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
+        usernameLabel.textColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+//            UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
         
         profilePhotoImageView.layer.cornerRadius = profilePhotoImageView.frame.width / 2
         profilePhotoImageView.clipsToBounds = true

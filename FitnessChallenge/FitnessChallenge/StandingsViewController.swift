@@ -21,7 +21,8 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
     var challenge: Challenge?
     
     let chartColors = [
-        UIColor(red: 51/255, green: 0/255, blue: 255/255, alpha: 1)//Blue
+//        UIColor(red: 51/255, green: 0/255, blue: 255/255, alpha: 1)//Blue
+        UIColor(red: 225/255, green: 90/255, blue: 43/255, alpha: 1)
     ]
     
     override func viewDidLoad() {

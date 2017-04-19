@@ -30,7 +30,7 @@ class CreateChallengeCollectionViewCell: UICollectionViewCell {
             profileImageView.image = #imageLiteral(resourceName: "UserProfileIcon")
         }
         
-        if ChallengeController.sharedController.pendingUsersUids.contains(athlete.uid) {
+        if ChallengeController.sharedController.usersToInviteUids.contains(athlete.uid) {
             checkBoxImageView.image = #imageLiteral(resourceName: "Gray check box")
         } else {
             checkBoxImageView.image = #imageLiteral(resourceName: "Empty gray check box")
