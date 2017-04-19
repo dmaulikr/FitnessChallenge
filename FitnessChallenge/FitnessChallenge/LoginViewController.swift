@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -18,13 +18,18 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 47/255, green: 51/255, blue: 55/255, alpha: 1)
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         
         guard let email = emailTextField.text,
-            let password = passwordTextField.text
-            else { return }
+            let password = passwordTextField.text,
+            email != "",
+            password != ""
+            else { presentMissingInfoAlert(); return }
         
         AthleteController.loginAthlete(email: email, password: password) { (success) in
             if success == true {
@@ -43,5 +48,37 @@ class LoginViewController: UIViewController {
                 self.present(alertController, animated: true, completion: nil)
             }
         }
+    }
+    
+    func presentMissingInfoAlert() {
+        
+        let alertController = UIAlertController(title: nil, message: "Make sure you enter a username and a password.", preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+//        let tryAgainAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
+        
+        alertController.addAction(okayAction)
+//        alertController.addAction(tryAgainAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        var boolValue: Bool = false
+        switch textField {
+        case emailTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+
+            if textField.text != "" {
+                loginButtonTapped(self)
+                boolValue = true
+            } else {
+                boolValue = false
+            }
+        default:
+            break
+        }
+        return boolValue
     }
 }
