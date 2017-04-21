@@ -20,13 +20,40 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
         
         ChallengeController.sharedController.filterParticipantsInCurrentChallenge()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.participantsCollectionView.reloadData()
+        inviteBarButtonSetup()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.navigationItem.setRightBarButton(nil, animated: false)
+    }
+    
+    //=======================================================
+    // MARK: - Helper Functions
+    //=======================================================
+    
+    func inviteBarButtonSetup() {
+        let btn = UIButton(type: .custom)
+        btn.setImage(#imageLiteral(resourceName: "InviteUserIcon"), for: .normal)
+        btn.frame = CGRect(x: 0, y: 0, width: 29, height: 22)
+        btn.addTarget(self, action: #selector(inviteFriendToChallenge), for: .touchUpInside)
+        let item = UIBarButtonItem(customView: btn)
+
+        self.tabBarController?.navigationItem.setRightBarButton(item, animated: false)
+    }
+    
+    func inviteFriendToChallenge() {
         
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.participantsCollectionView.reloadData()
-    }
+    //=======================================================
+    // MARK: - Collection View Delegate and Data Source
+    //=======================================================
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -105,15 +132,15 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
         var tempAthlete: Athlete?
         
         if ChallengeController.sharedController.currentChallengePendingInvitees.count > 0 {
-        
-        switch indexPath.section {
-        case 0:
-            tempAthlete = ChallengeController.sharedController.currentChallengePendingInvitees[indexPath.row]
-        case 1:
-            tempAthlete = ChallengeController.sharedController.participatingFriends[indexPath.row]
-        default:
-            break
-        }
+            
+            switch indexPath.section {
+            case 0:
+                tempAthlete = ChallengeController.sharedController.currentChallengePendingInvitees[indexPath.row]
+            case 1:
+                tempAthlete = ChallengeController.sharedController.participatingFriends[indexPath.row]
+            default:
+                break
+            }
             
         } else {
             tempAthlete = ChallengeController.sharedController.participatingFriends[indexPath.row]
