@@ -39,7 +39,7 @@ class CreateAccountViewController: UIViewController {
                 return
             }
             guard let user = user else { return }
-            AthleteController.addAthleteToFirebase(username: username, email: email, password: password, uid: user.uid, completion: { (success) in
+            AthleteController.addAthleteToFirebase(username: username, email: email, uid: user.uid, completion: { (success) in
                 
                 if !success {
                     
@@ -88,7 +88,7 @@ class CreateAccountViewController: UIViewController {
         let submitAction = UIAlertAction(title: "Try Again", style: .default) { (_) in
             
             guard let newUsername = usernameTextfield?.text else { return }
-            AthleteController.addAthleteToFirebase(username: newUsername, email: email, password: password, uid: uid, completion: { (success) in
+            AthleteController.addAthleteToFirebase(username: newUsername, email: email, uid: uid, completion: { (success) in
                 
                 if !success {
                     

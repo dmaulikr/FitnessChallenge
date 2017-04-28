@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ICA-jT-9HD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ICA-jT-9HD">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -873,7 +873,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPr-MR-j0u">
-                                <rect key="frame" x="80" y="508" width="160" height="30"/>
+                                <rect key="frame" x="40" y="518" width="240" height="30"/>
                                 <state key="normal" title="Don't have an account? Sign up">
                                     <color key="titleColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -882,7 +882,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bF-U2-mUL">
-                                <rect key="frame" x="80" y="394" width="160" height="30"/>
+                                <rect key="frame" x="80" y="364" width="160" height="30"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -902,6 +902,10 @@
                                     <constraint firstAttribute="width" secondItem="wTC-C1-VRR" secondAttribute="height" multiplier="1:1" id="S3R-Gg-v3j"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojS-Ds-4YD" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="16" y="404" width="288" height="38"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.18431372549019609" green="0.20000000000000001" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -909,31 +913,37 @@
                             <constraint firstItem="IPr-MR-j0u" firstAttribute="centerX" secondItem="VVV-BE-5wy" secondAttribute="centerX" id="FOR-U5-Ln3"/>
                             <constraint firstItem="DT0-I9-pKf" firstAttribute="top" secondItem="wTC-C1-VRR" secondAttribute="bottom" constant="20" id="Ks5-7g-xaG"/>
                             <constraint firstItem="wTC-C1-VRR" firstAttribute="width" secondItem="VVV-BE-5wy" secondAttribute="width" multiplier="0.5" id="O2f-0y-yLw"/>
+                            <constraint firstItem="ojS-Ds-4YD" firstAttribute="leading" secondItem="VVV-BE-5wy" secondAttribute="leadingMargin" id="PYs-s3-LC1"/>
                             <constraint firstItem="DT0-I9-pKf" firstAttribute="leading" secondItem="VVV-BE-5wy" secondAttribute="leadingMargin" id="Ptw-ei-ldA"/>
+                            <constraint firstItem="ojS-Ds-4YD" firstAttribute="trailing" secondItem="VVV-BE-5wy" secondAttribute="trailingMargin" id="TNN-xA-kYv"/>
                             <constraint firstItem="f9c-ke-gLM" firstAttribute="leading" secondItem="VVV-BE-5wy" secondAttribute="leadingMargin" id="TNP-Ry-mwt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DT0-I9-pKf" secondAttribute="trailing" id="VBk-5P-IBD"/>
                             <constraint firstItem="vhE-Q7-egf" firstAttribute="top" secondItem="f9c-ke-gLM" secondAttribute="bottom" constant="10" id="Ww1-TC-Np6"/>
                             <constraint firstItem="wTC-C1-VRR" firstAttribute="centerX" secondItem="VVV-BE-5wy" secondAttribute="centerX" id="ZYY-PY-pLb"/>
-                            <constraint firstItem="1cl-cp-5Ck" firstAttribute="top" secondItem="IPr-MR-j0u" secondAttribute="bottom" constant="30" id="bqM-G6-49l"/>
+                            <constraint firstItem="1cl-cp-5Ck" firstAttribute="top" secondItem="IPr-MR-j0u" secondAttribute="bottom" constant="20" id="bqM-G6-49l"/>
                             <constraint firstItem="9bF-U2-mUL" firstAttribute="width" secondItem="VVV-BE-5wy" secondAttribute="width" multiplier="0.5" id="bqM-W1-yZY"/>
-                            <constraint firstItem="9bF-U2-mUL" firstAttribute="top" secondItem="vhE-Q7-egf" secondAttribute="bottom" constant="40" id="c63-pS-8hI"/>
+                            <constraint firstItem="9bF-U2-mUL" firstAttribute="top" secondItem="vhE-Q7-egf" secondAttribute="bottom" constant="10" id="c63-pS-8hI"/>
+                            <constraint firstItem="ojS-Ds-4YD" firstAttribute="top" secondItem="9bF-U2-mUL" secondAttribute="bottom" constant="10" id="dbQ-Ck-VPa"/>
+                            <constraint firstItem="ojS-Ds-4YD" firstAttribute="height" secondItem="VVV-BE-5wy" secondAttribute="height" multiplier="1/15" id="g48-pe-RjK"/>
                             <constraint firstItem="9bF-U2-mUL" firstAttribute="centerX" secondItem="VVV-BE-5wy" secondAttribute="centerX" id="hla-Ua-a2R"/>
                             <constraint firstItem="f9c-ke-gLM" firstAttribute="top" secondItem="DT0-I9-pKf" secondAttribute="bottom" constant="40" id="iYM-q9-QLK"/>
                             <constraint firstItem="vhE-Q7-egf" firstAttribute="leading" secondItem="VVV-BE-5wy" secondAttribute="leadingMargin" id="kN7-v4-2gG"/>
                             <constraint firstItem="f9c-ke-gLM" firstAttribute="top" secondItem="VVV-BE-5wy" secondAttribute="centerY" id="le2-6x-piY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vhE-Q7-egf" secondAttribute="trailing" id="m9i-G5-fyN"/>
-                            <constraint firstItem="IPr-MR-j0u" firstAttribute="width" secondItem="VVV-BE-5wy" secondAttribute="width" multiplier="0.5" id="poz-H4-jIt"/>
+                            <constraint firstItem="IPr-MR-j0u" firstAttribute="width" secondItem="VVV-BE-5wy" secondAttribute="width" multiplier="0.75" id="poz-H4-jIt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="f9c-ke-gLM" id="VaJ-hS-ZKl"/>
+                        <outlet property="fbLoginButton" destination="ojS-Ds-4YD" id="oYU-1N-8vQ"/>
+                        <outlet property="loginButton" destination="9bF-U2-mUL" id="EVj-R0-XAJ"/>
                         <outlet property="passwordTextField" destination="vhE-Q7-egf" id="Ji2-VB-6BS"/>
                         <segue destination="r6m-3b-bJL" kind="show" identifier="toChallengesVC" id="NKx-gE-paO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ZK-US-oPx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-330" y="202"/>
+            <point key="canvasLocation" x="-330" y="201.7605633802817"/>
         </scene>
         <!--Challenges-->
         <scene sceneID="SEQ-Zl-6VW">

@@ -22,7 +22,7 @@ class AthleteController {
     
     //CRUD
     
-    static func addAthleteToFirebase(username: String, email: String, password: String, uid: String, completion: @escaping(_ success: Bool) -> Void) {
+    static func addAthleteToFirebase(username: String, email: String, uid: String, completion: @escaping(_ success: Bool) -> Void) {
         
         let baseRef = ChallengeController.sharedController.baseRef
         let usernamesUsedRef = baseRef.child("usernamesUsed")
@@ -74,9 +74,6 @@ class AthleteController {
                         completion(false)
                     }
                 }
-//                print("There was an error in the process of logging in.")
-//                completion(false)
-//                return
             }
         })
     }
