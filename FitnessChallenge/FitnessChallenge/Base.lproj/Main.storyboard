@@ -1221,7 +1221,92 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZ9-6O-lde" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6337.5" y="1330.9859154929577"/>
+            <point key="canvasLocation" x="6249" y="1413"/>
+        </scene>
+        <!--Invite Friend Pop Over View Controller-->
+        <scene sceneID="9NA-eQ-vtw">
+            <objects>
+                <viewController storyboardIdentifier="addParticipantsPopOver" id="Jmp-iC-6An" customClass="InviteFriendPopOverViewController" customModule="FitnessChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DCn-TY-PYX"/>
+                        <viewControllerLayoutGuide type="bottom" id="PVs-bD-I33"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nXQ-qG-qHC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kYG-Vb-ENB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="udv-0w-8Ba">
+                                    <size key="itemSize" width="91" height="116"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="inviteFriendCell" id="n08-37-3um" customClass="FriendCollectionViewCell" customModule="FitnessChallenge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="17" width="91" height="116"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="91" height="116"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MXN-hN-Mxj">
+                                                    <rect key="frame" x="6" y="6" width="79" height="79"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="MXN-hN-Mxj" secondAttribute="height" multiplier="1:1" id="HeJ-Gn-Dbb"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ktb-s7-OH7">
+                                                    <rect key="frame" x="0.0" y="89" width="91" height="25"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="MXN-hN-Mxj" secondAttribute="trailing" constant="6" id="3QZ-N4-puG"/>
+                                            <constraint firstItem="MXN-hN-Mxj" firstAttribute="leading" secondItem="n08-37-3um" secondAttribute="leading" constant="6" id="GyR-BB-abD"/>
+                                            <constraint firstItem="MXN-hN-Mxj" firstAttribute="top" secondItem="n08-37-3um" secondAttribute="top" constant="6" id="d5O-ex-Y7h"/>
+                                            <constraint firstItem="ktb-s7-OH7" firstAttribute="top" secondItem="MXN-hN-Mxj" secondAttribute="bottom" constant="4" id="iq5-y6-HBc"/>
+                                            <constraint firstItem="ktb-s7-OH7" firstAttribute="leading" secondItem="n08-37-3um" secondAttribute="leading" id="o7g-Af-YZp"/>
+                                            <constraint firstAttribute="trailing" secondItem="ktb-s7-OH7" secondAttribute="trailing" id="oTs-4P-ZkG"/>
+                                            <constraint firstAttribute="bottom" secondItem="ktb-s7-OH7" secondAttribute="bottom" constant="2" id="z3m-p4-Eu9"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="profileImageView" destination="MXN-hN-Mxj" id="ALC-ky-RRw"/>
+                                            <outlet property="usernameLabel" destination="ktb-s7-OH7" id="7IF-df-yV4"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Jmp-iC-6An" id="D40-0w-KVV"/>
+                                    <outlet property="delegate" destination="Jmp-iC-6An" id="aCj-on-15c"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kYG-Vb-ENB" firstAttribute="top" secondItem="DCn-TY-PYX" secondAttribute="bottom" id="BRE-7P-irK"/>
+                            <constraint firstAttribute="bottom" secondItem="kYG-Vb-ENB" secondAttribute="bottom" id="SaX-rR-GpB"/>
+                            <constraint firstItem="kYG-Vb-ENB" firstAttribute="leading" secondItem="nXQ-qG-qHC" secondAttribute="leading" id="bsQ-sf-faf"/>
+                            <constraint firstAttribute="trailing" secondItem="kYG-Vb-ENB" secondAttribute="trailing" id="spC-NF-UiC"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="150"/>
+                    <connections>
+                        <outlet property="friendCollectionView" destination="kYG-Vb-ENB" id="lVb-Vp-7dh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="psY-iN-iiK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7096.875" y="1109.1549295774648"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="5o6-WK-bCa">

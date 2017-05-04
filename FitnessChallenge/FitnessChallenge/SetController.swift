@@ -97,7 +97,7 @@ class SetController {
             // Get all other particpants sets into arrays and append each.
             let participantsArrayOfSets: [Set] = sets.filter({ $0.athleteRef != currentUser.uid })
             
-            var participantsWithoutCurrentUser: [Athlete] = ChallengeController.sharedController.participatingFriends
+            var participantsWithoutCurrentUser: [Athlete] = ChallengeController.sharedController.participatingAthletes
             guard let indexOfCurrentUser = participantsWithoutCurrentUser.index(of: currentUser) else { completion(); return }
             participantsWithoutCurrentUser.remove(at: indexOfCurrentUser)
             

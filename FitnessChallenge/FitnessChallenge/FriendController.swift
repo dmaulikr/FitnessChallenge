@@ -17,16 +17,12 @@ class FriendController {
     // MARK: - Properties
     //=======================================================
     
-    var currentUserFriendList: [Athlete] = []
-    var currentUserFriendsUids: [String] = []
     var friendRequestsReceived = [String]()
-    var nonParticipatingFriends = [Athlete]()
+    var currentUserFriendsUids: [String] = []
+    var currentUserFriendList: [Athlete] = []
     var invitedFriends = [Athlete]()
     
-    
     static var sentFriendRequestsPending = [String]() // Array of their uids.
-    
-    
     
     func fetchFriendsList() {
         
@@ -143,23 +139,28 @@ class FriendController {
         let array = currentUser.friendRequestsReceived
         guard let indexOfRequest = array.index(of: requesterUsername) else { completion(); return }
         currentUser.friendRequestsReceived.remove(at: indexOfRequest)
+        
         // Remove Received Friend Request on firebase
         let requestReceiverRef = baseRef.child(currentUser.uid)
         requestReceiverRef.child("friendRequestsReceived").setValue(currentUser.friendRequestsReceived)
         
-        // Remove Sent Request from firebase
+        // Remove Sent Request locally
         let requestSenderArray = allAthletes.filter({$0.username == requesterUsername})
         guard let requestSender = requestSenderArray.first,
-            let indexOfReceiverUid = requestSender.friendRequestsSent.index(of: currentUser.username) else { completion(); return }
+            let indexOfReceiverUid = requestSender.friendRequestsSent.index(of: currentUser.username)
+            else { completion(); return }
         requestSender.friendRequestsSent.remove(at: indexOfReceiverUid)
+        
+        // Remove Sent Request from firebase
         let requestSenderRef = baseRef.child(requestSender.uid)
         requestSenderRef.child("friendRequestsSent").setValue(requestSender.friendRequestsSent)
         
         // Add friend to currentUser's friends locally and on firebase
         currentUser.friendsUids.append(requestSender.uid)
+        FriendController.shared.currentUserFriendList.append(requestSender)
         requestReceiverRef.child("friendsUids").setValue(currentUser.friendsUids)
         
-        // Add friend to sender's friends on firebase
+        // Add current user to sender's friends locally and on firebase
         requestSender.friendsUids.append(currentUser.uid)
         requestSenderRef.child("friendsUids").setValue(requestSender.friendsUids)
         

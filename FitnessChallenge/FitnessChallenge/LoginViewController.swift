@@ -124,10 +124,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                         self.performSegue(withIdentifier: "toChallengesVC", sender: self)
                     } else {
                         print("Didn't segue because unable to fetchCurrentUserFromFirebase")
+                        return
                     }
                 }
-                
             } else {
+                
                 AthleteController.addAthleteToFirebase(username: username, email: email, uid: user.uid, completion: { (success) in
                     
                     if success {

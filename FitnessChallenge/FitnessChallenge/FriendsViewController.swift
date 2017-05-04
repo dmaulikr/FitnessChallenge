@@ -171,6 +171,7 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func reloadTableView() {
         self.requestsTableView.reloadData()
+        self.friendCollectionView.reloadData()
     }
     
 }

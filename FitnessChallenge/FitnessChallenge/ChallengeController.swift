@@ -20,7 +20,8 @@ class ChallengeController {
     let baseRef = FIRDatabase.database().reference()
     var allChallenges = [Challenge]()
     var currentlySelectedChallenge: Challenge?
-    var participatingFriends = [Athlete]()
+    var participatingAthletes = [Athlete]()
+    var nonParticipatingFriends = [Athlete]()
     var usersToInviteUids: [String] = [] // Used to hold the UIDs of the athletes to be invited to a new challenge upon challenge creation.
     var userPendingChallengeInvites: [Challenge] = []
     
@@ -100,7 +101,6 @@ class ChallengeController {
         
         usersToInviteUids = []
         self.allChallenges.append(challenge)
-        // TODO: - Do the functions that get data from allChallenges need to be run again in order to get this new challenge and it's details?
     }
     
     func endChallenge(challenge: Challenge) {
@@ -141,21 +141,39 @@ class ChallengeController {
         }
     }
     
-    func filterParticipantsInCurrentChallenge() {
+    func filterParticipantsInCurrentChallenge(completion: @escaping() -> Void) {
         
         guard let currentlySelectedChallenge = currentlySelectedChallenge,
-            let currentUser = AthleteController.currentUser else { return }
+            let currentUser = AthleteController.currentUser else { completion(); return }
         
-        participatingFriends = AthleteController.allAthletes.filter({ $0.challenges.contains(currentlySelectedChallenge.uid)})
-        // Place current user at the start of the order.
-        guard let indexOfCurrentUser = participatingFriends.index(of: currentUser) else { return }
-        participatingFriends.remove(at: indexOfCurrentUser)
-        participatingFriends.insert(currentUser, at: 0)
+        participatingAthletes = AthleteController.allAthletes.filter({ $0.challenges.contains(currentlySelectedChallenge.uid)})
+        let friendsNotCurrentlyParticipating = FriendController.shared.currentUserFriendList.filter( { !$0.challenges.contains(currentlySelectedChallenge.uid) } )
+        nonParticipatingFriends = []
+        for friend in friendsNotCurrentlyParticipating {
+            if !currentlySelectedChallenge.pendingParticipantsUids.contains(friend.uid) {
+                nonParticipatingFriends.append(friend)
+            }
+        }
+        
+        // Place current user at the start of the order.??
+        guard let indexOfCurrentUser = participatingAthletes.index(of: currentUser) else { completion(); return }
+        participatingAthletes.remove(at: indexOfCurrentUser)
+        participatingAthletes.insert(currentUser, at: 0)
+        completion()
     }
     
-    func inviteFriendsToChallenge() {
+    func inviteFriendsToChallenge(invitedAthlete: Athlete, completion: () -> Void) {
         
+        guard let currentChallenge = self.currentlySelectedChallenge, let index = nonParticipatingFriends.index(of: invitedAthlete) else { completion(); return }
+
+        nonParticipatingFriends.remove(at: index)
         
+        currentChallenge.pendingParticipantsUids.append(invitedAthlete.uid)
+        
+        let currentChallengeRef = baseRef.child("challenges").child(currentChallenge.uid)
+        currentChallengeRef.child("pendingParticipantsUids").setValue(currentChallenge.pendingParticipantsUids)
+        
+        completion()
     }
     
     func cancelInvitationToChallenge() {
@@ -179,7 +197,6 @@ class ChallengeController {
         
         // Add currentUser.uid to the selected challenge's participantsUids
         challenge.participantsUids.append(currentUser.uid)
-//        currentParticipantsUids.append(currentUser.uid)
         challengeRef.child("participantsUids").setValue(challenge.participantsUids)
         
         currentUser.challenges.append(challenge.uid)

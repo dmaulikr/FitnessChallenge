@@ -43,7 +43,9 @@ class PastChallengesViewController: UIViewController, UITableViewDataSource, UIT
     //=======================================================
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ChallengeController.sharedController.userPastChallenges.count
+        
+        let count = ChallengeController.sharedController.userPastChallenges.count
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

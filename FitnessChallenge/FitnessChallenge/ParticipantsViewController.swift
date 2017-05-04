@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ParticipantsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ParticipantsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate, RefreshParticipantsCVDelegate {
     
     @IBOutlet weak var participantsCollectionView: UICollectionView!
     
@@ -18,13 +18,13 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         participantsCollectionView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         
-        ChallengeController.sharedController.filterParticipantsInCurrentChallenge()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.participantsCollectionView.reloadData()
+        ChallengeController.sharedController.filterParticipantsInCurrentChallenge {
+            self.participantsCollectionView.reloadData()
+        }
         inviteBarButtonSetup()
     }
     
@@ -33,7 +33,7 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     //=======================================================
-    // MARK: - Helper Functions
+    // MARK: - Invite Friend functions
     //=======================================================
     
     func inviteBarButtonSetup() {
@@ -48,8 +48,25 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
     
     func inviteFriendToChallenge() {
         
+        // Present a popover view
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "addParticipantsPopOver") as? InviteFriendPopOverViewController else { return }
+        vc.delegate = self
+        vc.modalPresentationStyle = .popover
+        vc.preferredContentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height * 1/6)
         
+        let popController = vc.popoverPresentationController
+        popController?.permittedArrowDirections = .up
+        popController?.backgroundColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1)
+        popController?.barButtonItem = self.tabBarController?.navigationItem.rightBarButtonItem
+        popController?.delegate = self
+        
+        self.present(vc, animated: true, completion: nil)
     }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+
     
     //=======================================================
     // MARK: - Collection View Delegate and Data Source
@@ -80,16 +97,9 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
                 
                 switch indexPath.section {
                 case 0:
-                    //                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Pending Invites")
-                    //                attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
-                    //                headerView.headerLabel.attributedText = attributeString
                     headerView.headerLabel.text = "Pending Invites"
                 case 1:
-                    //                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Current Participants")
-                    //                attributeString.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
-                    //                headerView.headerLabel.attributedText = attributeString
                     headerView.headerLabel.text = "Participants"
-                    
                 default:
                     break
                 }
@@ -115,13 +125,13 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
             case 0:
                 numberOfItems = ChallengeController.sharedController.currentChallengePendingInvitees.count
             case 1:
-                numberOfItems = ChallengeController.sharedController.participatingFriends.count
+                numberOfItems = ChallengeController.sharedController.participatingAthletes.count
             default:
                 break
                 
             }
         } else {
-            numberOfItems = ChallengeController.sharedController.participatingFriends.count
+            numberOfItems = ChallengeController.sharedController.participatingAthletes.count
         }
         return numberOfItems
     }
@@ -137,13 +147,13 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
             case 0:
                 tempAthlete = ChallengeController.sharedController.currentChallengePendingInvitees[indexPath.row]
             case 1:
-                tempAthlete = ChallengeController.sharedController.participatingFriends[indexPath.row]
+                tempAthlete = ChallengeController.sharedController.participatingAthletes[indexPath.row]
             default:
                 break
             }
             
         } else {
-            tempAthlete = ChallengeController.sharedController.participatingFriends[indexPath.row]
+            tempAthlete = ChallengeController.sharedController.participatingAthletes[indexPath.row]
         }
         guard let athlete = tempAthlete else { return UICollectionViewCell() }
         cell.updateWith(athlete: athlete)
@@ -155,6 +165,16 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
         let width = self.view.bounds.width * 0.28
         let height = width / 0.75
         return CGSize(width: width, height: height)
+    }
+    
+    //=======================================================
+    // MARK: - RefreshParticipantsCVDelegate function
+    //=======================================================
+    
+    func friendWasInvited() {
+        ChallengeController.sharedController.filterParticipantsInCurrentChallenge {
+            self.participantsCollectionView.reloadData()
+        }
     }
     
 }

@@ -19,6 +19,7 @@
 		93381A831E5346B100E2162F /* PastChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93381A821E5346B100E2162F /* PastChallengesViewController.swift */; };
 		934AA53C1E9472B20001A03F /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934AA5391E9472A50001A03F /* ResearchKit.framework */; };
 		934AA53D1E9472B20001A03F /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 934AA5391E9472A50001A03F /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9354D9861EB410F200FD0FDC /* InviteFriendPopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D9851EB410F200FD0FDC /* InviteFriendPopOverViewController.swift */; };
 		935631911E4B7B1900D08C66 /* PickChallengeTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935631901E4B7B1900D08C66 /* PickChallengeTypeViewController.swift */; };
 		9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */; };
 		9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */; };
@@ -123,6 +124,7 @@
 		93381A801E53469F00E2162F /* CurrentChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentChallengesViewController.swift; sourceTree = "<group>"; };
 		93381A821E5346B100E2162F /* PastChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastChallengesViewController.swift; sourceTree = "<group>"; };
 		934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ../Frameworks/ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
+		9354D9851EB410F200FD0FDC /* InviteFriendPopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendPopOverViewController.swift; sourceTree = "<group>"; };
 		935631901E4B7B1900D08C66 /* PickChallengeTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickChallengeTypeViewController.swift; sourceTree = "<group>"; };
 		9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				93135FFD1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift */,
 				93DC6DB81DFA36C70004ABE6 /* LoginViewController.swift */,
 				93EE95D61E00E3C700A4E02A /* ParticipantsViewController.swift */,
+				9354D9851EB410F200FD0FDC /* InviteFriendPopOverViewController.swift */,
 				935631901E4B7B1900D08C66 /* PickChallengeTypeViewController.swift */,
 				9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */,
 				93DC6DC31DFA3F0D0004ABE6 /* ProfileViewController.swift */,
@@ -693,6 +696,7 @@
 				9364E0E81E305BCD0083D3E0 /* CreateChallengeCollectionViewCell.swift in Sources */,
 				93DC6DB91DFA36C70004ABE6 /* LoginViewController.swift in Sources */,
 				931A039D1DFF615300F98112 /* FriendController.swift in Sources */,
+				9354D9861EB410F200FD0FDC /* InviteFriendPopOverViewController.swift in Sources */,
 				93DC6DC21DFA3D890004ABE6 /* CreateChallengeViewController.swift in Sources */,
 				93DC6DC61DFA3F280004ABE6 /* FriendsViewController.swift in Sources */,
 				93DC6DAF1DFA2EAC0004ABE6 /* Set.swift in Sources */,

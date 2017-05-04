@@ -44,9 +44,6 @@ class ChallengesViewController: UIViewController {
             })
         }
         
-        FriendController.shared.fetchFriendsList()
-        FriendController.shared.fetchFriendRequestsReceived()
-        
         guard let currentUser = AthleteController.currentUser else { return }
         let url = currentUser.profileImageUrl
         if url != "" {
@@ -55,9 +52,12 @@ class ChallengesViewController: UIViewController {
             }
         }
         
+        FriendController.shared.fetchFriendsList()
         FriendController.shared.getFriendProfileImages {
 
+            
         }
+        FriendController.shared.fetchFriendRequestsReceived()
     }
     
     //=======================================================

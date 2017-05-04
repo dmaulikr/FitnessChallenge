@@ -28,7 +28,7 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ChallengeController.sharedController.filterParticipantsInCurrentChallenge()
+        ChallengeController.sharedController.filterParticipantsInCurrentChallenge {}
         
         segmentedController.tintColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         
