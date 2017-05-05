@@ -13,8 +13,10 @@ class LaunchScreenCopyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        AthleteController.fetchAllAthletes {
+            
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

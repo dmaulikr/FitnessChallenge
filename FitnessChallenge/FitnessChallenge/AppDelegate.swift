@@ -21,10 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        AthleteController.fetchAllAthletes {
-            
-        }
-        
         UINavigationBar.appearance().tintColor = UIColor.black
         
         return true

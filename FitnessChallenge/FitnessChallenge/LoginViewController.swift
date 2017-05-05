@@ -60,21 +60,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     func setupFacebookLoginButton() {
         
-        
-        
-        
-//        self.view.addSubview(facebookLoginButton)
         fbLoginButton.delegate = self
         
         fbLoginButton.readPermissions = ["email", "public_profile"]
-        
-//        facebookLoginButton.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        let top = NSLayoutConstraint(item: facebookLoginButton, attribute: .top, relatedBy: .equal, toItem: self.loginButton, attribute: .bottom, multiplier: 1, constant: 12)
-//        let leading = NSLayoutConstraint(item: facebookLoginButton, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1, constant: 0)
-//        let trailing = NSLayoutConstraint(item: facebookLoginButton, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1, constant: 0)
-//        
-//        self.view.addConstraints([top, leading, trailing])
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {

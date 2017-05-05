@@ -14,12 +14,10 @@ class AthleteController {
     
     static var currentUserUID: String = ""
     static var currentUser: Athlete?
-    
     static var allAthletes: [Athlete] = []
     static let storageRef = FIRStorage.storage().reference()
     static var usernamesUsed: [String] = []
 
-    
     //CRUD
     
     static func addAthleteToFirebase(username: String, email: String, uid: String, completion: @escaping(_ success: Bool) -> Void) {
