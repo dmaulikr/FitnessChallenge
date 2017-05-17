@@ -9,13 +9,15 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import GoogleSignIn
 
-class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
+    @IBOutlet weak var googleLoginButton: GIDSignInButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         passwordTextField.delegate = self
         
         setupFacebookLoginButton()
+        setupGoogleLogInButton()
+        GIDSignIn.sharedInstance().delegate = self
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
@@ -97,6 +101,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             
             if let error = error {
                 print("There was an error signing in the FIR user in the facebook login button: \(error.localizedDescription)")
+                self.loginButtonDidLogOut(self.fbLoginButton)
+                self.emailAlreadyInUseAlert()
                 return
             }
             guard let user = user else { print("Unable to unwrap user in facebook login button"); return }
@@ -136,13 +142,99 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     //=======================================================
-    // MARK: - Missing info Alert Controller
+    // MARK: - Google Sign in stuff
+    //=======================================================
+    
+    func setupGoogleLogInButton() {
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let error = error {
+            print("There was an error signing via Google: \(error.localizedDescription)")
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                          accessToken: authentication.accessToken)
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            
+            if let error = error {
+                print("Failed to sign in user with google account: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let user = user else { return }
+            
+            let allAthletesUids = AthleteController.allAthletes.flatMap( { $0.uid } )
+            
+            if allAthletesUids.contains(user.uid) {
+                
+                AthleteController.currentUserUID = user.uid
+                AthleteController.fetchCurrentUserFromFirebaseWith(uid: user.uid) { (success) in
+                    if success {
+                        print("\(user.uid) has been successfully logged in.")
+                        self.performSegue(withIdentifier: "toChallengesVC", sender: self)
+                    } else {
+                        print("Didn't segue because unable to fetchCurrentUserFromFirebase")
+                        return
+                    }
+                }
+            } else {
+                
+                let email = user.email ?? ""
+                let username = user.displayName ?? email
+                
+                AthleteController.addAthleteToFirebase(username: username, email: email, uid: user.uid, completion: { (success) in
+                    
+                    if success {
+                        print("New athlete added to Firebase database from a Facebook login")
+                        self.performSegue(withIdentifier: "toChallengesVC", sender: self)
+                    } else {
+                        print("Username already taken")
+                        self.usernameAlreadyTakenAlert()
+                        // signout of google login, signout of firebase auth. present to the user that they cannot use that account. Delete auth user? FIXME
+                    }
+                })
+            }
+        })
+    }
+    
+    //=======================================================
+    // MARK: - Alert Controllers
     //=======================================================
     
     func presentMissingInfoAlert() {
         
         let alertController = UIAlertController(title: nil, message: "Make sure you enter a username and a password.", preferredStyle: .alert)
         let okayAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+        
+        alertController.addAction(okayAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func usernameAlreadyTakenAlert() {
+        
+        let alertController = UIAlertController(title: "Oh no!", message: "Your username is already being used by another login method.", preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+        
+        alertController.addAction(okayAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func emailAlreadyInUseAlert() {
+        
+        let alertController = UIAlertController(title: "Oh no!", message: "Your email is already being used by another login method.", preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .cancel) { (_) in
+//            AthleteController.logoutAthlete(completion: { (success) in
+//                // nothing yet
+//            })
+        }
         
         alertController.addAction(okayAction)
         

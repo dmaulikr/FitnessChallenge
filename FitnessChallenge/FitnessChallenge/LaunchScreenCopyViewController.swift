@@ -41,7 +41,8 @@ class LaunchScreenCopyViewController: UIViewController {
         } else {
             
             if FIRAuth.auth()?.currentUser != nil {
-                guard let currentUser = FIRAuth.auth()?.currentUser else { return }
+                guard let currentUser = FIRAuth.auth()?.currentUser
+                    else { return }
                 let uid = currentUser.uid
                 
                 AthleteController.fetchCurrentUserFromFirebaseWith(uid: uid) { (success) in
