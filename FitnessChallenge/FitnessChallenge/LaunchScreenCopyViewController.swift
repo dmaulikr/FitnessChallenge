@@ -14,9 +14,9 @@ class LaunchScreenCopyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AthleteController.fetchAllAthletes {
-            
-        }
+//        AthleteController.fetchAllAthletes {
+//            
+//        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -48,13 +48,23 @@ class LaunchScreenCopyViewController: UIViewController {
                 AthleteController.fetchCurrentUserFromFirebaseWith(uid: uid) { (success) in
                     if success == true {
                         
-                        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        guard let navigationVC = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController else { return }
+                        if AthleteController.allAthletes.count == 0 {
+                            AthleteController.fetchAllAthletes {
+                                FriendController.shared.fetchFriendsList {
+                                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                    guard let navigationVC = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController else { return }
+                                    
+                                    self.present(navigationVC, animated: true, completion: nil)
+                                }
+                            }
+                        } else {
+                            
+                            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                            guard let navigationVC = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController else { return }
+                            
+                            self.present(navigationVC, animated: true, completion: nil)
+                        }
                         
-                        //                        self.window = UIWindow(frame: UIScreen.main.bounds)
-                        //                        self.window?.rootViewController = navigationVC
-                        //                        self.window?.makeKeyAndVisible()
-                        self.present(navigationVC, animated: true, completion: nil)
                         
                     } else {
                         
@@ -68,13 +78,17 @@ class LaunchScreenCopyViewController: UIViewController {
                 }
             } else {
                 
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let loginVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginScreen") as UIViewController
-                //                self.window = UIWindow(frame: UIScreen.main.bounds)
-                //                self.window?.rootViewController = loginVC
-                //                self.window?.makeKeyAndVisible()
+                if AthleteController.allAthletes.count == 0 {
+                    AthleteController.fetchAllAthletes {
+                        FriendController.shared.fetchFriendsList {
+                            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                            let loginVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginScreen") as UIViewController
+                            
+                            self.present(loginVC, animated: true, completion: nil)
+                        }
+                    }
+                }
                 
-                self.present(loginVC, animated: true, completion: nil)
             }
             
         }
