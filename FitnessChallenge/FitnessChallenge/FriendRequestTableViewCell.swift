@@ -26,6 +26,10 @@ class FriendRequestTableViewCell: UITableViewCell {
     
     @IBAction func declineButtonTapped(_ sender: Any) {
         
+        FriendController.shared.declineFriendRequest(requesterUsername: requesterUsername) { 
+            delegate?.reloadTableView()
+        }
+        
     }
 
     @IBAction func acceptButtonTapped(_ sender: Any) {

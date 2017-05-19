@@ -52,10 +52,12 @@ class ChallengesViewController: UIViewController {
             }
         }
         
-        FriendController.shared.fetchFriendsList()
-        FriendController.shared.getFriendProfileImages {
-
+        FriendController.shared.fetchFriendsList {
             
+            FriendController.shared.getFriendProfileImages {
+                
+                
+            }
         }
         FriendController.shared.fetchFriendRequestsReceived()
     }

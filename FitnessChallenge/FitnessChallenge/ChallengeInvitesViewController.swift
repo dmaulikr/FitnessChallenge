@@ -82,7 +82,9 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
             })
         }
         let declineAction = UIAlertAction(title: "Decline", style: .default) { (_) in
-            
+            ChallengeController.sharedController.declineRequestToJoinChallenge(challenge: challenge, completion: { 
+                self.invitesTableView.reloadData()
+            })
         }
         
         alertController.addAction(cancelAction)

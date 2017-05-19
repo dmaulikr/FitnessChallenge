@@ -42,9 +42,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK: - Actions
     //=======================================================
 
-    @IBAction func changePasswordButtonTapped(_ sender: Any) {
-        
-    }
+//    @IBAction func changePasswordButtonTapped(_ sender: Any) {
+//        
+//    }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         

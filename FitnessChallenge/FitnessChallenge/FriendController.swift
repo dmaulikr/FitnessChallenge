@@ -1,6 +1,6 @@
 //
 //  FriendController.swift
-//  
+//
 //
 //  Created by Aaron Martinez on 12/12/16.
 //
@@ -24,16 +24,17 @@ class FriendController {
     
     static var sentFriendRequestsPending = [String]() // Array of their uids.
     
-    func fetchFriendsList() {
+    func fetchFriendsList(completion: @escaping () -> Void) {
         
-        guard let currentUser = AthleteController.currentUser else { return }
+        guard let currentUser = AthleteController.currentUser else { completion(); return }
         
         let friendsRef = ChallengeController.sharedController.baseRef.child("athletes").child(currentUser.uid).child("friendsUids")
         friendsRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            guard let friendsArray = snapshot.value as? [String] else { return }
+            guard let friendsArray = snapshot.value as? [String] else { completion(); return }
             
             self.currentUserFriendsUids = friendsArray
+            completion()
         })
     }
     
@@ -70,7 +71,7 @@ class FriendController {
                 group.leave()
             }
         }
-        group.notify(queue: DispatchQueue.main) { 
+        group.notify(queue: DispatchQueue.main) {
             self.currentUserFriendList = friendsWithImages
             completion()
         }
@@ -105,7 +106,7 @@ class FriendController {
             currentUser.friendRequestsSent.append(athleteRequested.username)
             
             addFriendRequestToFirebase(athleteRequested: athleteRequested, athleteRequesting: currentUser)
-//            sentFriendRequestsPending.append(username)
+            //            sentFriendRequestsPending.append(username)
             
             
             completion(true)
@@ -167,9 +168,33 @@ class FriendController {
         completion()
     }
     
-    func declineFriendRequest() {
+    func declineFriendRequest(requesterUsername: String, completion: () -> Void) {
         
+        let athletesRef = ChallengeController.sharedController.baseRef.child("athletes")
+        guard let currentUser = AthleteController.currentUser else { completion(); return }
+        let allAthletes = AthleteController.allAthletes
         
+        // Remove Received Friend Request from current User locally
+        let array = currentUser.friendRequestsReceived
+        guard let indexOfRequest = array.index(of: requesterUsername) else { completion(); return }
+        currentUser.friendRequestsReceived.remove(at: indexOfRequest)
+        
+        // Remove Received Friend Request on firebase
+        let requestReceiverRef = athletesRef.child(currentUser.uid)
+        requestReceiverRef.child("friendRequestsReceived").setValue(currentUser.friendRequestsReceived)
+        
+        // Remove Sent Request locally
+        let requestSenderArray = allAthletes.filter({$0.username == requesterUsername})
+        guard let requestSender = requestSenderArray.first,
+            let indexOfReceiverUid = requestSender.friendRequestsSent.index(of: currentUser.username)
+            else { completion(); return }
+        requestSender.friendRequestsSent.remove(at: indexOfReceiverUid)
+        
+        // Remove Sent Request from firebase
+        let requestSenderRef = athletesRef.child(requestSender.uid)
+        requestSenderRef.child("friendRequestsSent").setValue(requestSender.friendRequestsSent)
+        
+        completion()
     }
     
     func removeFriend() {

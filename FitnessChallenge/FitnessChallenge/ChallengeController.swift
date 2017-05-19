@@ -207,10 +207,12 @@ class ChallengeController {
     
     func declineRequestToJoinChallenge(challenge: Challenge, completion: () -> Void) {
         
+        // Remove challenge from local "userPendingChallengeInvites"
         guard let index = userPendingChallengeInvites.index(of: challenge),
             let currentUser = AthleteController.currentUser else { completion(); return }
         userPendingChallengeInvites.remove(at: index)
         
+        // Remove user's uid from challenge's pendingParticipantsUids locally
         var currentPendingUids = challenge.pendingParticipantsUids
         guard let index2 = currentPendingUids.index(of: currentUser.uid) else { completion(); return }
         currentPendingUids.remove(at: index2)
