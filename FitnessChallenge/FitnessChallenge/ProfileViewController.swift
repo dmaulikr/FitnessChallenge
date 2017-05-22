@@ -46,22 +46,22 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 //        
 //    }
     
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-        
-        AthleteController.logoutAthlete { (success) in
-            if success {
-                AthleteController.currentUser = nil
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginScreen")
-                self.present(loginVC, animated: true, completion: nil)
-                AthleteController.fetchAllAthletes {
-                    print("Successfully fetched all athletes after logout")
-                }
-            } else {
-                //
-            }
-        }
-    }
+//    @IBAction func logoutButtonTapped(_ sender: Any) {
+//        
+//        AthleteController.logoutAthlete { (success) in
+//            if success {
+//                AthleteController.currentUser = nil
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginScreen")
+//                self.present(loginVC, animated: true, completion: nil)
+//                AthleteController.fetchAllAthletes {
+//                    print("Successfully fetched all athletes after logout")
+//                }
+//            } else {
+//                //
+//            }
+//        }
+//    }
     
     @IBAction func profileImageButtonTapped(_ sender: Any) {
         

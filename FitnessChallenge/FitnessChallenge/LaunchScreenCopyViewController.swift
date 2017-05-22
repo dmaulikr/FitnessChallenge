@@ -10,20 +10,20 @@ import UIKit
 import Firebase
 
 class LaunchScreenCopyViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        AthleteController.fetchAllAthletes {
-//            
-//        }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        
+        //        AthleteController.fetchAllAthletes {
+        //
+        //        }
         performLaunchChecks()
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
     func performLaunchChecks() {
         
         if InternetConnection.isInternetAvailable() == false {
@@ -48,24 +48,14 @@ class LaunchScreenCopyViewController: UIViewController {
                 AthleteController.fetchCurrentUserFromFirebaseWith(uid: uid) { (success) in
                     if success == true {
                         
-                        if AthleteController.allAthletes.count == 0 {
-                            AthleteController.fetchAllAthletes {
-                                FriendController.shared.fetchFriendsList {
-                                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                                    guard let navigationVC = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController else { return }
-                                    
-                                    self.present(navigationVC, animated: true, completion: nil)
-                                }
+                        AthleteController.fetchAllAthletes {
+                            FriendController.shared.fetchFriendsList {
+                                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                guard let navigationVC = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController else { return }
+                                
+                                self.present(navigationVC, animated: true, completion: nil)
                             }
-                        } else {
-                            
-                            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                            guard let navigationVC = mainStoryboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController else { return }
-                            
-                            self.present(navigationVC, animated: true, completion: nil)
                         }
-                        
-                        
                     } else {
                         
                         AthleteController.logoutAthlete(completion: { (_) in
@@ -78,20 +68,12 @@ class LaunchScreenCopyViewController: UIViewController {
                 }
             } else {
                 
-                if AthleteController.allAthletes.count == 0 {
-                    AthleteController.fetchAllAthletes {
-                        FriendController.shared.fetchFriendsList {
-                            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                            let loginVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginScreen") as UIViewController
-                            
-                            self.present(loginVC, animated: true, completion: nil)
-                        }
-                    }
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginScreen") as UIViewController
+                DispatchQueue.main.async { 
+                    self.present(loginVC, animated: true, completion: nil)
                 }
-                
             }
-            
         }
     }
-    
 }

@@ -42,8 +42,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         AthleteController.loginAthlete(email: email, password: password) { (success) in
             if success == true {
-                
-                self.performSegue(withIdentifier: "toChallengesVC", sender: self)
+                AthleteController.fetchAllAthletes {
+                    FriendController.shared.fetchFriendsList {
+                        
+                        self.performSegue(withIdentifier: "toChallengesVC", sender: self)
+                    }
+                }
                 
             } else {
                 let alertController = UIAlertController(title: "Oh no!", message: "We couldn't get you signed in. Please try again.", preferredStyle: .alert)
@@ -80,6 +84,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         if error != nil {
             print("There was an error logging in with Facebook", error)
+            return
         }
         
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields":"id, name, email"]).start { (connection, result, error) in
@@ -97,48 +102,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
         
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-            
-            if let error = error {
-                print("There was an error signing in the FIR user in the facebook login button: \(error.localizedDescription)")
-                self.loginButtonDidLogOut(self.fbLoginButton)
-                self.emailAlreadyInUseAlert()
-                return
-            }
-            guard let user = user else { print("Unable to unwrap user in facebook login button"); return }
-            
-            let allAthletesUids = AthleteController.allAthletes.flatMap( { $0.uid } )
-            
-            if allAthletesUids.contains(user.uid) {
-                
-                AthleteController.currentUserUID = user.uid
-                AthleteController.fetchCurrentUserFromFirebaseWith(uid: user.uid) { (success) in
-                    if success {
-                        print("\(user.uid) has been successfully logged in.")
-                        self.performSegue(withIdentifier: "toChallengesVC", sender: self)
-                    } else {
-                        print("Didn't segue because unable to fetchCurrentUserFromFirebase")
-                        return
-                    }
-                }
-            } else {
-                
-                AthleteController.addAthleteToFirebase(username: username, email: email, uid: user.uid, completion: { (success) in
-                    
-                    if success {
-                        print("New athlete added to Firebase database from a Facebook login")
-                        self.performSegue(withIdentifier: "toChallengesVC", sender: self)
-                    } else {
-                        // Alert controller telling the user their username is already taken. Not for long, fix this.
-                        print("Username already taken")
-                        // signout of facebook login, signout of firebase auth. present to the user that they cannot use that account. Delete auth user? FIXME
-                    }
-                })
-            }
-            
-        })
-        
-
+        self.handleThirdPartyLoginAttempt(credential: credential, fbUserEmail: email, fbUserUsername: username)
     }
     
     //=======================================================
@@ -160,45 +124,64 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         guard let authentication = user.authentication else { return }
         let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                           accessToken: authentication.accessToken)
+        
+        self.handleThirdPartyLoginAttempt(credential: credential, fbUserEmail: nil, fbUserUsername: nil)
+    }
+    
+    //=======================================================
+    // MARK: - Handle 3rd party login
+    //=======================================================
+    
+    func handleThirdPartyLoginAttempt(credential: FIRAuthCredential, fbUserEmail: String?, fbUserUsername: String?) {
+        
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             
             if let error = error {
-                print("Failed to sign in user with google account: \(error.localizedDescription)")
+                print("There was an error signing in the FIR user in the facebook login button: \(error.localizedDescription)")
+                self.loginButtonDidLogOut(self.fbLoginButton)
+                self.emailAlreadyInUseAlert()
                 return
             }
+            guard let user = user else { print("Unable to unwrap user in facebook login button"); return }
             
-            guard let user = user else { return }
-            
-            let allAthletesUids = AthleteController.allAthletes.flatMap( { $0.uid } )
-            
-            if allAthletesUids.contains(user.uid) {
-                
-                AthleteController.currentUserUID = user.uid
-                AthleteController.fetchCurrentUserFromFirebaseWith(uid: user.uid) { (success) in
-                    if success {
-                        print("\(user.uid) has been successfully logged in.")
-                        self.performSegue(withIdentifier: "toChallengesVC", sender: self)
-                    } else {
-                        print("Didn't segue because unable to fetchCurrentUserFromFirebase")
-                        return
+            AthleteController.currentUserUID = user.uid
+            AthleteController.fetchCurrentUserFromFirebaseWith(uid: user.uid) { (success) in
+                if success {
+                    print("\(user.uid) has been successfully logged in.")
+                    AthleteController.fetchAllAthletes {
+                        FriendController.shared.fetchFriendsList {
+                            
+                            self.performSegue(withIdentifier: "toChallengesVC", sender: self)
+                        }
                     }
-                }
-            } else {
-                
-                let email = user.email ?? ""
-                let username = user.displayName ?? email
-                
-                AthleteController.addAthleteToFirebase(username: username, email: email, uid: user.uid, completion: { (success) in
+                } else {
                     
-                    if success {
-                        print("New athlete added to Firebase database from a Facebook login")
-                        self.performSegue(withIdentifier: "toChallengesVC", sender: self)
-                    } else {
-                        print("Username already taken")
-                        self.usernameAlreadyTakenAlert()
-                        // signout of google login, signout of firebase auth. present to the user that they cannot use that account. Delete auth user? FIXME
-                    }
-                })
+                    // Create new user
+                    print("Didn't segue because unable to fetchCurrentUserFromFirebase. Attemping to addAthleteToFirebase")
+                    
+                    guard let email = user.email,
+                        let username = user.displayName
+                    else { return }
+                    
+                    AthleteController.addAthleteToFirebase(username: username, email: email, uid: user.uid, completion: { (success) in
+                        
+                        if success {
+                            print("New athlete added to Firebase database from a Facebook login")
+                            AthleteController.fetchAllAthletes {
+                                self.performSegue(withIdentifier: "toChallengesVC", sender: self)
+                            }
+                        } else {
+                            print("Username already taken")
+                            self.usernameAlreadyTakenAlert()
+//                            self.loginButtonDidLogOut(self.fbLoginButton)
+                            AthleteController.logoutAthlete(completion: { (success) in
+                                if success {
+                                    print("Logged out of FirAuth")
+                                }
+                            })
+                        }
+                    })
+                }
             }
         })
     }
@@ -231,9 +214,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         let alertController = UIAlertController(title: "Oh no!", message: "Your email is already being used by another login method.", preferredStyle: .alert)
         let okayAction = UIAlertAction(title: "Okay", style: .cancel) { (_) in
-//            AthleteController.logoutAthlete(completion: { (success) in
-//                // nothing yet
-//            })
+            // nothing yet
+            
         }
         
         alertController.addAction(okayAction)
@@ -252,7 +234,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         case emailTextField:
             passwordTextField.becomeFirstResponder()
         case passwordTextField:
-
+            
             if textField.text != "" {
                 loginButtonTapped(self)
                 boolValue = true

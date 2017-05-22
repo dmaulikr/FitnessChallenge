@@ -26,14 +26,13 @@ class AthleteController {
         let usernamesUsedRef = baseRef.child("usernamesUsed")
         usernamesUsedRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            guard let usernamesUsedArray = snapshot.value as? [String] else { completion(false); return }
+            guard let usernamesUsedArray = snapshot.value as? [String] else { print("Failed to fetch usernamesArray from firebase"); completion(false); return }
             
             usernamesUsed = usernamesUsedArray
             
             if usernamesUsed.contains(username) {
                 
                 completion(false)
-                
             } else {
                 
                 let athlete = Athlete(username: username, email: email, uid: uid)
