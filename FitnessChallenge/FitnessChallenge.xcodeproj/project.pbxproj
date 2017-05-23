@@ -118,6 +118,7 @@
 		93135FFD1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenCopyViewController.swift; sourceTree = "<group>"; };
 		93135FFF1E3FB590006594F9 /* InternetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetController.swift; sourceTree = "<group>"; };
 		931A039C1DFF615300F98112 /* FriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
+		932D67531ED38F13000AF4E5 /* FitnessChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitnessChallenge.entitlements; sourceTree = "<group>"; };
 		932E62621E1BF22300EC267C /* SetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetController.swift; sourceTree = "<group>"; };
 		93381A7C1E5345D200E2162F /* ChallengesPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengesPageViewController.swift; sourceTree = "<group>"; };
 		93381A7E1E53466C00E2162F /* ChallengeInvitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeInvitesViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 		93DC6D7B1DFA2C760004ABE6 /* FitnessChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				932D67531ED38F13000AF4E5 /* FitnessChallenge.entitlements */,
 				931360011E3FB594006594F9 /* Misc Controllers */,
 				93DC6DB01DFA2ECD0004ABE6 /* Model */,
 				93DC6DB51DFA2F940004ABE6 /* ModelControllers */,
@@ -464,6 +466,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = D9JMB4MDLY;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					93DC6D8C1DFA2C760004ABE6 = {
 						CreatedOnToolsVersion = 8.1;
@@ -890,6 +897,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = FitnessChallenge/FitnessChallenge.entitlements;
 				DEVELOPMENT_TEAM = D9JMB4MDLY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -904,7 +912,7 @@
 					"\"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks/frameworks\"",
 				);
 				INFOPLIST_FILE = FitnessChallenge/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaronmartinez.FitnessWithFriends6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -919,6 +927,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = FitnessChallenge/FitnessChallenge.entitlements;
 				DEVELOPMENT_TEAM = D9JMB4MDLY;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -935,7 +944,7 @@
 					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = FitnessChallenge/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaronmartinez.FitnessWithFriends6;
 				PRODUCT_NAME = "$(TARGET_NAME)";

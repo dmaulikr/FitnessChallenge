@@ -115,6 +115,7 @@ class ParticipantsViewController: UIViewController, UICollectionViewDataSource, 
             //4
             assert(false, "Unexpected element kind")
         }
+        return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

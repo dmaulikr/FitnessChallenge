@@ -13,7 +13,8 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
     
     //    let barGraphChartDataSource = BarGraphDataSource()
     @IBOutlet weak var graphView: ORKBarGraphChartView!
-    @IBOutlet weak var segmentedController: UISegmentedControl!
+//    @IBOutlet weak var segmentedController: UISegmentedControl!
+    @IBOutlet weak var challengeNameLabel: UILabel!
     
     
     var currentUserSets: [ORKValueStack] = []
@@ -21,28 +22,21 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
     var challenge: Challenge?
     
     let chartColors = [
-//        UIColor(red: 51/255, green: 0/255, blue: 255/255, alpha: 1)//Blue
         UIColor(red: 225/255, green: 90/255, blue: 43/255, alpha: 1)
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.challengeNameLabel.text = ChallengeController.sharedController.currentlySelectedChallenge?.name
+        
         ChallengeController.sharedController.filterParticipantsInCurrentChallenge {}
         
-        segmentedController.tintColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+//        segmentedController.tintColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         
-        
-        // ORKBarGraphChartView
-        let barGraphChartView = graphView as ORKBarGraphChartView
-        graphView.dataSource = self
-        barGraphChartView.tintColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
-        // Optional custom configuration
-        barGraphChartView.showsHorizontalReferenceLines = false
-        barGraphChartView.showsVerticalReferenceLines = false
-        barGraphChartView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        self.setupBarGraphChartView()
         
     }
     
@@ -62,20 +56,20 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
     // MARK: - Actions
     //=======================================================
     
-    @IBAction func segmentedControllerIndexChanged(_ sender: Any) {
-        
-        switch segmentedController.selectedSegmentIndex {
-            
-        case 0:
-            title = "1"
-        case 1:
-            title = "2"
-        case 2:
-            title = "3"
-        default:
-            break
-        }
-    }
+//    @IBAction func segmentedControllerIndexChanged(_ sender: Any) {
+//        
+//        switch segmentedController.selectedSegmentIndex {
+//            
+//        case 0:
+//            title = "1"
+//        case 1:
+//            title = "2"
+//        case 2:
+//            title = "3"
+//        default:
+//            break
+//        }
+//    }
     
     //=======================================================
     // MARK: - Chart datasource functions
@@ -102,6 +96,19 @@ class StandingsViewController: UIViewController, ORKValueStackGraphChartViewData
         return chartColors[plotIndex]
     }
     
+    //=======================================================
+    // MARK: - Setup BarGraphChartView
+    //=======================================================
     
+    func setupBarGraphChartView() {
+        // ORKBarGraphChartView
+        let barGraphChartView = graphView as ORKBarGraphChartView
+        graphView.dataSource = self
+        barGraphChartView.tintColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
+        // Optional custom configuration
+        barGraphChartView.showsHorizontalReferenceLines = false
+        barGraphChartView.showsVerticalReferenceLines = false
+        barGraphChartView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+    }
 }
 
