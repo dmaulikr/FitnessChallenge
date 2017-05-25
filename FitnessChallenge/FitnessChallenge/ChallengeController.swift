@@ -17,7 +17,7 @@ class ChallengeController {
     
     static let sharedController = ChallengeController()
     
-    let baseRef = FIRDatabase.database().reference()
+    let baseRef = Database.database().reference()
     var allChallenges = [Challenge]()
     var currentlySelectedChallenge: Challenge?
     var participatingAthletes = [Athlete]()

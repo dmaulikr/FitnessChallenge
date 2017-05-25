@@ -34,7 +34,7 @@ class CreateAccountViewController: UIViewController {
             let password = passwordTextField.text
             else { return }
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             
             if let error = error {
                 print("There was an error creating new user: \(error.localizedDescription)")

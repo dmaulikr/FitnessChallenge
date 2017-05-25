@@ -15,7 +15,7 @@ class AthleteController {
     static var currentUserUID: String = ""
     static var currentUser: Athlete?
     static var allAthletes: [Athlete] = []
-    static let storageRef = FIRStorage.storage().reference()
+    static let storageRef = Storage.storage().reference()
     static var usernamesUsed: [String] = []
 
     //CRUD
@@ -54,7 +54,7 @@ class AthleteController {
     
     static func loginAthlete(email: String, password: String, completion: @escaping (_ success: Bool) -> Void) {
         
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if let error = error {
                 print("There was an error logging in: \(error.localizedDescription)")
@@ -93,7 +93,7 @@ class AthleteController {
     
     static func fetchCurrentUserFromFirebaseWith(uid: String, completion: @escaping (_ success: Bool) -> Void) {
         
-        let currentUserRef = FIRDatabase.database().reference().child("athletes").child(uid)
+        let currentUserRef = Database.database().reference().child("athletes").child(uid)
         
         currentUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
@@ -112,9 +112,9 @@ class AthleteController {
     
     static func logoutAthlete(completion: (Bool) -> Void) {
         
-        let firebaseAuth = FIRAuth.auth()
+        let firebaseAuth = Auth.auth()
         do {
-            try firebaseAuth?.signOut()
+            try firebaseAuth.signOut()
             completion(true)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
@@ -127,7 +127,7 @@ class AthleteController {
         guard let currentUser = currentUser,
             let imageData = UIImageJPEGRepresentation(image, 0.5) else { return }
         
-        storageRef.child(currentUser.username).put(imageData, metadata: nil) { (metadata, error) in
+        storageRef.child(currentUser.username).putData(imageData, metadata: nil) { (metadata, error) in
             if error != nil {
                 print("AthleteController: There was an error saving profile photo to firebase")
             } else {
@@ -144,8 +144,8 @@ class AthleteController {
     
     static func loadImageFromData(url: String) {
         
-        let downloadedData = FIRStorage.storage().reference(forURL: url)
-        downloadedData.data(withMaxSize: 5 * 1024 * 1024) { (data, error) in
+        let downloadedData = Storage.storage().reference(forURL: url)
+        downloadedData.getData(maxSize: 5 * 1024 * 1024) { (data, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {

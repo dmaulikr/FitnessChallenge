@@ -53,8 +53,8 @@ class FriendController {
             group.enter()
             if friend.profileImageUrl != "" {
                 
-                let downloadedData = FIRStorage.storage().reference(forURL: friend.profileImageUrl)
-                downloadedData.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                let downloadedData = Storage.storage().reference(forURL: friend.profileImageUrl)
+                downloadedData.getData(maxSize: 2 * 1024 * 1024) { (data, error) in
                     if let error = error {
                         print(error.localizedDescription)
                     } else {

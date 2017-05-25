@@ -40,8 +40,8 @@ class LaunchScreenCopyViewController: UIViewController {
             
         } else {
             
-            if FIRAuth.auth()?.currentUser != nil {
-                guard let currentUser = FIRAuth.auth()?.currentUser
+            if Auth.auth().currentUser != nil {
+                guard let currentUser = Auth.auth().currentUser
                     else { return }
                 let uid = currentUser.uid
                 

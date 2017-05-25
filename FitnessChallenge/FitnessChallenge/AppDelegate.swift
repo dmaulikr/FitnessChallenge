@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        FIRApp.configure()
+        FirebaseApp.configure()
         
 //        AthleteController.fetchAllAthletes {
 //            
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //
         //        GIDSignIn.sharedInstance().delegate = self
         
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
         UINavigationBar.appearance().tintColor = UIColor.black
         

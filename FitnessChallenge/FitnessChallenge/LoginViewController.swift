@@ -100,7 +100,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             
         }
         
-        let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
         
         self.handleThirdPartyLoginAttempt(credential: credential, fbUserEmail: email, fbUserUsername: username)
     }
@@ -122,7 +122,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         }
         
         guard let authentication = user.authentication else { return }
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                           accessToken: authentication.accessToken)
         
         self.handleThirdPartyLoginAttempt(credential: credential, fbUserEmail: nil, fbUserUsername: nil)
@@ -132,9 +132,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     // MARK: - Handle 3rd party login
     //=======================================================
     
-    func handleThirdPartyLoginAttempt(credential: FIRAuthCredential, fbUserEmail: String?, fbUserUsername: String?) {
+    func handleThirdPartyLoginAttempt(credential: AuthCredential, fbUserEmail: String?, fbUserUsername: String?) {
         
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+        Auth.auth().signIn(with: credential, completion: { (user, error) in
             
             if let error = error {
                 print("There was an error signing in the FIR user in the facebook login button: \(error.localizedDescription)")
@@ -176,7 +176,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
 //                            self.loginButtonDidLogOut(self.fbLoginButton)
                             AthleteController.logoutAthlete(completion: { (success) in
                                 if success {
-                                    print("Logged out of FirAuth")
+                                    print("Logged out of Auth")
                                 }
                             })
                         }
