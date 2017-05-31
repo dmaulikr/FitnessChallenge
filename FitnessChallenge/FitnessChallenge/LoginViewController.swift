@@ -11,13 +11,16 @@ import Firebase
 import FBSDKLoginKit
 import GoogleSignIn
 
-class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
     @IBOutlet weak var googleLoginButton: GIDSignInButton!
+    
+    var tap: UITapGestureRecognizer?
+    var googleTap: UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +30,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        
         setupFacebookLoginButton()
         setupGoogleLogInButton()
         GIDSignIn.sharedInstance().delegate = self
+        
+        hideKeyboardWhenViewIsTapped()
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
@@ -112,6 +118,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     func setupGoogleLogInButton() {
         
         GIDSignIn.sharedInstance().uiDelegate = self
+        
+        let googleTap = UITapGestureRecognizer(target: self, action: #selector(signInToGoogle))
+        
+        googleTap.delegate = self
+        googleLoginButton.addGestureRecognizer(googleTap)
+        self.googleTap = googleTap
+    }
+    
+    func signInToGoogle() {
+        GIDSignIn.sharedInstance().signIn()
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
@@ -235,6 +251,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             passwordTextField.becomeFirstResponder()
         case passwordTextField:
             
+            textField.resignFirstResponder()
             if textField.text != "" {
                 loginButtonTapped(self)
                 boolValue = true
@@ -245,5 +262,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             break
         }
         return boolValue
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenViewIsTapped() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
