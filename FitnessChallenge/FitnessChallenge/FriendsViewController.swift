@@ -120,7 +120,7 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     //=======================================================
-    // MARK: - Helper Functions
+    // MARK: - Alert Controllers
     //=======================================================
     
     func presentAddFriendAlertController() {
@@ -136,6 +136,7 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
             guard let username = usernameTextField?.text else { return }
             FriendController.sendFriendRequest(username: username, completion: { (success) in
                 if success == true {
+                    self.presentFriendRequestSentAlert()
                     print("FriendController: Successfully added friend request")
                 } else {
                     self.presentNoUserWithThatUsernameAlert()
@@ -147,7 +148,16 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         alertController.addAction(addAction)
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentFriendRequestSentAlert() {
         
+        let alertController = UIAlertController(title: "Friend Request Sent", message: nil, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        
+        alertController.addAction(okayAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func presentNoUserWithThatUsernameAlert() {

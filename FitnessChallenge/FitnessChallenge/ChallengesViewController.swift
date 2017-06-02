@@ -56,7 +56,6 @@ class ChallengesViewController: UIViewController {
             
             FriendController.shared.getFriendProfileImages {
                 
-                
             }
         }
         FriendController.shared.fetchFriendRequestsReceived()

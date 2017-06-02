@@ -90,7 +90,7 @@ class ChallengeController {
         // Add currentUser.uid to the challenge's participantsUids locally
         challenge.participantsUids.append(currentUser.uid)
         
-        // Add currentUser.uid to the challenge's participantsUids in firebase
+        // Add usersToInviteUids and currentUser.uid to the challenge's participantsUids in firebase
         let allChallenges = baseRef.child("challenges")
         let challengeRef = allChallenges.child(challenge.uid)
         challengeRef.setValue(challenge.dictionaryRepresentation)
@@ -101,6 +101,8 @@ class ChallengeController {
         
         usersToInviteUids = []
         self.allChallenges.append(challenge)
+        
+        NotificationCenter.default.post(name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
     }
     
     func endChallenge(challenge: Challenge) {

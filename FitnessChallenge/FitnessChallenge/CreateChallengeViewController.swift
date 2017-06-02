@@ -39,7 +39,7 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         
         ChallengeController.sharedController.createChallenge(name: challengeName, isComplete: false, endDate: date, creatorUsername: currentUser.username)
         
-        _ = navigationController?.popViewController(animated: true)
+        _ = navigationController?.popToRootViewController(animated: true)
 
     }
     
@@ -49,6 +49,9 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         challengeNameTextField.resignFirstResponder()
     }
     
+    //=======================================================
+    // MARK: - Alert Controllers
+    //=======================================================
     
     func presentAddFriendAlertController() {
         

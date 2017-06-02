@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profileImageView.layer.borderWidth = 2.0
         profileImageView.layer.borderColor = UIColor(red: 91/255, green: 91/255, blue: 91/255, alpha: 1).cgColor// Lighter Gray
         
-        if AthleteController.currentUser?.profileImageUrl != "" {
+        if AthleteController.currentUser?.profileImage != nil {
             profileImageView.image = AthleteController.currentUser?.profileImage
         } else {
             profileImageView.image = #imageLiteral(resourceName: "Gray user filled")
