@@ -29,13 +29,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        
-        
+         
         setupFacebookLoginButton()
         setupGoogleLogInButton()
         GIDSignIn.sharedInstance().delegate = self
         
-        hideKeyboardWhenViewIsTapped()
+        hideKeyboardWhenViewIsTappedInCreateAccount()
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
@@ -266,13 +265,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 }
 
 extension UIViewController {
-    func hideKeyboardWhenViewIsTapped() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    func hideKeyboardWhenViewIsTappedInCreateAccount() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboardInCreateAccount))
 
         view.addGestureRecognizer(tap)
     }
     
-    func dismissKeyboard() {
+    func dismissKeyboardInCreateAccount() {
         view.endEditing(true)
     }
 }

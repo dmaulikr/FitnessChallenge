@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -21,6 +21,11 @@ class CreateAccountViewController: UIViewController {
         
         createAccountButton.layer.cornerRadius = 5
         
+        self.hideKeyboardWhenViewIsTapped()
+        emailTextField.delegate = self
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        
     }
     
     //=======================================================
@@ -30,9 +35,12 @@ class CreateAccountViewController: UIViewController {
     @IBAction func createAccountButtonTapped(_ sender: Any) {
         
         guard let email = emailTextField.text,
-            let username = usernameTextField.text,
-            let password = passwordTextField.text
-            else { return }
+        email != "",
+        let username = usernameTextField.text,
+        username != "",
+        let password = passwordTextField.text,
+        password != ""
+            else { presentEmptyTextfieldsAlert(); return }
         
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             
@@ -63,23 +71,46 @@ class CreateAccountViewController: UIViewController {
                             self.present(alertController, animated: true, completion: nil)
                         }
                     })
-                    
                 }
-                
             })
-            
         })
     }
     
+    //=======================================================
+    // MARK: - Textfield delegate
+    //=======================================================
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            self.usernameTextField.becomeFirstResponder()
+        } else if textField == usernameTextField {
+            self.passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            createAccountButtonTapped(self)
+            passwordTextField.resignFirstResponder()
+        }
+        return true
+    }
     
     //=======================================================
-    // MARK: - Helper functions
+    // MARK: - Alerts
     //=======================================================
+    
+    func presentEmptyTextfieldsAlert() {
+        
+        let alertController = UIAlertController(title: nil, message: "*All fields are required", preferredStyle: .alert)
+        
+        let okayAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        
+        alertController.addAction(okayAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     func usernameAlreadyTakenAlert(email: String, password: String, uid: String) {
         
         let alertController = UIAlertController(title: "Username already taken", message: nil, preferredStyle: .alert)
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        //        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         var usernameTextfield: UITextField?
         
@@ -118,10 +149,24 @@ class CreateAccountViewController: UIViewController {
         }
         
         
-//        alertController.addAction(cancelAction)
+        //        alertController.addAction(cancelAction)
         alertController.addAction(submitAction)
         
         self.present(alertController, animated: true, completion: nil)
     }
     
 }
+
+extension UIViewController {
+    func hideKeyboardWhenViewIsTapped() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+}
+
+
+
