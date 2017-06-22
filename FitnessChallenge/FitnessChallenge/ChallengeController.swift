@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 
 class ChallengeController {
-
+    
     //=======================================================
     // MARK: - Properties
     //=======================================================
@@ -28,7 +28,7 @@ class ChallengeController {
     var currentChallengePendingInvitees: [Athlete] {
         guard let currentChallenge = currentlySelectedChallenge else { return [] }
         let pendingInviteesUids = currentChallenge.pendingParticipantsUids
-
+        
         var pendingAthletes = [Athlete]()
         for inviteeUid in pendingInviteesUids {
             guard let athlete = AthleteController.allAthletes.filter ({ $0.uid == inviteeUid }).first else { break }
@@ -78,7 +78,7 @@ class ChallengeController {
     let challengeTypeDictionaries: [[String:Any]] = [["label":"Push ups" , "image": #imageLiteral(resourceName: "push ups") as UIImage], ["label":"Plank holds", "image": #imageLiteral(resourceName: "plank holds") as UIImage], ["label": "Air squats", "image":#imageLiteral(resourceName: "air squats") as UIImage]]
     
     //CRUD
-
+    
     /// Create challenge and send it to firebase.
     func createChallenge(name: String, isComplete: Bool, endDate: String, creatorUsername: String) {
         
@@ -111,16 +111,41 @@ class ChallengeController {
     }
     
     func fetchChallenges(completion: @escaping () -> Void) {
-    
+        
         let allChallengesRef = baseRef.child("challenges")
         allChallengesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let challengesDictionary = snapshot.value as? [String : [String: Any]]
             
             guard let challenges = challengesDictionary?.flatMap({Challenge(uid: $0.key, dictionary: $0.value)}) else { completion(); return }
-
+            
             ChallengeController.sharedController.allChallenges = challenges
             completion()
         })
+    }
+    
+    func updateCompletedChallenges(completion: () -> Void) {
+        
+        var count: Int = 0
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+        
+        for challenge in allChallenges {
+            guard let date = dateFormatter.date(from: challenge.endDate) else { completion(); return }
+            
+            if date < Date() {
+                challenge.isComplete = true
+                count += 1
+            }
+        }
+        
+        if count > 0 {
+            // Save all challenges to Firebase
+            let allChallenges = baseRef.child("challenges")
+            allChallenges.setValue(allChallenges)
+        }
+        
+        completion()
     }
     
     func filterUserPendingChallengeInvites(completion: (Bool) -> Void) {
@@ -167,7 +192,7 @@ class ChallengeController {
     func inviteFriendsToChallenge(invitedAthlete: Athlete, completion: () -> Void) {
         
         guard let currentChallenge = self.currentlySelectedChallenge, let index = nonParticipatingFriends.index(of: invitedAthlete) else { completion(); return }
-
+        
         nonParticipatingFriends.remove(at: index)
         
         currentChallenge.pendingParticipantsUids.append(invitedAthlete.uid)

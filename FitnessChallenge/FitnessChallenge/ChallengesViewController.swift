@@ -35,13 +35,15 @@ class ChallengesViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateSegmentedControlFromSwipe(notification:)), name: ChallengeController.sharedController.currentPageIndexNotification, object: nil)
         
         ChallengeController.sharedController.fetchChallenges {
-            ChallengeController.sharedController.filterUserPendingChallengeInvites(completion: { (success) in
-                if success {
-                    NotificationCenter.default.post(name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
-                } else {
-                    print("Completion was false in 'filterUserPendingChallengeInvites()'")
-                }
-            })
+            ChallengeController.sharedController.updateCompletedChallenges {
+                ChallengeController.sharedController.filterUserPendingChallengeInvites(completion: { (success) in
+                    if success {
+                        NotificationCenter.default.post(name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
+                    } else {
+                        print("Completion was false in 'filterUserPendingChallengeInvites()'")
+                    }
+                })
+            }
         }
         
         guard let currentUser = AthleteController.currentUser else { return }
