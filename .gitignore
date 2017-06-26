@@ -25,6 +25,7 @@ xcuserdata/
 *.moved-aside
 *.xcuserstate
 *.DS_Store
+*.xcworkspace
 
 ## Files
 Podfile.lock
