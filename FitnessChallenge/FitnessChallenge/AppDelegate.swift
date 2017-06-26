@@ -20,13 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-//        AthleteController.fetchAllAthletes {
-//            
-//        }
-        
 //        AthleteController.logoutAthlete { (success) in
 //            print(success)
 //        }
+        
         // Facebook login
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         

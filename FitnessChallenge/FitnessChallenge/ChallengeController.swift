@@ -123,29 +123,39 @@ class ChallengeController {
         })
     }
     
-    func updateCompletedChallenges(completion: () -> Void) {
-        
-        var count: Int = 0
+    func updateCompletedChallenges(completion: @escaping () -> Void) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         
-        for challenge in allChallenges {
+        let challengesToCheckForIsComplete = self.allChallenges.filter( { $0.isComplete == false } )
+        
+        var challengesToUpdateOnFirebase: [Challenge] = []
+        for challenge in challengesToCheckForIsComplete {
             guard let date = dateFormatter.date(from: challenge.endDate) else { completion(); return }
             
             if date < Date() {
                 challenge.isComplete = true
-                count += 1
+                challengesToUpdateOnFirebase.append(challenge)
             }
         }
-        
-        if count > 0 {
+        let group = DispatchGroup()
+        if challengesToUpdateOnFirebase.count > 0 {
             // Save all challenges to Firebase
-            let allChallenges = baseRef.child("challenges")
-            allChallenges.setValue(allChallenges)
+            for challengeToSave in challengesToUpdateOnFirebase {
+                guard let indexOfChallenge = self.allChallenges.index(of: challengeToSave) else { completion(); return }
+                self.allChallenges.remove(at: indexOfChallenge)
+                self.allChallenges.insert(challengeToSave, at: indexOfChallenge)
+                group.enter()
+                let challengeRef = baseRef.child("challenges").child(challengeToSave.uid)
+                challengeRef.setValue(challengeToSave.dictionaryRepresentation, withCompletionBlock: { (error, _) in
+                    group.leave()
+                })
+            }
+            group.notify(queue: DispatchQueue.main, execute: { 
+                completion()
+            })
         }
-        
-        completion()
     }
     
     func filterUserPendingChallengeInvites(completion: (Bool) -> Void) {
