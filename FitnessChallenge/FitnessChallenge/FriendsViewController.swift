@@ -134,11 +134,16 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
             guard let username = usernameTextField?.text else { return }
-            FriendController.sendFriendRequest(username: username, completion: { (success) in
-                if success == true {
-                    self.presentFriendRequestSentAlert()
-                    print("FriendController: Successfully added friend request")
-                } else {
+            FriendController.sendFriendRequest(username: username, completion: { (error) in
+
+                guard let error = error else { return }
+                
+                switch error {
+                case .alreadyInvited:
+                    self.presentAlreadyInvitedAlert()
+                case .alreadyAFriend:
+                    self.presentAlreadyAFriendAlert()
+                case .noUserWithThatUsername:
                     self.presentNoUserWithThatUsernameAlert()
                 }
             })
@@ -160,6 +165,16 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func presentAlreadyAFriendAlert() {
+        
+        let alertController = UIAlertController(title: nil, message: "This user is already your friend.", preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+
+        alertController.addAction(okayAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     func presentNoUserWithThatUsernameAlert() {
         
         let alertController = UIAlertController(title: "Oops", message: "No user with that username found.", preferredStyle: .alert)
@@ -172,7 +187,20 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         alertController.addAction(tryAgainAction)
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentAlreadyInvitedAlert() {
         
+        let alertController = UIAlertController(title: nil, message: "You have already sent a friend request to this user.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let tryAnotherAction = UIAlertAction(title: "Try Another", style: .default, handler: { (_) in
+            self.presentAddFriendAlertController()
+        })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(tryAnotherAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //=======================================================

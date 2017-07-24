@@ -64,10 +64,16 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
             guard let username = usernameTextField?.text else { return }
-            FriendController.sendFriendRequest(username: username, completion: { (success) in
-                if success == true {
-                    print("FriendController: Successfully added friend request")
-                } else {
+            FriendController.sendFriendRequest(username: username, completion: { (error) in
+                
+                guard let error = error else { return }
+                
+                switch error {
+                case .alreadyInvited:
+                    self.presentAlreadyInvitedAlert()
+                case .alreadyAFriend:
+                    self.presentAlreadyAFriendAlert()
+                case .noUserWithThatUsername:
                     self.presentNoUserWithThatUsernameAlert()
                 }
             })
@@ -77,7 +83,26 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         alertController.addAction(addAction)
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentFriendRequestSentAlert() {
         
+        let alertController = UIAlertController(title: "Friend Request Sent", message: nil, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        
+        alertController.addAction(okayAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentAlreadyAFriendAlert() {
+        
+        let alertController = UIAlertController(title: nil, message: "This user is already your friend.", preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+        
+        alertController.addAction(okayAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func presentNoUserWithThatUsernameAlert() {
@@ -92,12 +117,21 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         alertController.addAction(tryAgainAction)
         
         self.present(alertController, animated: true, completion: nil)
-        
     }
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        //
-//    }
+    func presentAlreadyInvitedAlert() {
+        
+        let alertController = UIAlertController(title: nil, message: "You have already sent a friend request to this user.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let tryAnotherAction = UIAlertAction(title: "Try Another", style: .default, handler: { (_) in
+            self.presentAddFriendAlertController()
+        })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(tryAnotherAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     //=======================================================
     // MARK: - Collection View Data Source functions
@@ -143,39 +177,4 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
             })
         }
     }
-    
 }
-
-//extension UIViewController {
-//    func hideKeyboardWhenViewIsTapped() {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-//        view.addGestureRecognizer(tap)
-//    }
-//    
-//    func dismissKeyboard() {
-//        view.endEditing(true)
-//    }
-//}
-
-//func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//    if indexPath.row == 0 {
-//        presentAddFriendAlertController()
-//    } else {
-//        // Add user to challenge's array of pending invitees. Locally and on Firebase.
-//        let selectedAthlete = FriendController.shared.currentUserFriendList[indexPath.row - 1]
-//        
-//        if let currentlySelectedChallenge = ChallengeController.sharedController.currentlySelectedChallenge {
-//            if currentlySelectedChallenge.pendingParticipantsUids.contains(selectedAthlete.uid) {
-//                guard let index = currentlySelectedChallenge.pendingParticipantsUids.index(of: selectedAthlete.uid) else { return }
-//                currentlySelectedChallenge.pendingParticipantsUids.remove(at: index)
-//            } else {
-//                self.pendingUsersUids.append(selectedAthlete.uid)
-//            }
-//            
-//        } else {
-//            // Add to array that will be used when saving a new challenge
-//            self.pendingUsersUids.append(selectedAthlete.uid)
-//            self.friendsCollectionView.reloadData()
-//        }
-//    }
-//}
