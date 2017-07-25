@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ICA-jT-9HD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ICA-jT-9HD">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -669,7 +669,7 @@
             </objects>
             <point key="canvasLocation" x="2385" y="-766"/>
         </scene>
-        <!--Item-->
+        <!--Title-->
         <scene sceneID="oet-8l-Ijm">
             <objects>
                 <viewController storyboardIdentifier="FriendsTab" id="Rhs-86-EzA" customClass="FriendsViewController" customModule="FitnessChallenge" customModuleProvider="target" sceneMemberID="viewController">
@@ -812,6 +812,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="qcN-9c-DlL"/>
+                    <navigationItem key="navigationItem" title="Title" id="dFC-tC-Rfn">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="Zo0-yY-LvS"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="friendCollectionView" destination="Jbf-Va-AyE" id="Zbd-xb-OTT"/>
                         <outlet property="requestsTableView" destination="Awx-A2-gUo" id="2zg-de-J5M"/>

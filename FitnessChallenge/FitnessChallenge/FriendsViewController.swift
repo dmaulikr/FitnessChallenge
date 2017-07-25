@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import MessageUI
 
-class FriendsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, ReloadTableViewDelegate {
+class FriendsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, ReloadTableViewDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var requestsTableView: UITableView!
     @IBOutlet weak var friendCollectionView: UICollectionView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,8 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.view.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         requestsTableView.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
         friendCollectionView.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+        
+        self.inviteBarButtonSetup()
     }
     
     //=======================================================
@@ -201,6 +205,51 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         alertController.addAction(tryAnotherAction)
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //=======================================================
+    // MARK: - Text friends invite to app
+    //=======================================================
+    
+    func inviteBarButtonSetup() {
+        let button = UIButton(type: .custom)
+        button.setImage(#imageLiteral(resourceName: "InviteUserIcon"), for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 29, height: 22)
+        button.addTarget(self, action: #selector(textFriendsAnInvite), for: .touchUpInside)
+        let item = UIBarButtonItem(customView: button)
+        
+        self.tabBarController?.navigationItem.setRightBarButton(item, animated: false)
+    }
+    
+    func textFriendsAnInvite() {
+        if MFMessageComposeViewController.canSendText() {
+            
+            let messageController = MFMessageComposeViewController()
+
+            messageController.body = "You should get this app so we can challenge each other! https://goo.gl/pHVeej"
+            messageController.messageComposeDelegate = self
+            
+            self.present(messageController, animated: true, completion: nil)
+        } else {
+            // messaging not available
+            print("messaging not available")
+        }
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        
+        switch result {
+        case .cancelled:
+            print("cancelled")
+            controller.dismiss(animated: true, completion: nil)
+        case .sent:
+            print("Invite friend to use app sms message sent")
+            controller.dismiss(animated: true, completion: nil)
+        case .failed:
+            print("Invite friend to use app sms message failed")
+            controller.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
     //=======================================================
