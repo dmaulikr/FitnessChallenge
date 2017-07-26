@@ -249,7 +249,6 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
             print("Invite friend to use app sms message failed")
             controller.dismiss(animated: true, completion: nil)
         }
-        
     }
     
     //=======================================================
@@ -260,5 +259,4 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.requestsTableView.reloadData()
         self.friendCollectionView.reloadData()
     }
-    
 }
