@@ -107,20 +107,36 @@ class FriendsViewController: UIViewController, UICollectionViewDelegate, UIColle
     // MARK: - Tableview Delegate and Data Source
     //=======================================================
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    var numberOfFriendRequestsPending: Int {
         guard let currentUser = AthleteController.currentUser else { return 0 }
         return currentUser.friendRequestsReceived.count
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if numberOfFriendRequestsPending > 0 {
+            return numberOfFriendRequestsPending
+        } else {
+            return 1
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "requestCell", for: indexPath) as? FriendRequestTableViewCell,
-            let requester = AthleteController.currentUser?.friendRequestsReceived[indexPath.row] else { return UITableViewCell()}
-        
-        cell.updateViews(athleteUsername: requester)
-        
-        cell.delegate = self
-        
-        return cell
+        if numberOfFriendRequestsPending > 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "requestCell", for: indexPath) as? FriendRequestTableViewCell,
+                let requester = AthleteController.currentUser?.friendRequestsReceived[indexPath.row] else { return UITableViewCell()}
+            
+            cell.updateViews(athleteUsername: requester)
+            cell.delegate = self
+            return cell
+        } else {
+            
+            let cell = UITableViewCell()
+            
+            cell.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
+            cell.textLabel?.text = "No friend requests pending."
+            return cell
+        }
     }
     
     //=======================================================
