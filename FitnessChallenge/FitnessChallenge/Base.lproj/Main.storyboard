@@ -1340,35 +1340,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mm5-HB-TbF" customClass="ORKBarGraphChartView">
-                                <rect key="frame" x="20" y="78" width="290" height="371"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="noDataText" value="Add your first set."/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3P-c9-GUD">
                                 <rect key="frame" x="16" y="28" width="288" height="24"/>
                                 <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="24"/>
                                 <color key="textColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZtU-lO-K6G">
+                                <rect key="frame" x="8" y="78" width="304" height="371"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StandingCell" id="Qhx-kt-eZ2" customClass="StandingTableViewCell" customModule="FitnessChallenge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="304" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qhx-kt-eZ2" id="Lx4-z6-zmf">
+                                            <rect key="frame" x="0.0" y="0.0" width="304" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.18431372549019609" green="0.20000000000000001" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="h3P-c9-GUD" firstAttribute="top" secondItem="tfC-1B-gy3" secondAttribute="bottom" constant="8" id="5KQ-cg-8oP"/>
-                            <constraint firstItem="Mm5-HB-TbF" firstAttribute="top" secondItem="tfC-1B-gy3" secondAttribute="bottom" constant="58" id="Ff1-hk-tha"/>
-                            <constraint firstItem="Mm5-HB-TbF" firstAttribute="leading" secondItem="GBl-7j-avB" secondAttribute="leading" constant="20" id="ISp-Zi-rmi"/>
+                            <constraint firstItem="ZtU-lO-K6G" firstAttribute="top" secondItem="tfC-1B-gy3" secondAttribute="bottom" constant="58" id="HZw-qd-PyE"/>
+                            <constraint firstAttribute="trailing" secondItem="ZtU-lO-K6G" secondAttribute="trailing" constant="8" id="Knj-hA-UTg"/>
                             <constraint firstItem="h3P-c9-GUD" firstAttribute="leading" secondItem="GBl-7j-avB" secondAttribute="leadingMargin" id="LxJ-UR-qcK"/>
-                            <constraint firstAttribute="trailing" secondItem="Mm5-HB-TbF" secondAttribute="trailing" constant="10" id="Moj-z7-OkA"/>
+                            <constraint firstItem="huS-IN-Xvh" firstAttribute="top" secondItem="ZtU-lO-K6G" secondAttribute="bottom" constant="70" id="Met-EV-egh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="h3P-c9-GUD" secondAttribute="trailing" id="lAA-zP-2Ii"/>
-                            <constraint firstItem="huS-IN-Xvh" firstAttribute="top" secondItem="Mm5-HB-TbF" secondAttribute="bottom" constant="70" id="xP5-lx-kl2"/>
+                            <constraint firstItem="ZtU-lO-K6G" firstAttribute="leading" secondItem="GBl-7j-avB" secondAttribute="leading" constant="8" id="w5Y-1y-ky3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="o8T-Zj-a7u"/>
                     <connections>
                         <outlet property="challengeNameLabel" destination="h3P-c9-GUD" id="2gY-MV-vfg"/>
-                        <outlet property="graphView" destination="Mm5-HB-TbF" id="Sr6-VG-Q1D"/>
+                        <outlet property="tableView" destination="ZtU-lO-K6G" id="L9e-kk-R3L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YOa-dv-mPo" userLabel="First Responder" sceneMemberID="firstResponder"/>

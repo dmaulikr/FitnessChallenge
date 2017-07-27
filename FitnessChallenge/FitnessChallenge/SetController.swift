@@ -16,36 +16,13 @@ class SetController {
     //=======================================================
     
     // All sets in currently selected challenge
-    static var allSets: [Set] = []
-    static var allSetsAsORKValueStacks: [[ORKValueStack]] = []
-    static var participantsStacksForTotals: [ORKValueStack] = []
-    static var usernamesForChart: [String] = []
-    static var currentUserSets: [ORKValueStack] = []
-//    static var currentUserSets: [ORKValueStack] {
-//        
-//        var tempArray: [ORKValueStack] = []
-//        let allUserSets = allSets.filter( { $0.athleteRef == AthleteController.currentUserUID } )
-//        let setsAsInts = allUserSets.flatMap({ $0.reps })
-//        let setsAsNSNumbers = setsAsInts.flatMap({ $0 as NSNumber })
-//        let stack = ORKValueStack(stackedValues: setsAsNSNumbers)
-//        tempArray.append(stack)
-//        return tempArray
-//    }
+    static var allSets: [Set] = [] // Do I need this? // FIXME: - Check before committing
+    static var participantsTotalsDictionaries: [[Athlete:Int]] = []
+    static var athletesForChart: [Athlete] = [] // NEW
     
     //=======================================================
     // MARK: - Functions
     //=======================================================
-    
-    static func createCurrentUserSetsAsValueStack(from allSets: [Set]) {
-        
-        var tempArray: [ORKValueStack] = []
-        let allUserSets = allSets.filter( { $0.athleteRef == AthleteController.currentUser?.uid} )
-        let setsAsInts = allUserSets.flatMap({ $0.reps })
-        let setsAsNSNumbers = setsAsInts.flatMap({ $0 as NSNumber })
-        let stack = ORKValueStack(stackedValues: setsAsNSNumbers)
-        tempArray.append(stack)
-        self.currentUserSets = tempArray
-    }
     
     static func createSetsAsValueStack(setsArray: [Set]) -> [ORKValueStack] {
         
@@ -74,8 +51,7 @@ class SetController {
     
     static func fetchAllSets(by challengeRef: String, completion: @escaping () -> Void) {
         
-        self.allSetsAsORKValueStacks = []
-        self.usernamesForChart = []
+        self.participantsTotalsDictionaries = []
         
         guard let currentChallenge = ChallengeController.sharedController.currentlySelectedChallenge, let currentUser = AthleteController.currentUser else { completion(); return }
         
@@ -83,16 +59,18 @@ class SetController {
         allSetsRef.observeSingleEvent(of: .value, with: { (snapshot) in
             let setsDictionary = snapshot.value as? [String : [String: Any]]
             
-            guard let sets = setsDictionary?.flatMap({ Set(uid: $0.key, dictionary: $0.value) }) else { completion()
+            guard let sets = setsDictionary?.flatMap({ Set(uid: $0.key, dictionary: $0.value) }) else { completion();
                 return
             }
             
             // Get current user's sets and append them first.
-            usernamesForChart.append(currentUser.username)
             let currentUserArrayOfSets: [Set] = sets.filter({$0.athleteRef == currentUser.uid })
-            let sortedByTimestamp = currentUserArrayOfSets.sorted(by: {$0.0.timestamp < $0.1.timestamp } )
-            let array = createSetsAsValueStack(setsArray: sortedByTimestamp)
-            allSetsAsORKValueStacks.append(array)
+            var athleteReps: Int = 0
+            for set in currentUserArrayOfSets {
+                athleteReps += set.reps
+            }
+            let currentAthleteDictionary: [Athlete:Int] = [currentUser:athleteReps]
+            participantsTotalsDictionaries.append(currentAthleteDictionary)
             
             // Get all other particpants sets into arrays and append each.
             let participantsArrayOfSets: [Set] = sets.filter({ $0.athleteRef != currentUser.uid })
@@ -103,61 +81,17 @@ class SetController {
             
             for participant in participantsWithoutCurrentUser {
                 
-                usernamesForChart.append(participant.username)
                 let participantSets = participantsArrayOfSets.filter({ $0.athleteRef == participant.uid })
-                let sortedParticipantsSets = participantSets.sorted(by: { $0.0.timestamp < $0.1.timestamp } )
-                let array = createSetsAsValueStack(setsArray: sortedParticipantsSets)
-                allSetsAsORKValueStacks.append(array)
+                var athleteTotalReps: Int = 0
+                for set in participantSets {
+                    let reps = set.reps
+                    athleteTotalReps += reps
+                }
+                participantsTotalsDictionaries.append([participant:athleteReps])
+                athleteReps = 0
             }
-            
-            let test = allSetsAsORKValueStacks.joined()
-            allSetsAsORKValueStacks = []
-            let joined = Array(test)
-            allSetsAsORKValueStacks.append(joined)
             
             completion()
         })
     }
-    
-    static func mergeStackArraysIntoOneForTotals() {
-        
-        
-    }
-    
-//    static func fetchAllSets(by challengeRef: String, completion: @escaping () -> Void) {
-//        
-//        self.allSetsAsORKValueStacks = []
-//        
-//        guard let currentChallenge = ChallengeController.sharedController.currentlySelectedChallenge, let currentUser = AthleteController.currentUser else { completion(); return }
-//        
-//        let allSetsRef = ChallengeController.sharedController.baseRef.child("sets").queryOrdered(byChild: "challengeRef").queryEqual(toValue: currentChallenge.uid)
-//        allSetsRef.observe(.value, with: { (snapshot) in
-//            let setsDictionary = snapshot.value as? [String : [String: Any]]
-//            
-//            guard let sets = setsDictionary?.flatMap({ Set(uid: $0.key, dictionary: $0.value) }) else { completion()
-//                return
-//            }
-//            
-//            // Get current user's sets and append them first.
-//            let currentUserArrayOfSets: [Set] = sets.filter({$0.athleteRef == currentUser.uid })
-//            let array = createSetsAsValueStack(setsArray: currentUserArrayOfSets)
-//            allSetsAsORKValueStacks.append(array)
-//            
-//            // Get all other particpants sets into arrays and append each.
-//            let participantsArrayOfSets: [Set] = sets.filter({ $0.athleteRef != currentUser.uid })
-//            
-//            var participantsUidsWithoutCurrentUser: [String] = currentChallenge.participantsUids
-//            guard let index = currentChallenge.participantsUids.index(of: currentUser.uid) else { completion(); return }
-//            participantsUidsWithoutCurrentUser.remove(at: index)
-//            
-//            for participant in participantsUidsWithoutCurrentUser {
-//                
-//                let participantSets = participantsArrayOfSets.filter({ $0.athleteRef == participant })
-//                let array = createSetsAsValueStack(setsArray: participantSets)
-//                allSetsAsORKValueStacks.append(array)
-//            }
-//
-//            completion()
-//        })
-//    }
 }
