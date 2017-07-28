@@ -132,8 +132,9 @@ class ChallengeController {
         
         var challengesToUpdateOnFirebase: [Challenge] = []
         for challenge in challengesToCheckForIsComplete {
-            guard let date = dateFormatter.date(from: challenge.endDate) else { completion(); return }
-            
+            guard let date = dateFormatter.date(from: challenge.endDate)
+                else { completion(); continue }
+
             if date < Date() {
                 challenge.isComplete = true
                 challengesToUpdateOnFirebase.append(challenge)
@@ -155,6 +156,8 @@ class ChallengeController {
             group.notify(queue: DispatchQueue.main, execute: { 
                 completion()
             })
+        } else {
+            completion()
         }
     }
     

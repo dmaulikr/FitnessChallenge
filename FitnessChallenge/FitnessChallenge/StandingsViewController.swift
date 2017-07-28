@@ -14,8 +14,6 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var challengeNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var currentUserSets: [ORKValueStack] = []
-    
     var challenge: Challenge?
     
     let chartColors = [
@@ -62,6 +60,7 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
         
         let athleteDictionary = SetController.participantsTotalsDictionaries[indexPath.row]
         
+        cell.indexPath = indexPath
         cell.athleteDictionary = athleteDictionary
         
         return cell
