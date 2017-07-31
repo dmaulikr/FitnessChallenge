@@ -16,37 +16,37 @@ class SetController {
     //=======================================================
     
     // All sets in currently selected challenge
-    static var allSets: [Set] = [] // Do I need this? // FIXME: - Check before committing
+    static var allSets: [Set] = []
+    static var athletesForChart: [Athlete] = []
+    static var highestRepCountInCurrentChallenge: Int = 0
     static var participantsTotalsDictionaries: [[Athlete:Int]] = []
-    static var athletesForChart: [Athlete] = [] // NEW
+    static var participantsTotalsDictionariesOrdered: [[Athlete:Int]] {
+        
+        let orderedByTotalReps = participantsTotalsDictionaries.sorted(by: {$0.values.first! > $1.values.first!})
+        
+        guard let firstInOrder = orderedByTotalReps.first, let repCount = firstInOrder.values.first
+            else { return [] }
+        highestRepCountInCurrentChallenge = repCount
+        
+        return orderedByTotalReps
+    }
     
     //=======================================================
     // MARK: - Functions
     //=======================================================
-    
-    static func createSetsAsValueStack(setsArray: [Set]) -> [ORKValueStack] {
-        
-        var tempArray: [ORKValueStack] = []
-        let setsAsInts = setsArray.flatMap({ $0.reps })
-        let setsAsNSNumbers = setsAsInts.flatMap({ $0 as NSNumber })
-        let stack = ORKValueStack(stackedValues: setsAsNSNumbers)
-        tempArray.append(stack)
-        return tempArray
-    }
     
     static func addSet(selectedReps: Int) {
         
         guard let user = AthleteController.currentUser,
             let challenge = ChallengeController.sharedController.currentlySelectedChallenge else { return }
         
-        let set = Set(movementType: challenge.movementType, reps: selectedReps, athleteRef: user.uid, challengeRef: challenge.uid)
+        let set = Set(movementType: challenge.movementType.rawValue, reps: selectedReps, athleteRef: user.uid, challengeRef: challenge.uid)
         
         let allSets = ChallengeController.sharedController.baseRef.child("sets")
         let setRef = allSets.childByAutoId()
         set.uid = setRef.key
         
         setRef.setValue(set.dictionaryRepresentation)
-        
     }
     
     static func fetchAllSets(by challengeRef: String, completion: @escaping () -> Void) {
@@ -87,10 +87,9 @@ class SetController {
                     let reps = set.reps
                     athleteTotalReps += reps
                 }
-                participantsTotalsDictionaries.append([participant:athleteReps])
+                participantsTotalsDictionaries.append([participant:athleteTotalReps])
                 athleteReps = 0
             }
-            
             completion()
         })
     }

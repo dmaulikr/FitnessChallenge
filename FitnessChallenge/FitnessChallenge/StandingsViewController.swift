@@ -30,6 +30,8 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
         ChallengeController.sharedController.filterParticipantsInCurrentChallenge {}
         
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        self.tableView.backgroundColor = UIColor.clear
+        self.tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,14 +54,15 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
     //=======================================================
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SetController.participantsTotalsDictionaries.count
+        return SetController.participantsTotalsDictionariesOrdered.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StandingCell", for: indexPath) as? StandingTableViewCell else { return UITableViewCell() }
         
-        let athleteDictionary = SetController.participantsTotalsDictionaries[indexPath.row]
+        let athleteDictionary = SetController.participantsTotalsDictionariesOrdered[indexPath.row]
         
+        cell.backgroundColor = UIColor.clear
         cell.indexPath = indexPath
         cell.athleteDictionary = athleteDictionary
         

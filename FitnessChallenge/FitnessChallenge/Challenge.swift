@@ -25,9 +25,9 @@ class Challenge: Equatable {
     var pendingParticipantsUids: [String] = []
     var uid: String
     var creatorUsername: String
-    var movementType: String
+    var movementType: ChallengeType
     
-    init(name: String, isComplete: Bool, endDate: String, pendingParticipantsUids: [String] = [], uid: String = UUID().uuidString, creatorUsername: String, movementType: String = "Push ups") {
+    init(name: String, isComplete: Bool, endDate: String, pendingParticipantsUids: [String] = [], uid: String = UUID().uuidString, creatorUsername: String, movementType: ChallengeType = .pushups) {
     
         self.name = name
         self.isComplete = isComplete
@@ -55,7 +55,17 @@ class Challenge: Equatable {
         self.endDate = endDate
         self.uid = uid
         self.creatorUsername = creatorUsername
-        self.movementType = movementType
+        
+        if movementType == "Push ups" {
+            self.movementType = .pushups
+        } else if movementType == "Plank holds" {
+            self.movementType = .plankHolds
+        } else if movementType == "Air squats" {
+            self.movementType = .airSquats
+        } else {
+            return nil
+        }
+        
         self.participantsUids = participantsUids ?? []
         self.pendingParticipantsUids = pendingParticipantsUids ?? []
         
@@ -63,10 +73,16 @@ class Challenge: Equatable {
     
     var dictionaryRepresentation: [String:Any] {
         
-        return [nameKey: name, isCompleteKey: isComplete, endDateKey: endDate, participantsUidsKey: participantsUids, creatorUsernameKey: creatorUsername, movementTypeKey: movementType, pendingParticipantsUidsKey: pendingParticipantsUids]
+        return [nameKey: name, isCompleteKey: isComplete, endDateKey: endDate, participantsUidsKey: participantsUids, creatorUsernameKey: creatorUsername, movementTypeKey: movementType.rawValue, pendingParticipantsUidsKey: pendingParticipantsUids]
     }
 }
 
 func == (lhs: Challenge, rhs: Challenge) -> Bool {
     return lhs.uid == rhs.uid
+}
+
+enum ChallengeType: String {
+    case pushups = "Push ups"
+    case plankHolds = "Plank holds"
+    case airSquats = "Air squats"
 }

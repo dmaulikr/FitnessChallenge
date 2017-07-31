@@ -34,13 +34,6 @@ class ProfileTabViewController: UITabBarController, ProfileTabViewDelegate {
 
     func tabViewTapped(index: Int) {
         
-//        if index == 1 {
-//            
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            guard let friendsVC = storyboard.instantiateViewController(withIdentifier: "FriendsTab") as? FriendsViewController else { return }
-//            self.present(friendsVC, animated: true, completion: nil)
-//        }
-        
         selectedIndex = index
     }
 
