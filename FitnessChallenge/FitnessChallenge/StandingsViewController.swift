@@ -15,19 +15,22 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     var challenge: Challenge?
-    
-    let chartColors = [
-        UIColor(red: 225/255, green: 90/255, blue: 43/255, alpha: 1)
-    ]
+    var viewIsAlreadyLoaded: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.dataSource = self
         
-        self.challengeNameLabel.text = ChallengeController.sharedController.currentlySelectedChallenge?.name
+        updateChallengeLabel()
         
         ChallengeController.sharedController.filterParticipantsInCurrentChallenge {}
+        
+        guard let challenge = challenge else { return }
+        
+        SetController.fetchAllSets(by: challenge.uid) {
+            self.tableView.reloadData()
+        }
         
         self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
         self.tableView.backgroundColor = UIColor.clear
@@ -35,11 +38,16 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        guard let challenge = challenge else { return }
-        
-        SetController.fetchAllSets(by: challenge.uid) {
-            self.tableView.reloadData()
+        super.viewWillAppear(animated)
+        if viewIsAlreadyLoaded {
+            
+            guard let challenge = challenge else { return }
+            
+            SetController.fetchAllSets(by: challenge.uid) {
+                self.tableView.reloadData()
+            }
+        } else {
+            viewIsAlreadyLoaded = true
         }
     }
     
@@ -47,7 +55,7 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
     // MARK: - Actions
     //=======================================================
     
-
+    
     
     //=======================================================
     // MARK: - Tableview datasource functions
@@ -68,6 +76,13 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
         
         return cell
     }
-
+    
+    func updateChallengeLabel() {
+        
+        guard let challengeName = ChallengeController.sharedController.currentlySelectedChallenge?.name
+            else { return }
+        self.challengeNameLabel.text = "\(challengeName) Leaderboard"
+    }
+    
 }
 

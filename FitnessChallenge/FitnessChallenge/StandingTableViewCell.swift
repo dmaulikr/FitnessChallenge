@@ -17,7 +17,6 @@ class StandingTableViewCell: UITableViewCell {
     var circleView = UIView()
     var profilePicImageView = UIImageView()
     var labelTest = UILabel()
-    //    var progress
     var percentageToFillProgessBar: CGFloat = 0.0
     var unitMeasurement: String {
 
@@ -41,7 +40,10 @@ class StandingTableViewCell: UITableViewCell {
     }
     
     func updateViews() {
-        guard let athleteDictionary = athleteDictionary, let athlete = athleteDictionary.keys.first, let athleteReps = athleteDictionary.values.first  else { print("athleteDictionary was nil in StandingTableViewCell."); return }
+        guard let athleteDictionary = athleteDictionary,
+            let athlete = athleteDictionary.keys.first,
+            let athleteReps = athleteDictionary.values.first
+            else { print("athleteDictionary was nil in StandingTableViewCell."); return }
         
         if athleteReps == SetController.highestRepCountInCurrentChallenge {
             percentageToFillProgessBar = 1.0
@@ -62,20 +64,20 @@ class StandingTableViewCell: UITableViewCell {
         
         setupViews(athlete: athlete)
         constrainViews()
-        
-        
     }
     
     func setupViews(athlete: Athlete) {
         
         // Progress View
         guard let indexPath = indexPath else { return }
-        if indexPath.row > 9 {
+        
+        if indexPath.row < 10 {
+            progressView.backgroundColor = Colors.standingsColorsArray[indexPath.row]
+            circleView.backgroundColor = Colors.standingsColorsArray[indexPath.row]
+        } else {
             progressView.backgroundColor = Colors.standingsColorsArray[indexPath.row % 10]
             circleView.backgroundColor = Colors.standingsColorsArray[indexPath.row % 10]
         }
-        progressView.backgroundColor = Colors.standingsColorsArray[indexPath.row]
-        circleView.backgroundColor = Colors.standingsColorsArray[indexPath.row]
         
         circleView.clipsToBounds = true
         circleView.layer.cornerRadius = self.frame.height * 0.9 / 2
@@ -117,8 +119,8 @@ class StandingTableViewCell: UITableViewCell {
         
         let centerXImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .centerX, relatedBy: .equal, toItem: circleView, attribute: .centerX, multiplier: 1, constant: 0)
         let centerYImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .centerY, relatedBy: .equal, toItem: circleView, attribute: .centerY, multiplier: 1, constant: 0)
-        let heightImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .height, relatedBy: .equal, toItem: circleView, attribute: .height, multiplier: 0.8, constant: 0)
-        let widthImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .width, relatedBy: .equal, toItem: circleView, attribute: .width, multiplier: 0.8, constant: 0)
+        let heightImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .height, relatedBy: .equal, toItem: circleView, attribute: .height, multiplier: 0.85, constant: 0)
+        let widthImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .width, relatedBy: .equal, toItem: circleView, attribute: .width, multiplier: 0.85, constant: 0)
         
         addConstraints([centerXImageView, centerYImageView, heightImageView, widthImageView])
         
