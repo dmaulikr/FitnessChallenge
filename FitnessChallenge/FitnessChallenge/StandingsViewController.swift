@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ResearchKit
 
 class StandingsViewController: UIViewController, UITableViewDataSource {
     

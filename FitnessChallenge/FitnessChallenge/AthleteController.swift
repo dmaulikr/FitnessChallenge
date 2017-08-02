@@ -8,7 +8,6 @@
 
 import Foundation
 import Firebase
-import ResearchKit
 
 class AthleteController {
     

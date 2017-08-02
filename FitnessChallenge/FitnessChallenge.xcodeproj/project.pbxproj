@@ -876,7 +876,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ResearchKit\"",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks\"",
 					"\"${PODS_ROOT}/FirebaseAuth/Frameworks/frameworks\"",
 					"\"${PODS_ROOT}/FirebaseCore/Frameworks/frameworks\"",
