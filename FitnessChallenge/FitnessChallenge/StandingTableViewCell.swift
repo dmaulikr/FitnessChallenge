@@ -63,7 +63,7 @@ class StandingTableViewCell: UITableViewCell {
         repsLabel.text = repsString
         
         setupViews(athlete: athlete)
-        constrainViews()
+        constrainViews(athleteReps: athleteReps)
     }
     
     func setupViews(athlete: Athlete) {
@@ -92,7 +92,7 @@ class StandingTableViewCell: UITableViewCell {
         self.addSubview(profilePicImageView)
     }
     
-    func constrainViews() {
+    func constrainViews(athleteReps: Int) {
         
         // Progress View
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -100,14 +100,14 @@ class StandingTableViewCell: UITableViewCell {
         let leading = NSLayoutConstraint(item: progressView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leading, multiplier: 1, constant: 0)
         let centerY = NSLayoutConstraint(item: progressView, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1, constant: 0)
         let height = NSLayoutConstraint(item: progressView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.9, constant: 0)
-        let width = NSLayoutConstraint(item: progressView, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: (0.65 * percentageToFillProgessBar), constant: 0)
+        let width =  athleteReps > 0 ? NSLayoutConstraint(item: progressView, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: (0.65 * percentageToFillProgessBar), constant: 0) : NSLayoutConstraint(item: progressView, attribute: .trailing, relatedBy: .equal, toItem: circleView, attribute: .centerX, multiplier: 1, constant: 0)
         
         addConstraints([leading, centerY, height, width])
         
         // Circle View
         circleView.translatesAutoresizingMaskIntoConstraints = false
         
-        let centerXCircleView = NSLayoutConstraint(item: circleView, attribute: .centerX, relatedBy: .equal, toItem: progressView, attribute: .trailing, multiplier: 1, constant: 0)
+        let centerXCircleView = athleteReps > 0 ? NSLayoutConstraint(item: circleView, attribute: .centerX, relatedBy: .equal, toItem: progressView, attribute: .trailing, multiplier: 1, constant: 0) : NSLayoutConstraint(item: circleView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
         let centerYCircleView = NSLayoutConstraint(item: circleView, attribute: .centerY, relatedBy: .equal, toItem: progressView, attribute: .centerY, multiplier: 1, constant: 0)
         let heightCircleView = NSLayoutConstraint(item: circleView, attribute: .height, relatedBy: .equal, toItem: self.contentView, attribute: .height, multiplier: 0.9, constant: 0)
         let widthCircleView = NSLayoutConstraint(item: circleView, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .height, multiplier: 0.9, constant: 0)
@@ -119,8 +119,8 @@ class StandingTableViewCell: UITableViewCell {
         
         let centerXImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .centerX, relatedBy: .equal, toItem: circleView, attribute: .centerX, multiplier: 1, constant: 0)
         let centerYImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .centerY, relatedBy: .equal, toItem: circleView, attribute: .centerY, multiplier: 1, constant: 0)
-        let heightImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .height, relatedBy: .equal, toItem: circleView, attribute: .height, multiplier: 0.85, constant: 0)
-        let widthImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .width, relatedBy: .equal, toItem: circleView, attribute: .width, multiplier: 0.85, constant: 0)
+        let heightImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .height, relatedBy: .equal, toItem: circleView, attribute: .height, multiplier: 0.9, constant: 0)
+        let widthImageView = NSLayoutConstraint(item: profilePicImageView, attribute: .width, relatedBy: .equal, toItem: circleView, attribute: .width, multiplier: 0.9, constant: 0)
         
         addConstraints([centerXImageView, centerYImageView, heightImageView, widthImageView])
         
