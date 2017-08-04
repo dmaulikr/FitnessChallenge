@@ -36,20 +36,6 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
         self.tableView.separatorStyle = .none
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if viewIsAlreadyLoaded {
-            
-            guard let challenge = challenge else { return }
-            
-            SetController.fetchAllSets(by: challenge.uid) {
-                self.tableView.reloadData()
-            }
-        } else {
-            viewIsAlreadyLoaded = true
-        }
-    }
-    
     //=======================================================
     // MARK: - Actions
     //=======================================================
@@ -61,6 +47,7 @@ class StandingsViewController: UIViewController, UITableViewDataSource {
     //=======================================================
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return SetController.participantsTotalsDictionariesOrdered.count
     }
     

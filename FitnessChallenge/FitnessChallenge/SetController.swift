@@ -50,12 +50,13 @@ class SetController {
     
     static func fetchAllSets(by challengeRef: String, completion: @escaping () -> Void) {
         
-        self.participantsTotalsDictionaries = []
         
         guard let currentChallenge = ChallengeController.sharedController.currentlySelectedChallenge, let currentUser = AthleteController.currentUser else { completion(); return }
         
         let allSetsRef = ChallengeController.sharedController.baseRef.child("sets").queryOrdered(byChild: "challengeRef").queryEqual(toValue: currentChallenge.uid)
-        allSetsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        allSetsRef.observe(.value, with: { (snapshot) in
+            
+            self.participantsTotalsDictionaries = []
             let setsDictionary = snapshot.value as? [String : [String: Any]]
             
             guard let sets = setsDictionary?.flatMap({ Set(uid: $0.key, dictionary: $0.value) }) else { completion();
