@@ -31,7 +31,7 @@ class CurrentChallengesViewController: UIViewController, UITableViewDataSource, 
 
         setupTableView()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(challengesWereFetched), name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(challengesWereFetched), name: ChallengeController.sharedController.challengesUpdatedNotification, object: nil)
     }
     
     func setupTableView() {

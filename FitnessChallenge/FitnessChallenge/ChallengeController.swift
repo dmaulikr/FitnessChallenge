@@ -102,7 +102,7 @@ class ChallengeController {
         usersToInviteUids = []
         self.allChallenges.append(challenge)
         
-        NotificationCenter.default.post(name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
+        NotificationCenter.default.post(name: ChallengeController.sharedController.challengesUpdatedNotification, object: nil)
     }
     
     func endChallenge(challenge: Challenge) {
@@ -269,6 +269,6 @@ class ChallengeController {
     
     var currentPageIndexNotification = Notification.Name("currentPageIndex")
     var currentSegmentNotification = Notification.Name("currentSegment")
-    var challengesFetchedNotification = Notification.Name("challengesFetched")
+    var challengesUpdatedNotification = Notification.Name("challengesUpdated")
     
 }
