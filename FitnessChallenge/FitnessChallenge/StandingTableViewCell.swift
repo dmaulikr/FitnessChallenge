@@ -83,7 +83,7 @@ class StandingTableViewCell: UITableViewCell {
         circleView.layer.cornerRadius = self.frame.height * 0.9 / 2
         
         profilePicImageView.clipsToBounds = true
-        let cornerRadius = self.frame.height * 0.9 * 0.8 / 2
+        let cornerRadius = self.frame.height * 0.9 * 0.9 / 2
         profilePicImageView.layer.cornerRadius = cornerRadius
         profilePicImageView.image = athlete.profileImage ?? #imageLiteral(resourceName: "Gray user filled")
         

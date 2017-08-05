@@ -29,6 +29,7 @@
 		936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */; };
 		937C79D91E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C79D81E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift */; };
 		938D14521EA08B8F00DC883A /* ParticipantsCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938D14511EA08B8F00DC883A /* ParticipantsCollectionReusableView.swift */; };
+		93A80AE51F336A6F006E88E6 /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A80AE41F336A6F006E88E6 /* AppearanceController.swift */; };
 		93BEA0121E3270C600D129FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93BEA0111E3270C600D129FD /* Assets.xcassets */; };
 		93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */; };
 		93DC6D821DFA2C760004ABE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6D801DFA2C760004ABE6 /* Main.storyboard */; };
@@ -114,6 +115,7 @@
 		936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		937C79D81E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeTypeTableViewCell.swift; sourceTree = "<group>"; };
 		938D14511EA08B8F00DC883A /* ParticipantsCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCollectionReusableView.swift; sourceTree = "<group>"; };
+		93A80AE41F336A6F006E88E6 /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		93BEA0111E3270C600D129FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93DC6D791DFA2C760004ABE6 /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				9319C4041F2B8E7F00DACCF4 /* Colors.swift */,
+				93A80AE41F336A6F006E88E6 /* AppearanceController.swift */,
 				93BEA0111E3270C600D129FD /* Assets.xcassets */,
 				93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */,
 				93DC6DC71DFB2D930004ABE6 /* GoogleService-Info.plist */,
@@ -668,6 +671,7 @@
 				936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */,
 				935631911E4B7B1900D08C66 /* PickChallengeTypeViewController.swift in Sources */,
 				93135FFE1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift in Sources */,
+				93A80AE51F336A6F006E88E6 /* AppearanceController.swift in Sources */,
 				93EE95D51E00E39300A4E02A /* AddSetViewController.swift in Sources */,
 				93381A7F1E53466C00E2162F /* ChallengeInvitesViewController.swift in Sources */,
 				93DC6DBC1DFA37580004ABE6 /* CreateAccountViewController.swift in Sources */,

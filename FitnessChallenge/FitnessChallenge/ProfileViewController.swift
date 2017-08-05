@@ -14,8 +14,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
 
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         

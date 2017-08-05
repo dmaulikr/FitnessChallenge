@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
-        UINavigationBar.appearance().tintColor = UIColor.black
+        Theme.configureAppearance()
         
         return true
     }
@@ -80,15 +80,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-    
 }
-
-/* Colors
- 
- UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
- UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
- UIColor(red: 35/255, green: 40/255, blue: 40/255, alpha: 1)// Darkest Gray
- UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
- 
- */

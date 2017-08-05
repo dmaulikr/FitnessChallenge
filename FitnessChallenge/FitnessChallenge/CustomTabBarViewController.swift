@@ -24,7 +24,7 @@ class CustomTabBarViewController: UITabBarController, CustomTabBarViewDelegate {
         tabBar.isHidden = true
         
         let frame = CGRect(x: 0,
-                           y: view.frame.height - 60,
+                           y: view.frame.height - 123,
                            width: view.frame.width,
                            height: 60)
         
