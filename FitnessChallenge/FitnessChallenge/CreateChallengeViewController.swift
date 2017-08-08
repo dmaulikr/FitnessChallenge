@@ -31,8 +31,12 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
         
         guard let challengeName = challengeNameTextField.text,
-            let currentUser = AthleteController.currentUser else { return }
+            let currentUser = AthleteController.currentUser
+            else { return }
         
+        if challengeName == "" {
+            presentMissingChallengeNameAlert()
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         let date = dateFormatter.string(from: endDatePicker.date)
@@ -129,6 +133,15 @@ class CreateChallengeViewController: UIViewController, UICollectionViewDelegate,
         
         alertController.addAction(cancelAction)
         alertController.addAction(tryAnotherAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentMissingChallengeNameAlert() {
+        let alertController = UIAlertController(title: "Give your challenge a name.", message: nil, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+        
+        alertController.addAction(okayAction)
         
         self.present(alertController, animated: true, completion: nil)
     }

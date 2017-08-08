@@ -207,7 +207,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="6AO-Bh-jch">
-                                <rect key="frame" x="8" y="80" width="304" height="164"/>
+                                <rect key="frame" x="8" y="80" width="304" height="101"/>
                                 <date key="date" timeIntervalSinceReferenceDate="506536031.17967403">
                                     <!--2017-01-19 16:27:11 +0000-->
                                 </date>
@@ -216,7 +216,7 @@
                                 </connections>
                             </datePicker>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2kP-QJ-aYA">
-                                <rect key="frame" x="16" y="252" width="288" height="252"/>
+                                <rect key="frame" x="16" y="189" width="288" height="315"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fG8-5h-49C">
                                     <size key="itemSize" width="82" height="95"/>
@@ -272,7 +272,7 @@
                         <constraints>
                             <constraint firstItem="lqU-42-lLN" firstAttribute="top" secondItem="2kP-QJ-aYA" secondAttribute="bottom" id="2Ni-mh-23J"/>
                             <constraint firstItem="hUR-cd-wU1" firstAttribute="leading" secondItem="mjH-Oz-kOf" secondAttribute="leading" id="94M-rT-r8D"/>
-                            <constraint firstItem="2kP-QJ-aYA" firstAttribute="top" secondItem="mjH-Oz-kOf" secondAttribute="centerY" id="9r0-oo-eoK"/>
+                            <constraint firstItem="2kP-QJ-aYA" firstAttribute="top" secondItem="mjH-Oz-kOf" secondAttribute="centerY" constant="-63" id="9r0-oo-eoK"/>
                             <constraint firstItem="KMo-JM-yRs" firstAttribute="top" secondItem="PIm-If-5An" secondAttribute="bottom" constant="8" id="EM2-t5-vTy"/>
                             <constraint firstItem="hUR-cd-wU1" firstAttribute="top" secondItem="KMo-JM-yRs" secondAttribute="bottom" constant="8" id="Hox-SR-dIl"/>
                             <constraint firstItem="2kP-QJ-aYA" firstAttribute="leading" secondItem="mjH-Oz-kOf" secondAttribute="leadingMargin" id="MRK-wX-sLN"/>
