@@ -23,7 +23,6 @@ class ProfileTabView: UIView {
         
         setupTabViewItem()
         setupConstraints()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,7 +52,6 @@ class ProfileTabView: UIView {
     }
     
     func setupConstraints() {
-        
         
         button0.translatesAutoresizingMaskIntoConstraints = false
         imageView0.translatesAutoresizingMaskIntoConstraints = false
@@ -117,9 +115,6 @@ class ProfileTabView: UIView {
         selectIndex(index: sender.tag)
         delegate?.tabViewTapped(index: sender.tag)
     }
-
-
-
 }
 
 protocol ProfileTabViewDelegate: class {
