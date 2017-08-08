@@ -164,6 +164,13 @@ class CustomTabBarView: UIView {
     
     func didTapButton(sender: UIButton) {
         
+        guard let currentChallenge = ChallengeController.sharedController.currentlySelectedChallenge else { return }
+        
+        if currentChallenge.isComplete && sender.tag == 2 {
+            delegate?.tryingToEditClosedChallenge()
+            return
+        }
+        
         selectIndex(index: sender.tag)
     
         delegate?.tabBarButtonTapped(index: sender.tag)
@@ -175,4 +182,5 @@ class CustomTabBarView: UIView {
 
 protocol CustomTabBarViewDelegate: class {
     func tabBarButtonTapped(index: Int)
+    func tryingToEditClosedChallenge()
 }

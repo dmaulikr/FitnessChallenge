@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Athlete: Equatable {
+class Athlete: Hashable {
     
     private let usernameKey = "username"
     private let emailKey = "email"
@@ -29,6 +29,7 @@ class Athlete: Equatable {
     var friendRequestsSent: [String] = []
     var profileImageUrl: String = ""
     var profileImage: UIImage?
+    
     
     init(username: String, email: String, uid: String) {
         
@@ -64,6 +65,10 @@ class Athlete: Equatable {
     var dictionaryRepresentation: [String: Any] {
         
         return [usernameKey: username, emailKey: email, uidKey: uid, challengesKey: challenges, friendsUidsKey: friendsUids, friendRequestsReceivedKey: friendRequestsReceived, friendRequestsSentKey: friendRequestsSent, profileImageUrlKey: profileImageUrl]
+    }
+    
+    var hashValue: Int {
+        return self.challenges.count
     }
 }
 

@@ -24,6 +24,12 @@ class FriendController {
     
     static var sentFriendRequestsPending = [String]() // Array of their uids.
     
+    enum SendFriendRequestError: Error {
+        case alreadyInvited
+        case alreadyAFriend
+        case noUserWithThatUsername
+    }
+    
     func fetchFriendsList(completion: @escaping () -> Void) {
         
         guard let currentUser = AthleteController.currentUser else { completion(); return }
@@ -92,11 +98,25 @@ class FriendController {
         
     }
     
-    static func sendFriendRequest(username: String, completion: @escaping(Bool) -> Void) {
+    static func sendFriendRequest(username: String, completion: @escaping(SendFriendRequestError?) -> Void) {
         
-        guard let currentUser = AthleteController.currentUser else { completion(false); return }
+        guard let currentUser = AthleteController.currentUser else { completion(nil); return }
         
         let allAthleteUsernames = AthleteController.allAthletes.flatMap( {$0.username})
+        
+        guard let uidOfUserToInvite = AthleteController.allAthletes.filter( { $0.username == username } ).first else { print("There was a problem unwrapping first user out of array. \(#function)"); completion(SendFriendRequestError.noUserWithThatUsername); return }
+        
+        if currentUser.friendRequestsSent.contains(username) {
+            // Present Alert saying user has already invited this person.
+            completion(SendFriendRequestError.alreadyInvited)
+            return
+        }
+        
+        if currentUser.friendsUids.contains(uidOfUserToInvite.uid) {
+            // Present Alert saying this user is already your friend.
+            completion(SendFriendRequestError.alreadyAFriend)
+            return
+        }
         
         if allAthleteUsernames.contains(username) {
             
@@ -106,12 +126,10 @@ class FriendController {
             currentUser.friendRequestsSent.append(athleteRequested.username)
             
             addFriendRequestToFirebase(athleteRequested: athleteRequested, athleteRequesting: currentUser)
-            //            sentFriendRequestsPending.append(username)
             
-            
-            completion(true)
+            completion(nil)
         } else {
-            completion(false)
+            completion(SendFriendRequestError.noUserWithThatUsername)
         }
         
     }
@@ -130,7 +148,7 @@ class FriendController {
         
     }
     
-    func acceptFriendRequest(requesterUsername: String, completion: () -> Void) {
+    func acceptFriendRequest(requesterUsername: String,  completion: () -> Void) {
         
         let baseRef = ChallengeController.sharedController.baseRef.child("athletes")
         guard let currentUser = AthleteController.currentUser else { completion(); return }

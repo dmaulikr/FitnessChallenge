@@ -7,108 +7,68 @@
 //
 
 import UIKit
-import ResearchKit
 
-class StandingsViewController: UIViewController, ORKValueStackGraphChartViewDataSource {
+class StandingsViewController: UIViewController, UITableViewDataSource {
     
-    //    let barGraphChartDataSource = BarGraphDataSource()
-    @IBOutlet weak var graphView: ORKBarGraphChartView!
-//    @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var challengeNameLabel: UILabel!
-    
-    
-    var currentUserSets: [ORKValueStack] = []
+    @IBOutlet weak var tableView: UITableView!
     
     var challenge: Challenge?
-    
-    let chartColors = [
-        UIColor(red: 225/255, green: 90/255, blue: 43/255, alpha: 1)
-    ]
+    var viewIsAlreadyLoaded: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.challengeNameLabel.text = ChallengeController.sharedController.currentlySelectedChallenge?.name
+        self.tableView.dataSource = self
+        
+        updateChallengeLabel()
         
         ChallengeController.sharedController.filterParticipantsInCurrentChallenge {}
-        
-//        segmentedController.tintColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha: 1)// Light Gray
-        
-        self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
-        
-        self.setupBarGraphChartView()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         
         guard let challenge = challenge else { return }
         
         SetController.fetchAllSets(by: challenge.uid) {
-            self.graphView.reloadData()
+            self.tableView.reloadData()
         }
         
-        
-
+        self.view.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
+        self.tableView.backgroundColor = UIColor.clear
+        self.tableView.separatorStyle = .none
     }
     
     //=======================================================
     // MARK: - Actions
     //=======================================================
     
-//    @IBAction func segmentedControllerIndexChanged(_ sender: Any) {
-//        
-//        switch segmentedController.selectedSegmentIndex {
-//            
-//        case 0:
-//            title = "1"
-//        case 1:
-//            title = "2"
-//        case 2:
-//            title = "3"
-//        default:
-//            break
-//        }
-//    }
+    
     
     //=======================================================
-    // MARK: - Chart datasource functions
+    // MARK: - Tableview datasource functions
     //=======================================================
     
-    func numberOfPlots(in graphChartView: ORKGraphChartView) -> Int {
-        return SetController.allSetsAsORKValueStacks.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return SetController.participantsTotalsDictionariesOrdered.count
     }
     
-    func graphChartView(_ graphChartView: ORKGraphChartView, numberOfDataPointsForPlotIndex plotIndex: Int) -> Int {
-        return SetController.allSetsAsORKValueStacks[plotIndex].count
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "StandingCell", for: indexPath) as? StandingTableViewCell else { return UITableViewCell() }
+        
+        let athleteDictionary = SetController.participantsTotalsDictionariesOrdered[indexPath.row]
+        
+        cell.backgroundColor = UIColor.clear
+        cell.indexPath = indexPath
+        cell.athleteDictionary = athleteDictionary
+        
+        return cell
     }
     
-    func graphChartView(_ graphChartView: ORKGraphChartView, dataPointForPointIndex pointIndex: Int, plotIndex: Int) -> ORKValueStack {
-        return SetController.allSetsAsORKValueStacks[plotIndex][pointIndex]
+    func updateChallengeLabel() {
+        
+        guard let challengeName = ChallengeController.sharedController.currentlySelectedChallenge?.name
+            else { return }
+        self.challengeNameLabel.text = "\(challengeName) Leaderboard"
     }
     
-    
-    func graphChartView(_ graphChartView: ORKGraphChartView, titleForXAxisAtPointIndex pointIndex: Int) -> String? {
-        return SetController.usernamesForChart[pointIndex]
-    }
-    
-    func graphChartView(_ graphChartView: ORKGraphChartView, colorForPlotIndex plotIndex: Int) -> UIColor {
-        return chartColors[plotIndex]
-    }
-    
-    //=======================================================
-    // MARK: - Setup BarGraphChartView
-    //=======================================================
-    
-    func setupBarGraphChartView() {
-        // ORKBarGraphChartView
-        let barGraphChartView = graphView as ORKBarGraphChartView
-        graphView.dataSource = self
-        barGraphChartView.tintColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)//Orange
-        // Optional custom configuration
-        barGraphChartView.showsHorizontalReferenceLines = false
-        barGraphChartView.showsVerticalReferenceLines = false
-        barGraphChartView.backgroundColor = UIColor(red: 45/255, green: 50/255, blue: 55/255, alpha: 1)//Background Dark Gray
-    }
 }
 

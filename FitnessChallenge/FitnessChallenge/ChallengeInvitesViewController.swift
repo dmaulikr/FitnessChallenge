@@ -31,7 +31,7 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
         
         setupTableView()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(invitesDidLoad), name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(invitesDidLoad), name: ChallengeController.sharedController.challengesUpdatedNotification, object: nil)
     }
     
     func setupTableView() {
@@ -79,6 +79,7 @@ class ChallengeInvitesViewController: UIViewController, UITableViewDelegate, UIT
         let joinAction = UIAlertAction(title: "Join", style: .default) { (_) in
             ChallengeController.sharedController.acceptRequestToJoinChallenge(challenge: challenge, completion: {
                 self.invitesTableView.reloadData()
+                NotificationCenter.default.post(name: ChallengeController.sharedController.challengesUpdatedNotification, object: nil)
             })
         }
         let declineAction = UIAlertAction(title: "Decline", style: .default) { (_) in

@@ -14,8 +14,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
 
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,10 +22,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         emailLabel.text = AthleteController.currentUser?.email
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         profileImageView.clipsToBounds = true
-        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        
         profileImageView.layer.borderWidth = 2.0
         profileImageView.layer.borderColor = UIColor(red: 91/255, green: 91/255, blue: 91/255, alpha: 1).cgColor// Lighter Gray
         

@@ -11,16 +11,16 @@
 		930A0D4E1E31C9770059912B /* ParticipantsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A0D4D1E31C9770059912B /* ParticipantsCollectionViewCell.swift */; };
 		93135FFE1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93135FFD1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift */; };
 		931360001E3FB590006594F9 /* InternetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93135FFF1E3FB590006594F9 /* InternetController.swift */; };
+		9319C4051F2B8E7F00DACCF4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9319C4041F2B8E7F00DACCF4 /* Colors.swift */; };
 		931A039D1DFF615300F98112 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A039C1DFF615300F98112 /* FriendController.swift */; };
 		932E62631E1BF22300EC267C /* SetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E62621E1BF22300EC267C /* SetController.swift */; };
 		93381A7D1E5345D200E2162F /* ChallengesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93381A7C1E5345D200E2162F /* ChallengesPageViewController.swift */; };
 		93381A7F1E53466C00E2162F /* ChallengeInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93381A7E1E53466C00E2162F /* ChallengeInvitesViewController.swift */; };
 		93381A811E53469F00E2162F /* CurrentChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93381A801E53469F00E2162F /* CurrentChallengesViewController.swift */; };
 		93381A831E5346B100E2162F /* PastChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93381A821E5346B100E2162F /* PastChallengesViewController.swift */; };
-		934AA53C1E9472B20001A03F /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934AA5391E9472A50001A03F /* ResearchKit.framework */; };
-		934AA53D1E9472B20001A03F /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 934AA5391E9472A50001A03F /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9354D9861EB410F200FD0FDC /* InviteFriendPopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D9851EB410F200FD0FDC /* InviteFriendPopOverViewController.swift */; };
 		935631911E4B7B1900D08C66 /* PickChallengeTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935631901E4B7B1900D08C66 /* PickChallengeTypeViewController.swift */; };
+		935F1B4E1F2A26B8003B0B0A /* StandingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F1B4D1F2A26B8003B0B0A /* StandingTableViewCell.swift */; };
 		9364E0DC1E2D16270083D3E0 /* ProfileTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */; };
 		9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */; };
 		9364E0E41E2EF9630083D3E0 /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9364E0E31E2EF9630083D3E0 /* FriendRequestTableViewCell.swift */; };
@@ -29,6 +29,7 @@
 		936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */; };
 		937C79D91E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C79D81E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift */; };
 		938D14521EA08B8F00DC883A /* ParticipantsCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938D14511EA08B8F00DC883A /* ParticipantsCollectionReusableView.swift */; };
+		93A80AE51F336A6F006E88E6 /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A80AE41F336A6F006E88E6 /* AppearanceController.swift */; };
 		93BEA0121E3270C600D129FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93BEA0111E3270C600D129FD /* Assets.xcassets */; };
 		93DC6D7D1DFA2C760004ABE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */; };
 		93DC6D821DFA2C760004ABE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DC6D801DFA2C760004ABE6 /* Main.storyboard */; };
@@ -57,27 +58,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		934AA5381E9472A50001A03F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B183A5951A8535D100C76870;
-			remoteInfo = ResearchKit;
-		};
-		934AA53A1E9472A50001A03F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
-			remoteInfo = ResearchKitTests;
-		};
-		934AA53E1E9472B20001A03F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B183A4731A8535D100C76870;
-			remoteInfo = ResearchKit;
-		};
 		93DC6D8E1DFA2C760004ABE6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93DC6D711DFA2C760004ABE6 /* Project object */;
@@ -101,7 +81,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				934AA53D1E9472B20001A03F /* ResearchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +96,7 @@
 		930A0D4D1E31C9770059912B /* ParticipantsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCollectionViewCell.swift; sourceTree = "<group>"; };
 		93135FFD1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenCopyViewController.swift; sourceTree = "<group>"; };
 		93135FFF1E3FB590006594F9 /* InternetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetController.swift; sourceTree = "<group>"; };
+		9319C4041F2B8E7F00DACCF4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		931A039C1DFF615300F98112 /* FriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		932D67531ED38F13000AF4E5 /* FitnessChallenge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitnessChallenge.entitlements; sourceTree = "<group>"; };
 		932E62621E1BF22300EC267C /* SetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetController.swift; sourceTree = "<group>"; };
@@ -124,9 +104,9 @@
 		93381A7E1E53466C00E2162F /* ChallengeInvitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeInvitesViewController.swift; sourceTree = "<group>"; };
 		93381A801E53469F00E2162F /* CurrentChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentChallengesViewController.swift; sourceTree = "<group>"; };
 		93381A821E5346B100E2162F /* PastChallengesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastChallengesViewController.swift; sourceTree = "<group>"; };
-		934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ../Frameworks/ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		9354D9851EB410F200FD0FDC /* InviteFriendPopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendPopOverViewController.swift; sourceTree = "<group>"; };
 		935631901E4B7B1900D08C66 /* PickChallengeTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickChallengeTypeViewController.swift; sourceTree = "<group>"; };
+		935F1B4D1F2A26B8003B0B0A /* StandingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandingTableViewCell.swift; sourceTree = "<group>"; };
 		9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabView.swift; sourceTree = "<group>"; };
 		9364E0DF1E2D1B380083D3E0 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
 		9364E0E31E2EF9630083D3E0 /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
@@ -135,6 +115,7 @@
 		936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewCell.swift; sourceTree = "<group>"; };
 		937C79D81E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeTypeTableViewCell.swift; sourceTree = "<group>"; };
 		938D14511EA08B8F00DC883A /* ParticipantsCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCollectionReusableView.swift; sourceTree = "<group>"; };
+		93A80AE41F336A6F006E88E6 /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		93BEA0111E3270C600D129FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93DC6D791DFA2C760004ABE6 /* FitnessChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -175,7 +156,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				934AA53C1E9472B20001A03F /* ResearchKit.framework in Frameworks */,
 				CFF41F5835C4F9AA11F6F3B9 /* Pods_FitnessChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,27 +208,19 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		934AA5331E9472A50001A03F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				934AA5391E9472A50001A03F /* ResearchKit.framework */,
-				934AA53B1E9472A50001A03F /* ResearchKitTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		936D05131E23E33600FBCD57 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				938D14511EA08B8F00DC883A /* ParticipantsCollectionReusableView.swift */,
 				9364E0EB1E3143FD0083D3E0 /* ChallengeTableViewCell.swift */,
 				937C79D81E4BC6CB001B0C1F /* ChallengeTypeTableViewCell.swift */,
 				9364E0E71E305BCD0083D3E0 /* CreateChallengeCollectionViewCell.swift */,
 				93EE95D81E00E51500A4E02A /* CustomTabBarView.swift */,
 				936D050F1E23E33000FBCD57 /* FriendCollectionViewCell.swift */,
 				9364E0E31E2EF9630083D3E0 /* FriendRequestTableViewCell.swift */,
+				938D14511EA08B8F00DC883A /* ParticipantsCollectionReusableView.swift */,
 				930A0D4D1E31C9770059912B /* ParticipantsCollectionViewCell.swift */,
 				9364E0DB1E2D16270083D3E0 /* ProfileTabView.swift */,
+				935F1B4D1F2A26B8003B0B0A /* StandingTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -256,7 +228,6 @@
 		93DC6D701DFA2C760004ABE6 = {
 			isa = PBXGroup;
 			children = (
-				934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */,
 				93DC6D7B1DFA2C760004ABE6 /* FitnessChallenge */,
 				93DC6D901DFA2C760004ABE6 /* FitnessChallengeTests */,
 				93DC6D9B1DFA2C760004ABE6 /* FitnessChallengeUITests */,
@@ -323,6 +294,8 @@
 		93DC6DB11DFA2EEF0004ABE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9319C4041F2B8E7F00DACCF4 /* Colors.swift */,
+				93A80AE41F336A6F006E88E6 /* AppearanceController.swift */,
 				93BEA0111E3270C600D129FD /* Assets.xcassets */,
 				93DC6D7C1DFA2C760004ABE6 /* AppDelegate.swift */,
 				93DC6DC71DFB2D930004ABE6 /* GoogleService-Info.plist */,
@@ -403,7 +376,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				934AA53F1E9472B20001A03F /* PBXTargetDependency */,
 			);
 			name = FitnessChallenge;
 			productName = FitnessChallenge;
@@ -497,12 +469,6 @@
 			mainGroup = 93DC6D701DFA2C760004ABE6;
 			productRefGroup = 93DC6D7A1DFA2C760004ABE6 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 934AA5331E9472A50001A03F /* Products */;
-					ProjectRef = 934AA5321E9472A50001A03F /* ResearchKit.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				93DC6D781DFA2C760004ABE6 /* FitnessChallenge */,
@@ -511,23 +477,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		934AA5391E9472A50001A03F /* ResearchKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ResearchKit.framework;
-			remoteRef = 934AA5381E9472A50001A03F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		934AA53B1E9472A50001A03F /* ResearchKitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ResearchKitTests.xctest;
-			remoteRef = 934AA53A1E9472A50001A03F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		93DC6D771DFA2C760004ABE6 /* Resources */ = {
@@ -700,6 +649,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935F1B4E1F2A26B8003B0B0A /* StandingTableViewCell.swift in Sources */,
 				9364E0E81E305BCD0083D3E0 /* CreateChallengeCollectionViewCell.swift in Sources */,
 				93DC6DB91DFA36C70004ABE6 /* LoginViewController.swift in Sources */,
 				931A039D1DFF615300F98112 /* FriendController.swift in Sources */,
@@ -721,6 +671,7 @@
 				936D05101E23E33000FBCD57 /* FriendCollectionViewCell.swift in Sources */,
 				935631911E4B7B1900D08C66 /* PickChallengeTypeViewController.swift in Sources */,
 				93135FFE1E3EFB44006594F9 /* LaunchScreenCopyViewController.swift in Sources */,
+				93A80AE51F336A6F006E88E6 /* AppearanceController.swift in Sources */,
 				93EE95D51E00E39300A4E02A /* AddSetViewController.swift in Sources */,
 				93381A7F1E53466C00E2162F /* ChallengeInvitesViewController.swift in Sources */,
 				93DC6DBC1DFA37580004ABE6 /* CreateAccountViewController.swift in Sources */,
@@ -730,6 +681,7 @@
 				9364E0EC1E3143FD0083D3E0 /* ChallengeTableViewCell.swift in Sources */,
 				930A0D4E1E31C9770059912B /* ParticipantsCollectionViewCell.swift in Sources */,
 				93DC6DAD1DFA2EA20004ABE6 /* Challenge.swift in Sources */,
+				9319C4051F2B8E7F00DACCF4 /* Colors.swift in Sources */,
 				9364E0E01E2D1B380083D3E0 /* ProfileTabViewController.swift in Sources */,
 				93381A811E53469F00E2162F /* CurrentChallengesViewController.swift in Sources */,
 				931360001E3FB590006594F9 /* InternetController.swift in Sources */,
@@ -758,11 +710,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		934AA53F1E9472B20001A03F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ResearchKit;
-			targetProxy = 934AA53E1E9472B20001A03F /* PBXContainerItemProxy */;
-		};
 		93DC6D8F1DFA2C760004ABE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 93DC6D781DFA2C760004ABE6 /* FitnessChallenge */;
@@ -933,7 +880,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ResearchKit\"",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks\"",
 					"\"${PODS_ROOT}/FirebaseAuth/Frameworks/frameworks\"",
 					"\"${PODS_ROOT}/FirebaseCore/Frameworks/frameworks\"",

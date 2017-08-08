@@ -102,7 +102,7 @@ class ChallengeController {
         usersToInviteUids = []
         self.allChallenges.append(challenge)
         
-        NotificationCenter.default.post(name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
+        NotificationCenter.default.post(name: ChallengeController.sharedController.challengesUpdatedNotification, object: nil)
     }
     
     func endChallenge(challenge: Challenge) {
@@ -132,8 +132,9 @@ class ChallengeController {
         
         var challengesToUpdateOnFirebase: [Challenge] = []
         for challenge in challengesToCheckForIsComplete {
-            guard let date = dateFormatter.date(from: challenge.endDate) else { completion(); return }
-            
+            guard let date = dateFormatter.date(from: challenge.endDate)
+                else { completion(); continue }
+
             if date < Date() {
                 challenge.isComplete = true
                 challengesToUpdateOnFirebase.append(challenge)
@@ -155,6 +156,8 @@ class ChallengeController {
             group.notify(queue: DispatchQueue.main, execute: { 
                 completion()
             })
+        } else {
+            completion()
         }
     }
     
@@ -266,6 +269,6 @@ class ChallengeController {
     
     var currentPageIndexNotification = Notification.Name("currentPageIndex")
     var currentSegmentNotification = Notification.Name("currentSegment")
-    var challengesFetchedNotification = Notification.Name("challengesFetched")
+    var challengesUpdatedNotification = Notification.Name("challengesUpdated")
     
 }

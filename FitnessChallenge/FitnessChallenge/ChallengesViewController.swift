@@ -38,7 +38,7 @@ class ChallengesViewController: UIViewController {
             ChallengeController.sharedController.updateCompletedChallenges {
                 ChallengeController.sharedController.filterUserPendingChallengeInvites(completion: { (success) in
                     if success {
-                        NotificationCenter.default.post(name: ChallengeController.sharedController.challengesFetchedNotification, object: nil)
+                        NotificationCenter.default.post(name: ChallengeController.sharedController.challengesUpdatedNotification, object: nil)
                     } else {
                         print("Completion was false in 'filterUserPendingChallengeInvites()'")
                     }
